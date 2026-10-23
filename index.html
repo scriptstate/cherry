@@ -35,6 +35,19 @@
   --blob-d: #ff5d7a;
   --code-bg: rgba(42, 6, 16, .9);
   --radius: 30px;
+  /* Glass */
+  --glass-top: rgba(255, 255, 255, .42);
+  --glass-bottom: rgba(255, 255, 255, .16);
+  --glass-edge: rgba(255, 255, 255, .95);
+  --glass-edge-soft: rgba(255, 255, 255, .4);
+  --glass-depth: rgba(160, 12, 44, .14);
+  --glass-blur: 16px;
+  /* Background ribbons */
+  --bg-1a: #ff9aa8; --bg-1b: #e8143a;
+  --bg-2a: #f7c6f0; --bg-2b: #c97bd6;
+  --bg-3a: #ffd9c2; --bg-3b: #ff8a7a;
+  --orb-a: #ff4d6a; --orb-b: #b0001f;
+  --accent-text: #d40f35;
   --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
   color-scheme: light dark;
 }
@@ -53,6 +66,16 @@
     --blob-c: #7c2c12;
     --blob-d: #c4153e;
     --code-bg: rgba(0, 0, 0, .55);
+    --glass-top: rgba(255, 255, 255, .13);
+    --glass-bottom: rgba(255, 255, 255, .04);
+    --glass-edge: rgba(255, 255, 255, .6);
+    --glass-edge-soft: rgba(255, 255, 255, .14);
+    --glass-depth: rgba(0, 0, 0, .35);
+    --bg-1a: #c4153e; --bg-1b: #5c0018;
+    --bg-2a: #6b2470; --bg-2b: #2a0b35;
+    --bg-3a: #8a3416; --bg-3b: #3a0c10;
+    --orb-a: #ff3d5e; --orb-b: #6d0015;
+    --accent-text: #ff6b7d;
   }
 }
 
@@ -75,18 +98,18 @@ p { margin: 0; }
 ::selection { background: rgba(232, 20, 58, .25); }
 
 /* =========================================================
-   Living background (gives the glass something to bend)
+   Background: soft ribbons and two glossy cherries. Glass
+   needs edges behind it to look like glass, so these have
+   real shapes, not just blur.
    ========================================================= */
-.backdrop { position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; }
-.blob { position: absolute; border-radius: 50%; filter: blur(64px); opacity: .8; will-change: transform; }
-.blob.a { width: 56vmax; height: 56vmax; left: -16vmax; top: -18vmax; background: var(--blob-a); animation: drift-a 28s ease-in-out infinite alternate; }
-.blob.b { width: 48vmax; height: 48vmax; right: -18vmax; top: 16vh; background: var(--blob-b); animation: drift-b 34s ease-in-out infinite alternate; }
-.blob.c { width: 42vmax; height: 42vmax; left: 18vw; bottom: -22vmax; background: var(--blob-c); animation: drift-c 40s ease-in-out infinite alternate; }
-.blob.d { width: 22vmax; height: 22vmax; left: 46vw; top: 30vh; background: var(--blob-d); opacity: .45; animation: drift-b 22s ease-in-out infinite alternate-reverse; }
-@keyframes drift-a { to { transform: translate(10vw, 8vh) scale(1.15); } }
-@keyframes drift-b { to { transform: translate(-8vw, 10vh) scale(.9); } }
-@keyframes drift-c { to { transform: translate(6vw, -10vh) scale(1.1); } }
-.grain { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .05; mix-blend-mode: overlay;
+.backdrop { position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; background: var(--page); }
+.backdrop svg { position: absolute; inset: -6% -4%; width: 108%; height: 112%; }
+.backdrop .layer { will-change: transform; transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
+.backdrop .drift-a { animation: drift-a 36s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+.backdrop .drift-b { animation: drift-b 44s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+@keyframes drift-a { to { transform: translate(40px, 24px) rotate(2deg); } }
+@keyframes drift-b { to { transform: translate(-50px, -18px) rotate(-2deg); } }
+.grain { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .045; mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
 
 /* =========================================================
@@ -94,14 +117,14 @@ p { margin: 0; }
    ========================================================= */
 .wrap { width: min(1160px, 100% - 32px); margin: 0 auto; }
 section { padding: 110px 0; scroll-margin-top: 80px; }
-.eyebrow { font-size: 13px; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; color: var(--cherry); }
+.eyebrow { font-size: 15px; font-weight: 650; letter-spacing: -.005em; color: var(--accent-text); }
 .lead { font-size: clamp(18px, 2.1vw, 22px); color: var(--ink-soft); max-width: 700px; }
 .center { text-align: center; }
 .center .lead { margin: 18px auto 0; }
 .head { margin-bottom: 52px; }
 .head h2 { margin-top: 10px; }
-.gradient-text { background: linear-gradient(120deg, var(--cherry-light), var(--cherry) 45%, var(--cherry-deep)); -webkit-background-clip: text; background-clip: text; color: transparent; }
-@media (prefers-color-scheme: dark) { .gradient-text { background-image: linear-gradient(120deg, #ffb3bc, var(--cherry-light) 40%, var(--cherry)); } }
+.accent { color: var(--accent-text); }
+.quiet { color: var(--ink-faint); }
 @media (max-width: 640px) { section { padding: 72px 0; } }
 
 /* Fade in as you scroll. */
@@ -111,37 +134,50 @@ section { padding: 110px 0; scroll-margin-top: 80px; }
 /* =========================================================
    Liquid Glass
    ---------------------------------------------------------
-   Every glass surface: a frosted, color-boosted backdrop; a
-   bright rim lit from the top-left; an inner glow at the
-   bottom; a soft shadow. Buttons (.lg) add a lens that bends
-   the edges (Chromium), a moving sheen, and jelly physics:
-   hold to swell and stretch toward your pointer.
+   A clear, color-boosted pane with real thickness: a bright
+   lip on top, a tinted inner edge at the bottom where the
+   light leaves, and a rim highlight that turns toward your
+   pointer like light catching curved glass. In Chromium the
+   panes also bend what's behind their edges (see script).
    ========================================================= */
+@property --spec { syntax: "<angle>"; inherits: false; initial-value: 320deg; }
 .glass, .lg {
   --lift: 0;
   position: relative;
   isolation: isolate;
   background:
-    linear-gradient(180deg, rgba(255,255,255,calc(.24 + var(--lift) * .1)), rgba(255,255,255,.04) 70%),
-    var(--panel);
-  -webkit-backdrop-filter: blur(20px) saturate(185%) brightness(1.04);
-  backdrop-filter: blur(20px) saturate(185%) brightness(1.04);
+    linear-gradient(180deg, rgba(255,255,255,calc(var(--lift) * .12)), rgba(255,255,255,0)),
+    linear-gradient(180deg, var(--glass-top), var(--glass-bottom));
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(190%) brightness(1.04);
+  backdrop-filter: blur(var(--glass-blur)) saturate(190%) brightness(1.04);
   box-shadow:
-    inset 0 1px 0 0 var(--rim),
-    inset 0 -1px 0 0 var(--rim-soft),
-    inset 0 -18px 30px -24px rgba(255,255,255,.55),
-    0 30px 70px -36px var(--shadow),
-    0 2px 6px -2px rgba(0,0,0,.06);
+    inset 0 1px .5px var(--glass-edge),
+    inset 0 -1px .5px var(--glass-edge-soft),
+    inset 0 12px 24px -16px rgba(255,255,255,.6),
+    inset 0 -16px 28px -20px var(--glass-depth),
+    0 1px 1px rgba(60, 0, 15, .04),
+    0 10px 22px -14px var(--shadow),
+    0 40px 80px -48px var(--shadow);
 }
 .glass { border-radius: var(--radius); }
-/* Rim light: thin, brighter at opposite corners like a curved edge catching light. */
+/* The rim: brightest where the light comes from and, fainter, on the opposite edge. */
 .glass::after, .lg::after {
-  content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.2px; pointer-events: none; z-index: 2;
-  background: conic-gradient(from 210deg, var(--rim), rgba(255,255,255,.05) 22%, rgba(255,255,255,.05) 45%, var(--rim) 55%, rgba(255,255,255,.05) 75%, var(--rim));
+  content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.25px; pointer-events: none; z-index: 2;
+  background: conic-gradient(from var(--spec), var(--glass-edge), rgba(255,255,255,0) 16%, rgba(255,255,255,0) 36%,
+    var(--glass-edge-soft) 50%, rgba(255,255,255,0) 64%, rgba(255,255,255,0) 84%, var(--glass-edge));
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude;
-  opacity: calc(.7 + var(--lift) * .3);
+  opacity: calc(.75 + var(--lift) * .25);
+  transition: --spec .5s cubic-bezier(.2, .7, .2, 1);
 }
+/* A soft glint where your pointer is, on the big panes. */
+.glass::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 1;
+  background: radial-gradient(420px circle at var(--px, 50%) var(--py, -40%), rgba(255,255,255,.28), rgba(255,255,255,0) 60%);
+  mix-blend-mode: soft-light; opacity: 0; transition: opacity .5s;
+}
+.glass.lit::before { opacity: 1; }
+.glass > * { position: relative; z-index: 3; }
 
 .lg {
   --mx: 50%; --my: 20%;
@@ -205,12 +241,12 @@ section { padding: 110px 0; scroll-margin-top: 80px; }
 .hero { padding: 150px 0 70px; }
 .hero-grid { display: grid; grid-template-columns: 1fr 1.08fr; gap: 56px; align-items: center; }
 .hero-grid > * { min-width: 0; }
-.hero h1 { font-size: clamp(46px, 7.4vw, 96px); line-height: .96; letter-spacing: -.04em; overflow-wrap: break-word; }
+.hero h1 { font-size: clamp(46px, 6.2vw, 84px); line-height: .96; letter-spacing: -.04em; overflow-wrap: break-word; }
 .hero .lead { margin-top: 24px; }
 .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px; }
-.facts { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 30px; color: var(--ink-faint); font-size: 15px; font-weight: 600; }
+.facts { margin-top: 30px; color: var(--ink-faint); font-size: 15px; font-weight: 600; }
 .facts span { display: inline-flex; align-items: center; gap: 6px; }
-.facts span::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--cherry); box-shadow: 0 0 0 4px rgba(232,20,58,.15); }
+
 @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; } .hero { padding-top: 120px; } }
 
 /* The live demo: a tiny Mac with Cherry working in it. */
@@ -264,9 +300,8 @@ section { padding: 110px 0; scroll-margin-top: 80px; }
 .marquee .track.reverse { animation-direction: reverse; margin-top: 12px; }
 .marquee:hover .track { animation-play-state: paused; }
 @keyframes scroll { to { transform: translateX(-50%); } }
-.say-chip { padding: 12px 18px; border-radius: 999px; font-weight: 600; font-size: 15px; white-space: nowrap; }
-.say-chip::before { content: "“"; color: var(--cherry); }
-.say-chip::after { content: "”"; color: var(--cherry); }
+.say-chip { padding: 11px 17px; border-radius: 22px 22px 22px 7px; font-weight: 550; font-size: 15px; white-space: nowrap; }
+.track.reverse .say-chip { border-radius: 22px 22px 7px 22px; }
 
 /* =========================================================
    Bento of features
@@ -276,9 +311,23 @@ section { padding: 110px 0; scroll-margin-top: 80px; }
 .tile:hover { transform: translateY(-4px); }
 .tile.wide { grid-column: span 3; }
 .tile.full { grid-column: span 6; }
-.tile .ico { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; margin-bottom: 18px;
-  background: linear-gradient(160deg, var(--cherry-light), var(--cherry)); color: #fff; box-shadow: 0 10px 20px -10px var(--cherry), inset 0 1px 0 rgba(255,255,255,.45); }
-.tile .ico svg { width: 24px; height: 24px; }
+.tile .ico { display: block; margin-bottom: 14px; color: var(--accent-text); }
+.tile .ico svg { width: 26px; height: 26px; }
+/* Little scenes from the app, in place of icons. */
+.scene { margin: -6px -6px 22px; padding: 18px; border-radius: 20px; min-height: 112px; display: grid; align-content: center; gap: 8px;
+  background: rgba(30, 22, 26, .88); color: #f4eef0; font-size: 14px; box-shadow: inset 0 1px 0 rgba(255,255,255,.14), 0 12px 24px -16px rgba(40,0,10,.5); position: relative; overflow: hidden; }
+@media (prefers-color-scheme: dark) { .scene { background: rgba(0, 0, 0, .38); } }
+.scene .btn { justify-self: start; padding: 6px 12px; border-radius: 8px; background: #3a3a42; font-weight: 600; font-size: 13px; }
+.scene .pointer { position: absolute; left: 112px; top: 50px; width: 30px; }
+.scene .bubble { position: absolute; left: 146px; top: 72px; padding: 5px 10px; border-radius: 10px; font-size: 12px; font-weight: 650; background: rgba(255,255,255,.14); white-space: nowrap; }
+.scene .msg { max-width: 86%; padding: 8px 12px; border-radius: 16px; line-height: 1.35; font-size: 13.5px; }
+.scene .msg.you { justify-self: end; background: var(--cherry); color: #fff; border-bottom-right-radius: 5px; }
+.scene .msg.her { justify-self: start; background: rgba(255,255,255,.12); border-bottom-left-radius: 5px; }
+.scene .bar { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 14px; background: rgba(255,255,255,.1); box-shadow: inset 0 1px 0 rgba(255,255,255,.15); color: #b9b0b4; }
+.scene .bar img { width: 18px; }
+.scene .bar kbd { margin-left: auto; background: rgba(255,255,255,.12); color: #fff; }
+.scene .memory { display: flex; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 14px; background: rgba(255,255,255,.08); }
+.scene .memory small { display: block; color: #a99fa3; font-size: 12px; }
 .tile p { color: var(--ink-soft); margin-top: 8px; }
 .tile ul { margin: 14px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
 .tile li { display: flex; gap: 10px; align-items: baseline; color: var(--ink-soft); }
@@ -367,7 +416,7 @@ kbd, code, .say-inline { font: 600 14px/1.4 ui-monospace, "SF Mono", Menlo, mono
 .phone-list { display: grid; gap: 14px; margin-top: 30px; }
 .phone-list .item { display: grid; grid-template-columns: 46px 1fr; gap: 14px; align-items: start; padding: 18px 20px; border-radius: 24px; }
 .phone-list .item p { color: var(--ink-soft); font-size: 15px; margin-top: 2px; }
-.phone-list .ico { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: linear-gradient(160deg, var(--cherry-light), var(--cherry)); color: #fff; box-shadow: inset 0 1px 0 rgba(255,255,255,.45); }
+.phone-list .ico { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; color: var(--accent-text); background: rgba(232,20,58,.1); box-shadow: inset 0 1px 0 rgba(255,255,255,.5); }
 .phone-list .ico svg { width: 22px; height: 22px; }
 
 /* =========================================================
@@ -398,7 +447,7 @@ kbd, code, .say-inline { font: 600 14px/1.4 ui-monospace, "SF Mono", Menlo, mono
 .plan .price small { font-size: 17px; font-weight: 600; color: var(--ink-soft); }
 .plan .price-alt { margin: -6px 0 4px; font-size: 15px; color: var(--ink-soft); }
 .plan .price-alt strong { color: var(--ink); }
-.plan ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; flex: 1; }
+.plan ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; flex: 1; align-content: start; }
 .plan li { display: flex; gap: 10px; color: var(--ink-soft); }
 .plan li::before { content: "✓"; color: var(--cherry); font-weight: 800; }
 .plan.pro { box-shadow: inset 0 1px 0 var(--rim), 0 0 0 2px rgba(232,20,58,.55), 0 30px 70px -30px rgba(232,20,58,.45); }
@@ -426,13 +475,31 @@ footer img { width: 28px; border-radius: 8px; }
 </style>
 </head>
 <body>
-<div class="backdrop" aria-hidden="true"><div class="blob a"></div><div class="blob b"></div><div class="blob c"></div><div class="blob d"></div></div>
+<div class="backdrop" aria-hidden="true">
+  <svg viewBox="0 0 1440 1000" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <linearGradient id="r1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--bg-1a)"/><stop offset="1" style="stop-color:var(--bg-1b)"/></linearGradient>
+      <linearGradient id="r2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--bg-2a)"/><stop offset="1" style="stop-color:var(--bg-2b)"/></linearGradient>
+      <linearGradient id="r3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" style="stop-color:var(--bg-3a)"/><stop offset="1" style="stop-color:var(--bg-3b)"/></linearGradient>
+      <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="14"/></filter>
+    </defs>
+    <g class="layer" data-depth=".05">
+      <path class="drift-a" filter="url(#soft)" opacity=".55" fill="url(#r2)" d="M-120 160C180 40 420 300 760 230S1260 -20 1580 120V520C1300 380 1060 560 760 600S180 420 -120 560Z"/>
+    </g>
+    <g class="layer" data-depth=".1">
+      <path class="drift-b" filter="url(#soft)" opacity=".6" fill="url(#r1)" d="M-160 520C160 360 460 640 820 560S1300 300 1600 420V700C1320 640 1100 860 760 880S160 700 -160 820Z"/>
+    </g>
+    <g class="layer" data-depth=".16">
+      <path class="drift-a" filter="url(#soft)" opacity=".6" fill="url(#r3)" d="M-100 860C240 760 520 960 900 900S1360 760 1560 820V1100H-100Z"/>
+    </g>
+  </svg>
+</div>
 <div class="grain" aria-hidden="true"></div>
 <!-- Lens filters for the glass buttons are added here by script. -->
 <svg id="lens-defs" width="0" height="0" style="position:absolute" aria-hidden="true"></svg>
 
 <header class="nav" id="nav">
-  <nav class="bar glass" aria-label="Main">
+  <nav class="bar glass bend" aria-label="Main">
     <a class="brand" href="#top"><img src="assets/icon.png?v=6" alt="">Cherry</a>
     <div class="links">
       <a href="#features">Features</a>
@@ -458,16 +525,16 @@ footer img { width: 28px; border-radius: 8px; }
     <div class="wrap hero-grid">
       <div>
         <p class="eyebrow">For Apple silicon MacBooks</p>
-        <h1>Your Mac,<br><span class="gradient-text">with a helping hand.</span></h1>
+        <h1>Your Mac,<br><span class="accent">with a helping hand.</span></h1>
         <p class="lead">Cherry is a little AI helper who sees your screen and uses your apps for you, with her very own cursor. Everything she thinks happens right on your Mac, so your screen and your words stay yours.</p>
         <div class="actions">
           <button type="button" role="link" class="lg tinted" data-href="#pricing"><span>Try it free for 14 days</span></button>
           <button type="button" role="link" class="lg" data-href="#features"><span>See what she can do</span></button>
         </div>
-        <div class="facts"><span>14-day free trial</span><span>Thinks on your Mac</span><span>Talk from your iPhone</span></div>
+        <p class="facts">14-day free trial&nbsp;· Thinks on your Mac&nbsp;· Talk from your iPhone</p>
       </div>
 
-      <div class="demo glass" aria-label="Animation: Cherry opening Notes and writing a shopping list">
+      <div class="demo glass bend" aria-label="Animation: Cherry opening Notes and writing a shopping list">
         <div class="mac" id="mac">
           <div class="label">Cherry is using your computer</div>
           <div class="titlebar">
@@ -500,63 +567,72 @@ footer img { width: 28px; border-radius: 8px; }
     <div class="wrap">
       <div class="head center reveal">
         <p class="eyebrow">What she does</p>
-        <h2>Just tell her.<br><span class="gradient-text">She'll do it.</span></h2>
+        <h2>Just tell her.<br><span class="quiet">She'll do it.</span></h2>
         <p class="lead">Type or say what you need. Cherry reads your screen, moves her own cursor to the right place, and does it, while you watch every step.</p>
       </div>
       <div class="bento">
         <article class="tile wide glass reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 3l14 7-6 2-2 6z"/></svg></div>
+          <div class="scene" aria-hidden="true">
+            <span class="btn">＋ New Note</span>
+            <img class="pointer" src="assets/cherry.png?v=6" alt="">
+            <span class="bubble">Making a new note</span>
+          </div>
           <h3>Her own cursor</h3>
-          <p>You see Cherry's cursor glide to each button, click and type. Your mouse stays yours. While she works, a red border shows she's in control, and holding <kbd>esc</kbd> stops her instantly.</p>
+          <p>Cherry's cursor glides to each button, clicks and types while you watch. Your mouse stays yours. A red border shows she's working, and holding <kbd>esc</kbd> stops her.</p>
         </article>
         <article class="tile wide glass reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div>
-          <h3>Everyday things, instantly</h3>
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3 5 13.5h6L10 21l8-10.5h-6z"/></svg></div>
+          <h3>The everyday stuff, done right away</h3>
           <ul>
-            <li>Notes, lists, reminders and calendar events</li>
-            <li>Email drafts (you press Send)</li>
-            <li>Websites, searches, folders and finding files</li>
-            <li>Volume, music, dark mode, settings and timers</li>
+            <li>Notes, reminders, calendar events and email drafts (you press Send)</li>
+            <li>Search YouTube, Amazon or Wikipedia, or open any site</li>
+            <li>Windows to the left half, side by side, or full screen</li>
+            <li>Weather, currencies, units, your battery and the time anywhere</li>
           </ul>
         </article>
         <article class="tile glass reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <div class="scene" aria-hidden="true">
+            <span class="msg you">What does this error mean?</span>
+            <span class="msg her">Your disk is almost full. Want me to tidy Downloads?</span>
+          </div>
           <h3>Ask about your screen</h3>
-          <p>“What does this error mean?” “Summarise this page.” She looks and explains, without touching anything.</p>
+          <p>She reads what's in front of you and explains it, without touching anything.</p>
         </article>
         <article class="tile glass reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 20h4L19 9l-4-4L4 16z"/></svg></div>
-          <h3>She writes for you</h3>
-          <p>“Make a packing list for a ski trip.” “Write a short poem about cherries.” Into Notes or TextEdit it goes.</p>
+          <div class="scene" aria-hidden="true">
+            <div class="memory"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff8f9b" stroke-width="2" stroke-linecap="round"><path d="M12 3a6 6 0 0 0-3.5 10.9V17h7v-3.1A6 6 0 0 0 12 3zM10 21h4"/></svg><div>Dentist is on Tuesdays<small>Remembered · only on this Mac</small></div></div>
+          </div>
+          <h3>Remembers what you tell her</h3>
+          <p>Say <span class="say-inline">remember that…</span> and it stays on your Mac until you delete it.</p>
         </article>
         <article class="tile glass reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3a7 7 0 0 0-4 12.7V19h8v-3.3A7 7 0 0 0 12 3zM9 22h6"/></svg></div>
-          <h3>Remembers what matters</h3>
-          <p>Say <span class="say-inline">remember that my dentist is on Tuesdays</span>. It stays on your Mac, and you can delete it any time.</p>
-        </article>
-        <article class="tile glass reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
-          <h3>Tidies your files</h3>
-          <p>“Sort my Downloads by type.” She shows the whole plan first, only touches folders you allow, and can undo it.</p>
-        </article>
-        <article class="tile glass reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M8 9h8M8 13h5M21 12a9 9 0 1 1-4-7.5L21 3v5h-5"/></svg></div>
-          <h3>Understands follow-ups</h3>
-          <p>“Open Finder.” “Now open it.” She knows what “it” means, so you can talk to her like a person.</p>
-        </article>
-        <article class="tile glass reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="7" width="18" height="10" rx="5"/></svg></div>
+          <div class="scene" aria-hidden="true">
+            <div class="bar"><img src="assets/cherry.png?v=6" alt="">Ask Cherry…<kbd>⌥ Space</kbd></div>
+          </div>
           <h3>The Cherry Bar</h3>
-          <p>Press <kbd>⌥ Space</kbd> anywhere to ask Cherry over the app you're in, without switching windows.</p>
+          <p>Ask from any app, without switching windows.</p>
+        </article>
+        <article class="tile glass reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/></svg></div>
+          <h3>She writes for you</h3>
+          <p>“Make a packing list for a ski trip.” Into Notes or TextEdit it goes, and “add that to my note” works too.</p>
+        </article>
+        <article class="tile glass reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+          <h3>Tidies your files</h3>
+          <p>“Sort my Downloads by type.” She shows the plan first, only touches folders you allow, and can undo it.</p>
+        </article>
+        <article class="tile glass reveal">
+          <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h10M4 18h7"/><path d="m16 15 3 3 3-3"/></svg></div>
+          <h3>Skills you make yourself</h3>
+          <p>Describe a routine once, then start it with <code>/its-name</code>. Your Apple Shortcuts work too.</p>
         </article>
         <article class="tile full glass reveal">
-          <div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5z"/></svg></div>
-          <h3>Safe by design, enforced in code</h3>
-          <p>Cherry's safety rules aren't suggestions to a model. They're written into the app.</p>
+          <h3>Safety rules written into the app, not suggested to a model</h3>
           <div class="safety">
             <div>Asks first<span>before deleting, sending, paying or changing settings</span></div>
             <div>No secrets<span>never types passwords or card numbers</span></div>
-            <div>Can't be tricked<span>text on screen can't give her orders</span></div>
+            <div>Can't be talked into things<span>text on screen can't give her orders</span></div>
             <div>Always stoppable<span>hold esc, click Stop, or tap Stop on your iPhone</span></div>
           </div>
         </article>
@@ -568,8 +644,8 @@ footer img { width: 28px; border-radius: 8px; }
   <section id="helpers">
     <div class="wrap">
       <div class="head center reveal">
-        <p class="eyebrow">Multi agent</p>
-        <h2>Meet the <span class="gradient-text">helpers.</span></h2>
+        <p class="eyebrow">Helpers</p>
+        <h2>Meet the <span class="quiet">helpers.</span></h2>
         <p class="lead">When a task gets tricky, Cherry calls in her friends. Each one has a job and a cursor of their own, and they talk to each other while they work.</p>
       </div>
       <div class="team">
@@ -612,7 +688,7 @@ footer img { width: 28px; border-radius: 8px; }
       </div>
       <div class="reveal">
         <p class="eyebrow">iPhone companion</p>
-        <h2>Talk to her from <span class="gradient-text">your iPhone.</span></h2>
+        <h2>Talk to her from <span class="quiet">your iPhone.</span></h2>
         <p class="lead" style="margin-top:18px">Cherry's face fills your phone. Hold anywhere, say what you need, and she does it on your Mac. Her eyes even follow her cursor.</p>
         <div class="phone-list">
           <div class="item glass"><div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div><div><h3>Just talk</h3><p>Your words become text on the iPhone itself, and she answers out loud.</p></div></div>
@@ -627,9 +703,9 @@ footer img { width: 28px; border-radius: 8px; }
   <!-- ================= Privacy ================= -->
   <section id="privacy">
     <div class="wrap">
-      <div class="statement glass reveal">
+      <div class="statement glass bend reveal">
         <p class="eyebrow">Privacy</p>
-        <h2 style="margin-top:12px">Nothing leaves your Mac.<br><span class="gradient-text">There's nowhere for it to go.</span></h2>
+        <h2 style="margin-top:12px">Nothing leaves your Mac.<br><span class="quiet">There's nowhere for it to go.</span></h2>
         <p class="lead" style="margin:18px auto 0">Cherry thinks with Apple's on-device model. Your screen, your words and your files never go to a server, because Cherry doesn't have one.</p>
         <div class="trio">
           <div><h3>100% on device</h3><p>No cloud AI, no API keys, no tracking. It even works offline.</p></div>
@@ -645,11 +721,11 @@ footer img { width: 28px; border-radius: 8px; }
     <div class="wrap">
       <div class="head center reveal">
         <p class="eyebrow">Pricing</p>
-        <h2>One plan.<br><span class="gradient-text">Everything Cherry can do.</span></h2>
+        <h2>Free to start.<br><span class="quiet">$5 when you want more.</span></h2>
         <p class="lead">Try every feature free for 14 days. Then it's $5 a month, or $20 for a whole year. Cancel any time.</p>
       </div>
       <div class="plans">
-        <div class="plan glass reveal">
+        <div class="plan glass bend reveal">
           <h3>Free</h3>
           <p class="price">$0</p>
           <ul>
@@ -661,7 +737,7 @@ footer img { width: 28px; border-radius: 8px; }
             <li>Every safety feature, always</li>
           </ul>
         </div>
-        <div class="plan pro glass reveal">
+        <div class="plan pro glass bend reveal">
           <h3>Cherry Pro</h3>
           <p class="price">$5<small>/month</small></p>
           <p class="price-alt">or <strong>$20 a year</strong>, save 67%</p>
@@ -911,6 +987,60 @@ function liquidGlass(element) {
 
 document.querySelectorAll(".lg:not(.thumb)").forEach(liquidGlass);
 
+/* =========================================================
+   Glass panes: edges that bend the background (Chromium),
+   rim light that turns toward your pointer, and a glint
+   under it. Only panes on screen are updated.
+   ========================================================= */
+if (canBend && !reduceMotion) {
+  document.querySelectorAll(".glass.bend").forEach(pane => {
+    const lens = makeLens(pane);
+    lens.setStrength(.5);
+    const blur = getComputedStyle(pane).getPropertyValue("--glass-blur").trim() || "16px";
+    pane.style.backdropFilter = `blur(${blur}) saturate(190%) brightness(1.04) url(#${lens.id})`;
+  });
+}
+(function light() {
+  const panes = new Set();
+  const watcher = new IntersectionObserver(entries => {
+    for (const entry of entries) entry.isIntersecting ? panes.add(entry.target) : panes.delete(entry.target);
+  });
+  document.querySelectorAll(".glass, .lg").forEach(el => watcher.observe(el));
+  let x = innerWidth * .3, y = -200, queued = false;
+  const update = () => {
+    queued = false;
+    for (const pane of panes) {
+      const r = pane.getBoundingClientRect();
+      const angle = Math.atan2(y - (r.top + r.height / 2), x - (r.left + r.width / 2)) * 180 / Math.PI + 90;
+      pane.style.setProperty("--spec", `${angle.toFixed(1)}deg`);
+      if (!pane.classList.contains("glass")) continue;
+      const inside = x >= r.left - 60 && x <= r.right + 60 && y >= r.top - 60 && y <= r.bottom + 60;
+      pane.classList.toggle("lit", inside);
+      if (inside) { pane.style.setProperty("--px", `${(x - r.left).toFixed(0)}px`); pane.style.setProperty("--py", `${(y - r.top).toFixed(0)}px`); }
+    }
+  };
+  const queue = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+  addEventListener("pointermove", event => { if (event.pointerType !== "mouse") return; x = event.clientX; y = event.clientY; queue(); }, { passive: true });
+  addEventListener("scroll", queue, { passive: true });
+  queue();
+})();
+
+/* The background drifts a little slower than the page: depth. */
+(function parallax() {
+  if (reduceMotion) return;
+  const layers = [...document.querySelectorAll(".backdrop .layer")];
+  let queued = false;
+  addEventListener("scroll", () => {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(() => {
+      queued = false;
+      const y = scrollY;
+      layers.forEach(layer => { layer.style.transform = `translateY(${(-y * parseFloat(layer.dataset.depth)).toFixed(1)}px)`; });
+    });
+  }, { passive: true });
+})();
+
 // Glass buttons that go somewhere: a tap opens it (⌘/Ctrl-click opens a new tab).
 document.querySelectorAll(".lg[data-href]").forEach(button => {
   button.addEventListener("click", event => {
@@ -951,13 +1081,14 @@ document.querySelectorAll(".reveal").forEach((el, i) => { el.style.transitionDel
 const sayings = [
   "Open Notes and start a shopping list", "Remind me to call mom tomorrow at 5pm", "Search the web for cherry pie recipes",
   "Turn on dark mode", "Set a timer for 10 minutes", "Write a short poem about cherries", "Open my Downloads folder",
-  "Play Bohemian Rhapsody", "Add a meeting with Sam tomorrow at 3pm", "What's on my screen?", "Quit Safari",
+  "Play Bohemian Rhapsody", "Add a meeting with Sam tomorrow at 3pm", "What's on my screen?", "Search YouTube for lofi beats",
+  "Put Safari and Notes side by side", "Will it rain tomorrow?", "What's 100 dollars in euros?",
   "Sort my Downloads by type", "Email Anna that I'll be late", "Open Wi-Fi settings", "Where's my phone?",
   "Remember that my dentist is on Tuesdays", "Find my file called taxes.pdf", "Set the volume to 30", "Make a packing list for a ski trip",
 ];
 const fill = (track, items) => { track.innerHTML = [...items, ...items].map(text => `<span class="say-chip glass">${text}</span>`).join(""); };
-fill(document.getElementById("track-a"), sayings.slice(0, 10));
-fill(document.getElementById("track-b"), sayings.slice(9));
+fill(document.getElementById("track-a"), sayings.slice(0, 11));
+fill(document.getElementById("track-b"), sayings.slice(11));
 
 /* =========================================================
    The live demo in the hero
@@ -1076,17 +1207,17 @@ fill(document.getElementById("track-b"), sayings.slice(9));
 (function modes() {
   const group = document.getElementById("modes"), text = document.getElementById("mode-text"), thumb = group.querySelector(".thumb");
   const modes = [
-    ["✨", "Auto", "Cherry works alone and calls in her helpers when she gets stuck. Best for most things."],
-    ["👥", "Multi agent", "Up to five helpers team up from the start: slower, but more careful on hard tasks."],
-    ["🙋", "Solo", "Just Cherry. She never calls helpers."],
-    ["💬", "Chat only", "She answers questions but never touches your Mac."],
-    ["✋", "Ask first", "She asks before every single click and keystroke."],
-    ["📋", "Plan first", "She shows you the whole plan and waits for your OK."],
+    ["", "Auto", "Cherry works alone and calls in her helpers when she gets stuck. Best for most things."],
+    ["", "Multi agent", "Up to five helpers team up from the start: slower, but more careful on hard tasks."],
+    ["", "Solo", "Just Cherry. She never calls helpers."],
+    ["", "Chat only", "She answers questions but never touches your Mac."],
+    ["", "Ask first", "She asks before every single click and keystroke."],
+    ["", "Plan first", "She shows you the whole plan and waits for your OK."],
   ];
   const buttons = modes.map(([icon, name], i) => {
     const b = document.createElement("button");
     b.type = "button";
-    b.innerHTML = `<span>${icon}</span>${name}`;
+    b.textContent = name;
     b.setAttribute("aria-pressed", i === 0);
     group.appendChild(b);
     return b;
