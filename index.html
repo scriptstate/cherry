@@ -10,9 +10,9 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Cherry","operatingSystem":"macOS","applicationCategory":"ProductivityApplication","publisher":{"@type":"Organization","name":"Scriptstate"},"offers":[{"@type":"Offer","name":"Cherry Pro monthly","price":"5","priceCurrency":"USD"},{"@type":"Offer","name":"Cherry Pro yearly","price":"20","priceCurrency":"USD"}]}</script>
 <meta property="og:title" content="Cherry · Your private AI helper for Mac">
 <meta property="og:description" content="She sees your screen, uses your apps with her own cursor, and never sends anything to the cloud.">
-<meta property="og:image" content="https://scriptstate.github.io/cherry/assets/icon.png?v=6">
-<link rel="icon" href="assets/icon.png?v=6">
-<link rel="apple-touch-icon" href="assets/icon.png?v=6">
+<meta property="og:image" content="https://scriptstate.github.io/cherry/assets/icon.png?v=7">
+<link rel="icon" href="assets/icon.png?v=7">
+<link rel="apple-touch-icon" href="assets/icon.png?v=7">
 <style>
 /* =========================================================
    Tokens
@@ -41,7 +41,7 @@
   --glass-edge: rgba(255, 255, 255, .95);
   --glass-edge-soft: rgba(255, 255, 255, .4);
   --glass-depth: rgba(160, 12, 44, .14);
-  --glass-blur: 16px;
+  --glass-blur: 12px;
   /* Background ribbons */
   --bg-1a: #ff9aa8; --bg-1b: #e8143a;
   --bg-2a: #f7c6f0; --bg-2b: #c97bd6;
@@ -102,15 +102,10 @@ p { margin: 0; }
    needs edges behind it to look like glass, so these have
    real shapes, not just blur.
    ========================================================= */
-.backdrop { position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; background: var(--page); }
+/* Drawn once and kept still: anything moving behind the glass makes the
+   browser re-blur every pane on every frame. */
+.backdrop { position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; background: var(--page); transform: translateZ(0); contain: strict; }
 .backdrop svg { position: absolute; inset: -6% -4%; width: 108%; height: 112%; }
-.backdrop .layer { will-change: transform; transition: transform .6s cubic-bezier(.2, .7, .2, 1); }
-.backdrop .drift-a { animation: drift-a 36s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
-.backdrop .drift-b { animation: drift-b 44s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
-@keyframes drift-a { to { transform: translate(40px, 24px) rotate(2deg); } }
-@keyframes drift-b { to { transform: translate(-50px, -18px) rotate(-2deg); } }
-.grain { position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .045; mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
 
 /* =========================================================
    Layout
@@ -168,13 +163,12 @@ section { padding: 110px 0; scroll-margin-top: 80px; }
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude;
   opacity: calc(.75 + var(--lift) * .25);
-  transition: --spec .5s cubic-bezier(.2, .7, .2, 1);
 }
 /* A soft glint where your pointer is, on the big panes. */
 .glass::before {
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 1;
-  background: radial-gradient(420px circle at var(--px, 50%) var(--py, -40%), rgba(255,255,255,.28), rgba(255,255,255,0) 60%);
-  mix-blend-mode: soft-light; opacity: 0; transition: opacity .5s;
+  background: radial-gradient(420px circle at var(--px, 50%) var(--py, -40%), rgba(255,255,255,.16), rgba(255,255,255,0) 60%);
+  opacity: 0; transition: opacity .5s;
 }
 .glass.lit::before { opacity: 1; }
 .glass > * { position: relative; z-index: 3; }
@@ -196,9 +190,8 @@ section { padding: 110px 0; scroll-margin-top: 80px; }
 .lg::before {
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 1;
   background:
-    radial-gradient(120px 90px at var(--mx) var(--my), rgba(255,255,255,calc(.5 + var(--lift) * .35)), rgba(255,255,255,0) 70%),
-    linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,255,255,0) 46%);
-  mix-blend-mode: soft-light;
+    radial-gradient(120px 90px at var(--mx) var(--my), rgba(255,255,255,calc(.18 + var(--lift) * .2)), rgba(255,255,255,0) 70%),
+    linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0) 46%);
 }
 .lg:focus-visible { outline: 3px solid var(--cherry-light); outline-offset: 4px; }
 .lg.tinted {
@@ -221,7 +214,8 @@ section { padding: 110px 0; scroll-margin-top: 80px; }
 .brand img { width: 32px; height: 32px; border-radius: 9px; box-shadow: 0 4px 10px -4px var(--shadow); }
 .links { display: flex; gap: 2px; }
 .links a { padding: 9px 13px; border-radius: 999px; text-decoration: none; font-size: 15px; font-weight: 550; color: var(--ink-soft); transition: color .2s, background .2s; }
-.links a:hover { color: var(--ink); background: rgba(255,255,255,.22); }
+.links a:hover, .links a.here { color: var(--ink); background: rgba(255,255,255,.28); }
+@media (prefers-color-scheme: dark) { .links a:hover, .links a.here { background: rgba(255,255,255,.1); } }
 .menu-button { display: none; }
 .sheet { display: none; }
 @media (max-width: 420px) { .nav .bar > .lg.tinted { display: none; } }
@@ -296,11 +290,15 @@ section { padding: 110px 0; scroll-margin-top: 80px; }
    Things to say (scrolling chips)
    ========================================================= */
 .marquee { overflow: hidden; padding: 6px 0 30px; -webkit-mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-.marquee .track { display: flex; gap: 12px; width: max-content; animation: scroll 60s linear infinite; }
+.marquee .track { display: flex; gap: 12px; width: max-content; animation: scroll 60s linear infinite; will-change: transform; }
 .marquee .track.reverse { animation-direction: reverse; margin-top: 12px; }
 .marquee:hover .track { animation-play-state: paused; }
 @keyframes scroll { to { transform: translateX(-50%); } }
-.say-chip { padding: 11px 17px; border-radius: 22px 22px 22px 7px; font-weight: 550; font-size: 15px; white-space: nowrap; }
+.say-chip { padding: 11px 17px; border-radius: 22px 22px 22px 7px; font-weight: 550; font-size: 15px; white-space: nowrap;
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important; background: linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.5)) !important; }
+@media (prefers-color-scheme: dark) { .say-chip { background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06)) !important; } }
+.say-chip::before { display: none; }
+.marquee:not(.on) .track { animation-play-state: paused; }
 .track.reverse .say-chip { border-radius: 22px 22px 7px 22px; }
 
 /* =========================================================
@@ -349,7 +347,8 @@ kbd, code, .say-inline { font: 600 14px/1.4 ui-monospace, "SF Mono", Menlo, mono
 .team { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
 .member { padding: 28px 18px 24px; text-align: center; transition: transform .5s var(--ease-spring); }
 .member:hover { transform: translateY(-6px); }
-.member .fruit { width: 84px; margin: 4px auto 16px; animation: bob 4s ease-in-out infinite; }
+.member .fruit { width: 84px; margin: 4px auto 16px; animation: bob 4s ease-in-out infinite; animation-play-state: paused; }
+.team.on .fruit { animation-play-state: running; }
 .member:nth-child(2) .fruit { animation-delay: -.8s; } .member:nth-child(3) .fruit { animation-delay: -1.6s; }
 .member:nth-child(4) .fruit { animation-delay: -2.4s; } .member:nth-child(5) .fruit { animation-delay: -3.2s; }
 @keyframes bob { 50% { transform: translateY(-8px) rotate(-4deg); } }
@@ -483,24 +482,23 @@ footer img { width: 28px; border-radius: 8px; }
       <linearGradient id="r3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" style="stop-color:var(--bg-3a)"/><stop offset="1" style="stop-color:var(--bg-3b)"/></linearGradient>
       <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="14"/></filter>
     </defs>
-    <g class="layer" data-depth=".05">
-      <path class="drift-a" filter="url(#soft)" opacity=".55" fill="url(#r2)" d="M-120 160C180 40 420 300 760 230S1260 -20 1580 120V520C1300 380 1060 560 760 600S180 420 -120 560Z"/>
+    <g>
+      <path filter="url(#soft)" opacity=".55" fill="url(#r2)" d="M-120 160C180 40 420 300 760 230S1260 -20 1580 120V520C1300 380 1060 560 760 600S180 420 -120 560Z"/>
     </g>
-    <g class="layer" data-depth=".1">
-      <path class="drift-b" filter="url(#soft)" opacity=".6" fill="url(#r1)" d="M-160 520C160 360 460 640 820 560S1300 300 1600 420V700C1320 640 1100 860 760 880S160 700 -160 820Z"/>
+    <g>
+      <path filter="url(#soft)" opacity=".6" fill="url(#r1)" d="M-160 520C160 360 460 640 820 560S1300 300 1600 420V700C1320 640 1100 860 760 880S160 700 -160 820Z"/>
     </g>
-    <g class="layer" data-depth=".16">
-      <path class="drift-a" filter="url(#soft)" opacity=".6" fill="url(#r3)" d="M-100 860C240 760 520 960 900 900S1360 760 1560 820V1100H-100Z"/>
+    <g>
+      <path filter="url(#soft)" opacity=".6" fill="url(#r3)" d="M-100 860C240 760 520 960 900 900S1360 760 1560 820V1100H-100Z"/>
     </g>
   </svg>
 </div>
-<div class="grain" aria-hidden="true"></div>
 <!-- Lens filters for the glass buttons are added here by script. -->
 <svg id="lens-defs" width="0" height="0" style="position:absolute" aria-hidden="true"></svg>
 
 <header class="nav" id="nav">
   <nav class="bar glass bend" aria-label="Main">
-    <a class="brand" href="#top"><img src="assets/icon.png?v=6" alt="">Cherry</a>
+    <a class="brand" href="#top"><img src="assets/icon.png?v=7" alt="">Cherry</a>
     <div class="links">
       <a href="#features">Features</a>
       <a href="#helpers">Helpers</a>
@@ -534,7 +532,7 @@ footer img { width: 28px; border-radius: 8px; }
         <p class="facts">14-day free trial&nbsp;· Thinks on your Mac&nbsp;· Talk from your iPhone</p>
       </div>
 
-      <div class="demo glass bend" aria-label="Animation: Cherry opening Notes and writing a shopping list">
+      <div class="demo glass" aria-label="Animation: Cherry opening Notes and writing a shopping list">
         <div class="mac" id="mac">
           <div class="label">Cherry is using your computer</div>
           <div class="titlebar">
@@ -549,8 +547,8 @@ footer img { width: 28px; border-radius: 8px; }
             </div>
             <div class="editor" id="editor"></div>
           </div>
-          <div class="chatbar"><img src="assets/cherry.png?v=6" alt=""><span id="chat" class="placeholder">Ask Cherry…</span></div>
-          <div class="cursor" id="cursor"><span class="ripple"></span><img src="assets/cherry.png?v=6" alt=""><span class="say" id="say"></span></div>
+          <div class="chatbar"><img src="assets/cherry.png?v=7" alt=""><span id="chat" class="placeholder">Ask Cherry…</span></div>
+          <div class="cursor" id="cursor"><span class="ripple"></span><img src="assets/cherry.png?v=7" alt=""><span class="say" id="say"></span></div>
         </div>
       </div>
     </div>
@@ -574,7 +572,7 @@ footer img { width: 28px; border-radius: 8px; }
         <article class="tile wide glass reveal">
           <div class="scene" aria-hidden="true">
             <span class="btn">＋ New Note</span>
-            <img class="pointer" src="assets/cherry.png?v=6" alt="">
+            <img class="pointer" src="assets/cherry.png?v=7" alt="">
             <span class="bubble">Making a new note</span>
           </div>
           <h3>Her own cursor</h3>
@@ -607,7 +605,7 @@ footer img { width: 28px; border-radius: 8px; }
         </article>
         <article class="tile glass reveal">
           <div class="scene" aria-hidden="true">
-            <div class="bar"><img src="assets/cherry.png?v=6" alt="">Ask Cherry…<kbd>⌥ Space</kbd></div>
+            <div class="bar"><img src="assets/cherry.png?v=7" alt="">Ask Cherry…<kbd>⌥ Space</kbd></div>
           </div>
           <h3>The Cherry Bar</h3>
           <p>Ask from any app, without switching windows.</p>
@@ -649,11 +647,11 @@ footer img { width: 28px; border-radius: 8px; }
         <p class="lead">When a task gets tricky, Cherry calls in her friends. Each one has a job and a cursor of their own, and they talk to each other while they work.</p>
       </div>
       <div class="team">
-        <div class="member glass reveal"><img class="fruit" src="assets/blueberry.png?v=6" alt=""><h3>Blueberry</h3><span class="role" style="background:#4555db">Planner</span><p>Splits the task into small jobs and hands them out.</p></div>
-        <div class="member glass reveal"><img class="fruit" src="assets/lemon.png?v=6" alt=""><h3>Lemon</h3><span class="role" style="background:#b88600">Scout</span><p>Finds things on the screen and points right at them.</p></div>
-        <div class="member glass reveal"><img class="fruit" src="assets/apple.png?v=6" alt=""><h3>Apple</h3><span class="role" style="background:#2e8f1f">Checker</span><p>Checks every step worked, and that nothing risky happens.</p></div>
-        <div class="member glass reveal"><img class="fruit" src="assets/orange.png?v=6" alt=""><h3>Orange</h3><span class="role" style="background:#d4520f">Fixer</span><p>Comes up with another way when something doesn't work.</p></div>
-        <div class="member glass reveal"><img class="fruit" src="assets/pineapple.png?v=6" alt=""><h3>Pineapple</h3><span class="role" style="background:#a86400">Writer</span><p>Writes the text: notes, emails and documents.</p></div>
+        <div class="member glass reveal"><img class="fruit" loading="lazy" decoding="async" width="84" height="81" src="assets/blueberry.png?v=7" alt=""><h3>Blueberry</h3><span class="role" style="background:#4555db">Planner</span><p>Splits the task into small jobs and hands them out.</p></div>
+        <div class="member glass reveal"><img class="fruit" loading="lazy" decoding="async" width="84" height="81" src="assets/lemon.png?v=7" alt=""><h3>Lemon</h3><span class="role" style="background:#b88600">Scout</span><p>Finds things on the screen and points right at them.</p></div>
+        <div class="member glass reveal"><img class="fruit" loading="lazy" decoding="async" width="84" height="81" src="assets/apple.png?v=7" alt=""><h3>Apple</h3><span class="role" style="background:#2e8f1f">Checker</span><p>Checks every step worked, and that nothing risky happens.</p></div>
+        <div class="member glass reveal"><img class="fruit" loading="lazy" decoding="async" width="84" height="81" src="assets/orange.png?v=7" alt=""><h3>Orange</h3><span class="role" style="background:#d4520f">Fixer</span><p>Comes up with another way when something doesn't work.</p></div>
+        <div class="member glass reveal"><img class="fruit" loading="lazy" decoding="async" width="84" height="81" src="assets/pineapple.png?v=7" alt=""><h3>Pineapple</h3><span class="role" style="background:#a86400">Writer</span><p>Writes the text: notes, emails and documents.</p></div>
       </div>
       <div class="teamwork">
         <div class="transcript glass reveal" id="transcript" aria-label="Example of the helpers talking">
@@ -677,10 +675,10 @@ footer img { width: 28px; border-radius: 8px; }
     <div class="wrap split">
       <div class="phone glass reveal">
         <div class="screen">
-          <img src="assets/face.jpg?v=6" alt="Cherry's face on the iPhone app">
+          <img loading="lazy" decoding="async" width="899" height="1950" src="assets/face.jpg?v=7" alt="Cherry's face on the iPhone app">
           <div class="island" id="island">
-            <div class="compact"><img src="assets/cherry.png?v=6" alt=""><span class="timer" id="timer">0:12</span></div>
-            <div class="expanded"><img src="assets/cherry.png?v=6" alt=""><div><b>Cherry is working</b><small>Typing your list in Notes</small></div><span class="stop" aria-label="Stop"></span></div>
+            <div class="compact"><img src="assets/cherry.png?v=7" alt=""><span class="timer" id="timer">0:12</span></div>
+            <div class="expanded"><img src="assets/cherry.png?v=7" alt=""><div><b>Cherry is working</b><small>Typing your list in Notes</small></div><span class="stop" aria-label="Stop"></span></div>
           </div>
           <div class="pill">Connected to your MacBook</div>
           <div class="caption">Touch and hold anywhere to talk to me</div>
@@ -703,7 +701,7 @@ footer img { width: 28px; border-radius: 8px; }
   <!-- ================= Privacy ================= -->
   <section id="privacy">
     <div class="wrap">
-      <div class="statement glass bend reveal">
+      <div class="statement glass reveal">
         <p class="eyebrow">Privacy</p>
         <h2 style="margin-top:12px">Nothing leaves your Mac.<br><span class="quiet">There's nowhere for it to go.</span></h2>
         <p class="lead" style="margin:18px auto 0">Cherry thinks with Apple's on-device model. Your screen, your words and your files never go to a server, because Cherry doesn't have one.</p>
@@ -725,7 +723,7 @@ footer img { width: 28px; border-radius: 8px; }
         <p class="lead">Try every feature free for 14 days. Then it's $5 a month, or $20 for a whole year. Cancel any time.</p>
       </div>
       <div class="plans">
-        <div class="plan glass bend reveal">
+        <div class="plan glass reveal">
           <h3>Free</h3>
           <p class="price">$0</p>
           <ul>
@@ -737,7 +735,7 @@ footer img { width: 28px; border-radius: 8px; }
             <li>Every safety feature, always</li>
           </ul>
         </div>
-        <div class="plan pro glass bend reveal">
+        <div class="plan pro glass reveal">
           <h3>Cherry Pro</h3>
           <p class="price">$5<small>/month</small></p>
           <p class="price-alt">or <strong>$20 a year</strong>, save 67%</p>
@@ -777,7 +775,7 @@ footer img { width: 28px; border-radius: 8px; }
 <footer>
   <div class="wrap">
     <div class="row glass">
-      <span><img src="assets/icon.png?v=6" alt="">Cherry by Scriptstate · © 2026 Scriptstate. All rights reserved.</span>
+      <span><img src="assets/icon.png?v=7" alt="">Cherry by Scriptstate · © 2026 Scriptstate. All rights reserved.</span>
       <button type="button" role="link" class="lg small" data-href="#pricing"><span>Pricing</span></button>
     </div>
   </div>
@@ -1011,6 +1009,11 @@ if (canBend && !reduceMotion) {
     queued = false;
     for (const pane of panes) {
       const r = pane.getBoundingClientRect();
+      // Only panes near the pointer: the others keep their light as it was.
+      if (x < r.left - 320 || x > r.right + 320 || y < r.top - 320 || y > r.bottom + 320) {
+        if (pane.classList.contains("lit")) pane.classList.remove("lit");
+        continue;
+      }
       const angle = Math.atan2(y - (r.top + r.height / 2), x - (r.left + r.width / 2)) * 180 / Math.PI + 90;
       pane.style.setProperty("--spec", `${angle.toFixed(1)}deg`);
       if (!pane.classList.contains("glass")) continue;
@@ -1021,25 +1024,28 @@ if (canBend && !reduceMotion) {
   };
   const queue = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
   addEventListener("pointermove", event => { if (event.pointerType !== "mouse") return; x = event.clientX; y = event.clientY; queue(); }, { passive: true });
-  addEventListener("scroll", queue, { passive: true });
   queue();
 })();
 
-/* The background drifts a little slower than the page: depth. */
-(function parallax() {
-  if (reduceMotion) return;
-  const layers = [...document.querySelectorAll(".backdrop .layer")];
-  let queued = false;
-  addEventListener("scroll", () => {
-    if (queued) return;
-    queued = true;
-    requestAnimationFrame(() => {
-      queued = false;
-      const y = scrollY;
-      layers.forEach(layer => { layer.style.transform = `translateY(${(-y * parseFloat(layer.dataset.depth)).toFixed(1)}px)`; });
-    });
-  }, { passive: true });
-})();
+/* Moving things only move while you can see them. */
+const whileVisible = (element, on, off = () => {}) => new IntersectionObserver(entries => {
+  for (const entry of entries) entry.isIntersecting ? on() : off();
+}).observe(element);
+const marquee = document.querySelector(".marquee"), team = document.querySelector(".team");
+whileVisible(marquee, () => marquee.classList.add("on"), () => marquee.classList.remove("on"));
+whileVisible(team, () => team.classList.add("on"), () => team.classList.remove("on"));
+const navLinks = [...document.querySelectorAll(".links a")];
+const reading = new IntersectionObserver(entries => {
+  for (const entry of entries) if (entry.isIntersecting) {
+    navLinks.forEach(a => a.classList.toggle("here", a.getAttribute("href") === `#${entry.target.id}`));
+  }
+}, { rootMargin: "-45% 0px -50% 0px" });
+document.querySelectorAll("main section[id]").forEach(section => reading.observe(section));
+let heroVisible = true;
+whileVisible(document.querySelector(".hero"), () => { heroVisible = true; }, () => { heroVisible = false; });
+const untilVisible = async check => { while (!check()) await sleep(400); };
+
+
 
 // Glass buttons that go somewhere: a tap opens it (⌘/Ctrl-click opens a new tab).
 document.querySelectorAll(".lg[data-href]").forEach(button => {
@@ -1114,6 +1120,7 @@ fill(document.getElementById("track-b"), sayings.slice(11));
     return;
   }
   while (true) {
+    await untilVisible(() => heroVisible && !document.hidden);
     // Start over.
     editor.innerHTML = ""; chat.textContent = "Ask Cherry…"; chat.className = "placeholder";
     notes.querySelector(".new")?.remove();
@@ -1181,7 +1188,7 @@ fill(document.getElementById("track-b"), sayings.slice(11));
   const els = lines.map(([img, name, text]) => {
     const line = document.createElement("div");
     line.className = "line";
-    line.innerHTML = `<img src="assets/${img}.png?v=6" alt=""><div><b>${name}</b><span>${text}</span></div>`;
+    line.innerHTML = `<img src="assets/${img}.png?v=7" alt=""><div><b>${name}</b><span>${text}</span></div>`;
     box.appendChild(line);
     return line;
   });
