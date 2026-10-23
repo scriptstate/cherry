@@ -88,11 +88,11 @@ p { margin: 0; }
 kbd, code { white-space: nowrap; font: 600 .82em/1.4 ui-monospace, "SF Mono", Menlo, monospace; background: var(--cherry-soft); color: var(--cherry-ink); padding: 2px 7px; border-radius: 7px; }
 
 .wrap { width: min(1120px, 100% - 40px); margin: 0 auto; }
-section { padding: 96px 0; scroll-margin-top: 70px; }
+section { padding: 88px 0; scroll-margin-top: 70px; }
 @media (max-width: 640px) { section { padding: 80px 0; } .wrap { width: calc(100% - 32px); } }
 .label { font-size: 15px; font-weight: 650; color: var(--cherry-ink); }
 .lead { font-size: clamp(18px, 2vw, 21px); color: var(--ink-2); max-width: 640px; line-height: 1.5; }
-.head { margin-bottom: 56px; }
+.head { margin-bottom: 44px; }
 .head h2 { margin-top: 12px; }
 .head .lead { margin-top: 18px; }
 .head.center { text-align: center; }
@@ -514,6 +514,57 @@ footer .brandline img { width: 28px; border-radius: 7px; }
 footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; border-top: 1px solid var(--line); }
 @media (max-width: 760px) { footer .cols { grid-template-columns: 1fr 1fr; } footer .cols > div:first-child { grid-column: 1 / -1; } }
 
+/* =========================================================
+   Polish: dark privacy band, hover life, scroll progress,
+   billing switch
+   ========================================================= */
+.card { transition: transform .45s var(--ease-spring), box-shadow .45s var(--ease-out); }
+@media (hover: hover) {
+  .feature.card:hover, .step.card:hover, .skill.card:hover, .member.card:hover, .plan.card:hover { transform: translateY(-3px); box-shadow: 0 1px 2px rgba(60,10,25,.05), 0 22px 44px -22px rgba(60,10,25,.32); }
+}
+/* The scenes come alive when you point at them. */
+.scene .pointer { transition: transform .7s cubic-bezier(.45,.05,.2,1); }
+.scene .tip { transition: opacity .3s, transform .35s var(--ease-spring); }
+.scene .btn { transition: background .2s, transform .2s; }
+@media (hover: hover) {
+  .feature:not(:hover) .scene .pointer { transform: translate(120px, 30px); }
+  .feature:not(:hover) .scene .tip { opacity: 0; transform: scale(.85); }
+  .feature:hover .scene .btn { background: #ffd23f; color: #222; transition-delay: .55s; }
+  .scene .split div { transition: transform .5s var(--ease-spring); }
+  .feature:not(:hover) .scene .split div:first-child { transform: translate(14px, 8px) scale(.94); }
+  .feature:not(:hover) .scene .split div:last-child { transform: translate(-14px, -6px) scale(.94); }
+  .scene .msg { transition: opacity .35s, transform .45s var(--ease-spring); }
+  .feature:not(:hover) .scene .msg.her { opacity: .35; transform: translateY(4px); }
+}
+
+/* A dark band for privacy: a change of pace halfway down. */
+#privacy { background: #160a0e; color: #fbeff1; --ink: #fbeff1; --ink-2: rgba(251,239,241,.72); --ink-3: rgba(251,239,241,.48); --line: rgba(255,255,255,.1);
+  --cherry-ink: #ff6f85; border-radius: 36px; margin: 0 12px; position: relative; overflow: hidden; }
+#privacy::before { content: ""; position: absolute; inset: -40% -10% auto auto; width: 70%; aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(227,18,58,.28), rgba(227,18,58,0)); pointer-events: none; }
+#privacy > * { position: relative; }
+@media (prefers-color-scheme: dark) { #privacy { background: #1d1014; box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); } }
+@media (max-width: 640px) { #privacy { margin: 0 6px; border-radius: 26px; } }
+#privacy .compare thead th:nth-child(2) { color: #ff6f85; }
+
+/* Over the dark band, the menu bar turns dark too. */
+.nav.on-dark { --ink: #fbeff1; --ink-2: rgba(251,239,241,.75); --glass-top: rgba(40,20,26,.62); --glass-bottom: rgba(30,14,19,.5); --glass-edge: rgba(255,255,255,.35); --glass-edge-soft: rgba(255,255,255,.1); color: var(--ink); }
+.nav.on-dark .links a:hover, .nav.on-dark .links a.here { background: rgba(255,255,255,.1); }
+.nav .bar, .nav .brand { transition: color .3s; }
+
+/* How far down the page you are. */
+.progress { position: absolute; left: 22px; right: 22px; bottom: 0; height: 2px; border-radius: 2px; overflow: hidden; pointer-events: none; z-index: 4; }
+.progress i { display: block; height: 100%; background: var(--cherry); transform-origin: left; transform: scaleX(0); }
+
+/* Monthly or yearly */
+.billing { display: inline-flex; padding: 4px; border-radius: 999px; background: var(--surface-2); margin: 0 auto 26px; }
+.billing button { border: 0; background: none; font: 600 15px/1 -apple-system, BlinkMacSystemFont, system-ui, sans-serif; color: var(--ink-2); padding: 10px 16px; border-radius: 999px; cursor: pointer; transition: color .2s, background .2s, box-shadow .2s; }
+.billing button[aria-pressed="true"] { color: var(--ink); background: var(--surface); box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 4px 12px -6px rgba(0,0,0,.25); }
+.billing button small { color: var(--cherry-ink); font-weight: 700; margin-left: 4px; }
+.billing-row { text-align: center; }
+.plan .price span { display: inline-block; transition: opacity .2s, transform .35s var(--ease-spring); }
+.plan .price.swap span { opacity: 0; transform: translateY(6px); }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition-duration: .001s !important; }
   .reveal { opacity: 1; transform: none; }
@@ -527,6 +578,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; border-
 
 <header class="nav" id="nav">
   <nav class="bar glass" aria-label="Main">
+    <span class="progress" aria-hidden="true"><i id="progress"></i></span>
     <a class="brand" href="#top"><img src="assets/icon.png?v=8" alt="">Cherry</a>
     <div class="links">
       <a href="#how">How it works</a>
@@ -588,7 +640,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; border-
         </div>
 
         <div class="chatpanel glass" id="chatpanel">
-          <div class="msgs" id="msgs"></div>
+          <div class="msgs" id="msgs"><div class="bubble her">Hi! What can I do for you?</div></div>
           <div class="input"><img src="assets/cherry.png?v=8" alt=""><span id="typing" class="placeholder">Ask Cherry…</span></div>
         </div>
 
@@ -872,6 +924,10 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; border-
         <h2>Free to start. <span class="muted">$5 when you want more.</span></h2>
         <p class="lead">Try every Pro feature free for 14 days. Then it's $5 a month or $20 a year. Cancel any time.</p>
       </div>
+      <div class="billing-row reveal"><div class="billing" role="group" aria-label="Billing">
+        <button type="button" aria-pressed="true" data-bill="month">Monthly</button>
+        <button type="button" aria-pressed="false" data-bill="year">Yearly <small>save 67%</small></button>
+      </div></div>
       <div class="plans">
         <div class="plan card reveal">
           <h3>Free</h3>
@@ -889,8 +945,8 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; border-
         <div class="plan pro card reveal">
           <span class="tag">14 days free</span>
           <h3>Cherry Pro</h3>
-          <p class="price">$5<small> /month</small></p>
-          <p class="alt">or <strong>$20 a year</strong> (save 67%)</p>
+          <p class="price" id="pro-price"><span>$5</span><small id="pro-per"> /month</small></p>
+          <p class="alt" id="pro-alt">or <strong>$20 a year</strong> (save 67%)</p>
           <ul>
             <li>Everything in Free</li>
             <li>Research with key points and sources</li>
@@ -1357,7 +1413,7 @@ document.querySelectorAll("main section[id]").forEach(section => reading.observe
       while (true) {
         while (!heroVisible || document.hidden) await wait(400, id);
         mark();
-        msgs.innerHTML = ""; caption(""); win.classList.remove("acting");
+        msgs.innerHTML = `<div class="bubble her">Hi! What can I do for you?</div>`; caption(""); win.classList.remove("acting");
         await scenarios[current].play(id);
         // A short pause, shown as a bar filling under the button, then the next one.
         const bar = buttons[current].querySelector(".bar i");
@@ -1381,6 +1437,36 @@ document.querySelectorAll("main section[id]").forEach(section => reading.observe
   setTimeout(() => { place(typing, .15, .5); start(0); }, 50);
 })();
 
+/* Scroll progress in the menu bar, and the billing switch. */
+(function progress() {
+  const bar = document.getElementById("progress");
+  const nav = document.getElementById("nav"), band = document.getElementById("privacy");
+  let queued = false;
+  const update = () => {
+    queued = false;
+    const r = band.getBoundingClientRect();
+    nav.classList.toggle("on-dark", r.top < 40 && r.bottom > 40);
+    const max = document.documentElement.scrollHeight - innerHeight;
+    bar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max).toFixed(4) : 0})`;
+  };
+  // Scroll events already come once per frame; this is one measurement, cheap.
+  addEventListener("scroll", update, { passive: true });
+  update();
+})();
+(function billing() {
+  const buttons = [...document.querySelectorAll(".billing button")];
+  const price = document.getElementById("pro-price"), per = document.getElementById("pro-per"), alt = document.getElementById("pro-alt");
+  buttons.forEach(button => button.addEventListener("click", async () => {
+    buttons.forEach(b => b.setAttribute("aria-pressed", b === button));
+    const yearly = button.dataset.bill === "year";
+    price.classList.add("swap");
+    await sleep(reduceMotion ? 0 : 160);
+    price.querySelector("span").textContent = yearly ? "$20" : "$5";
+    per.textContent = yearly ? " /year" : " /month";
+    alt.innerHTML = yearly ? "That's <strong>$1.67 a month</strong>, billed once a year" : "or <strong>$20 a year</strong> (save 67%)";
+    price.classList.remove("swap");
+  }));
+})();
 /* =========================================================
    Things you can say: tabs
    ========================================================= */
