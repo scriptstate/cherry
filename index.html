@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Cherry · The helper that uses your Mac for you</title>
-<meta name="description" content="Tell Cherry what you need. She reads your screen and does it in your apps, with her own cursor, while you watch. Private: she thinks on your Mac. Try Cherry Pro free for 14 days.">
+<meta name="description" content="Tell Cherry what you need. She reads your screen and does it in your apps, with her own cursor, while you watch. Private by default: she thinks on your Mac. Try Cherry Pro free for 14 days.">
 <meta name="theme-color" content="#fde9ee" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#12060b" media="(prefers-color-scheme: dark)">
 <meta name="author" content="Scriptstate">
@@ -546,6 +546,23 @@ footer .brandline img { width: 28px; border-radius: 7px; }
 footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-top: 26px; border-top: 1px solid var(--tile-line); }
 @media (max-width: 760px) { footer .cols { grid-template-columns: 1fr 1fr; } footer .cols > div:first-child { grid-column: 1 / -1; } }
 
+/* Cherry Code */
+.code-app { display: grid; grid-template-columns: 1fr 1.05fr; gap: 48px; align-items: center; }
+.code-app > * { min-width: 0; }
+@media (max-width: 900px) { .code-app { grid-template-columns: 1fr; gap: 32px; } }
+.code-app .appicon { width: 92px; height: 92px; filter: drop-shadow(0 12px 22px rgba(120,0,30,.35)); }
+.code-app .pro-tag { display: inline-block; margin-left: 10px; vertical-align: 6px; font-size: 13px; font-weight: 750; color: #fff; background: var(--cherry); padding: 3px 9px; border-radius: 999px; letter-spacing: 0; }
+.code-steps { padding: 18px; display: grid; gap: 10px; font-size: 15px; }
+.code-steps .you { justify-self: end; max-width: 85%; padding: 9px 14px; border-radius: 16px 16px 5px 16px; background: var(--cherry); color: #fff; }
+.code-steps .row { display: flex; gap: 10px; align-items: center; color: var(--ink-2); }
+.code-steps .row b { color: var(--ink); font-weight: 600; }
+.code-steps .row code { font-size: 12.5px; }
+.code-steps .ok { color: #1f9d55; font-weight: 650; }
+@media (prefers-color-scheme: dark) { .code-steps .ok { color: #4ade80; } }
+.code-steps .her { justify-self: start; max-width: 88%; padding: 9px 14px; border-radius: 16px 16px 16px 5px; background: var(--tile); box-shadow: inset 0 0 0 1px var(--tile-line); }
+.code-limits { margin-top: 18px; color: var(--ink-3); font-size: 14.5px; }
+.signin-note { text-align: center; color: var(--ink-2); font-size: 15px; margin-top: 10px; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition-duration: .001s !important; }
   .reveal { opacity: 1; transform: none; }
@@ -588,6 +605,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
       <a href="#watch">See her work</a>
       <a href="#features">Features</a>
       <a href="#skills">Skills</a>
+      <a href="#code">Cherry Code</a>
       <a href="#iphone">iPhone</a>
       <a href="#privacy">Privacy</a>
       <a href="#pricing">Pricing</a>
@@ -598,7 +616,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
     </button>
   </nav>
   <div class="sheet-menu glass" id="sheet">
-    <a href="#watch">See her work</a><a href="#how">How it works</a><a href="#features">Features</a><a href="#things">Things to say</a><a href="#skills">Skills</a><a href="#helpers">Helpers</a><a href="#iphone">iPhone</a><a href="#privacy">Privacy</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+    <a href="#watch">See her work</a><a href="#how">How it works</a><a href="#features">Features</a><a href="#things">Things to say</a><a href="#skills">Skills</a><a href="#code">Cherry Code</a><a href="#helpers">Helpers</a><a href="#iphone">iPhone</a><a href="#privacy">Privacy</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
   </div>
 </header>
 
@@ -607,7 +625,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
   <section class="hero">
     <div class="wrap">
       <h1>The helper that <em>uses your Mac</em> for you.</h1>
-      <p class="lead">Tell Cherry what you need. She reads your screen and does it in your apps, with her own cursor, while you watch. She thinks right on your Mac, so your screen and your words stay yours.</p>
+      <p class="lead">Tell Cherry what you need. She reads your screen and does it in your apps, with her own cursor, while you watch. By default she thinks right on your Mac, so your screen and your words stay yours.</p>
       <div class="actions">
         <button type="button" role="link" class="lg tinted" data-href="#pricing"><span>Try it free for 14 days</span></button>
         <button type="button" role="link" class="lg" data-href="#watch"><span>Watch her work</span></button>
@@ -812,6 +830,41 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
     </div>
   </section>
 
+  <!-- ================= Cherry Code ================= -->
+  <section id="code">
+    <div class="wrap">
+      <div class="sheet reveal">
+        <div class="code-app">
+          <div>
+            <img class="appicon" src="assets/cherry-code-icon.png?v=9" alt="The Cherry Code app icon" width="92" height="92">
+            <p class="label" style="margin-top:18px">New: Cherry Code</p>
+            <h2 style="margin-top:10px">She builds apps too.<span class="pro-tag">Pro</span></h2>
+            <p class="lead" style="margin-top:16px">Cherry Code is a separate app where you describe a small Mac or iPhone app and Cherry makes it: she writes the SwiftUI code, builds it, fixes what the compiler finds, runs the tests and opens it in the iPhone Simulator or on your Mac. You pick the brain: Apple's built-in model, a coding model on your Mac, or Claude for whole apps.</p>
+            <div class="phone-list">
+              <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6 3 12l5 6M16 6l5 6-5 6"/></svg></div><div><h3>A real Xcode project</h3><p>Open it in Xcode any time. Six starters: blank, counter, to-do, timer, notes and tip calculator.</p></div></div>
+              <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div><div><h3>Checked at every step</h3><p>She builds after every change, and only says done when it builds and the tests pass.</p></div></div>
+              <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="7" y="2" width="10" height="20" rx="3"/></svg></div><div><h3>Runs it for you</h3><p>In the iPhone Simulator or on your Mac, with a screenshot she looks at to check her work.</p></div></div>
+              <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></div><div><h3>Pick the brain</h3><p>Apple's model for quick changes, a free local model through Ollama that stays private, or Claude with your own API key, which writes, builds, tests and looks at the app until it works.</p></div></div>
+              <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div><div><h3>Agent, Plan, Ask or Team</h3><p>Let her just do it, see her plan first, ask questions about your code, or let the helpers split the work. An effort slider sets how hard she checks.</p></div></div>
+              <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg></div><div><h3>Undo and Xcode</h3><p>Every change can be undone. Open the project in Xcode, run it there, or click an error to jump to its line.</p></div></div>
+            </div>
+          </div>
+          <div class="code-steps tile" aria-label="Example of Cherry Code at work">
+            <span class="you">Make an iPhone app called Tipsy that splits the bill</span>
+            <span class="row">✨ <b>Made Tipsy</b>, an iPhone app from the Tip calculator starter</span>
+            <span class="you">Add a 30% tip option</span>
+            <span class="row">✏️ <b>Changed</b> <code>ContentView.swift</code></span>
+            <span class="row"><span class="ok">✓ Build succeeded</span></span>
+            <span class="row"><span class="ok">✓ All tests passed</span></span>
+            <span class="row">📱 <b>Running on iPhone 17</b></span>
+            <span class="her">Done! Tipsy now has a 30% option next to 25%.</span>
+          </div>
+        </div>
+        <p class="code-limits">Honest note: Apple's built-in model is small, so with it she's best at one change at a time. A local coding model handles a lot more, and Claude can build whole multi-screen apps. With Claude on, your request and the code it needs go to Anthropic, billed to your own key; Cherry Code shows what it has cost.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= Helpers ================= -->
   <section id="helpers">
     <div class="wrap">
@@ -880,11 +933,11 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
         <div class="privacy">
           <div>
             <p class="label">Privacy</p>
-            <h2 style="margin-top:10px">Nothing leaves your Mac. <span class="muted">There's nowhere for it to go.</span></h2>
-            <p class="lead" style="margin-top:16px">Cherry thinks with Apple's on-device model. Your screen, your words and your files never go to a server, because Cherry doesn't have one.</p>
+            <h2 style="margin-top:10px">Private by default. <span class="muted">You choose the brain.</span></h2>
+            <p class="lead" style="margin-top:16px">Out of the box Cherry thinks with Apple's on-device model, and your screen, words and files never go to a server, because Cherry doesn't have one. Want her smarter? Run a bigger model on your Mac with Ollama, still private, or switch on Claude with your own API key. Claude is the only choice that sends anything out, and only once you turn it on.</p>
           </div>
           <div class="facts">
-            <div><b>On device</b><span>No cloud AI, no API keys, no accounts. Thinking works offline.</span></div>
+            <div><b>On device by default</b><span>Apple's model or a local model through Ollama. No accounts, and thinking works offline.</span></div>
             <div><b>Encrypted phone link</b><span>Your iPhone and Mac pair with a code and talk end-to-end encrypted over your own Wi-Fi.</span></div>
             <div><b>No tracking</b><span>No ads, no analytics. Only what you ask for goes online, like a website, the weather or a lookup, plus a check of your subscription.</span></div>
           </div>
@@ -893,16 +946,16 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
           <table>
             <thead><tr><th></th><th>Cherry</th><th>A typical cloud AI assistant</th></tr></thead>
             <tbody>
-              <tr><th>Where it thinks</th><td>On your Mac</td><td>On the company's servers</td></tr>
-              <tr><th>Your screen and words</th><td>Stay on your Mac</td><td>Are uploaded to answer you</td></tr>
+              <tr><th>Where it thinks</th><td>On your Mac, unless you turn on Claude</td><td>On the company's servers</td></tr>
+              <tr><th>Your screen and words</th><td>Stay on your Mac by default</td><td>Are uploaded to answer you</td></tr>
               <tr><th>Uses your apps</th><td>Yes, with her own cursor, while you watch</td><td>Usually not, or only in a browser</td></tr>
-              <tr><th>Without internet</th><td>Thinking and Mac tasks still work</td><td>Doesn't work</td></tr>
-              <tr><th>Long, hard questions</th><td>Good, not great: it's a small model</td><td>Better: much bigger models</td></tr>
+              <tr><th>Without internet</th><td>Thinking and Mac tasks still work (not with Claude)</td><td>Doesn't work</td></tr>
+              <tr><th>Long, hard questions</th><td>Good with Apple's model, better with a local one, great with Claude</td><td>Great: big models</td></tr>
               <tr><th>Price</th><td>Free, or $5 a month for Pro</td><td>Often $20 a month</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="compare-note">Cherry is built to do things on your Mac privately. For deep research and long essays, a big cloud model is still smarter.</p>
+        <p class="compare-note">Cherry is built to do things on your Mac privately. When you need a big model, Claude is one switch away in Settings → Brain.</p>
       </div>
     </div>
   </section>
@@ -940,6 +993,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
           <p class="alt" id="pro-alt">or <strong>$39 a year</strong> (save 35%)</p>
           <ul>
             <li>Everything in Free</li>
+            <li>Cherry Code: she builds small Mac and iPhone apps</li>
             <li>Research with key points and sources</li>
             <li>Unlimited skills of your own</li>
             <li>All five helpers and Multi agent mode</li>
@@ -950,6 +1004,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
           <button type="button" class="lg tinted" disabled><span>Coming soon</span></button>
         </div>
       </div>
+      <p class="signin-note reveal">Already bought it? Open Cherry → Settings → Cherry Pro → <strong>Sign in</strong> with your email and license key. One sign-in unlocks Cherry and Cherry Code.</p>
       <p class="requirements">For Apple silicon MacBooks (M1 and newer) on macOS 26 or later, with Apple Intelligence on.</p>
     </div>
   </section>
@@ -975,8 +1030,11 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
         <div class="head center"><p class="label">Questions</p><h2>Good to know.</h2></div>
         <div class="faq">
           <details><summary>How much does Cherry cost?</summary><p>Cherry has a free plan. Cherry Pro adds Research, all five helpers, unlimited skills and more for $5 a month or $39 a year, with a 14-day free trial. Cancel any time; safety features are always free.</p></details>
-          <details><summary>Does anything get sent to the internet?</summary><p>Cherry's thinking happens on your Mac with Apple's on-device model, and your iPhone talks to your Mac directly over your own network, encrypted. Only things you ask for go online: opening a website, the weather, a Wikipedia lookup or research. Plus a quick check of your subscription.</p></details>
+          <details><summary>Does anything get sent to the internet?</summary><p>Not by default. Cherry thinks on your Mac with Apple's on-device model or a local model you download through Ollama, and your iPhone talks to your Mac directly over your own network, encrypted. Only things you ask for go online: opening a website, the weather, a Wikipedia lookup or research. Plus a quick check of your subscription. If you turn on Claude in Settings → Brain, what you ask (and in Cherry Code, the code it needs) goes to Anthropic with your own API key.</p></details>
+          <details><summary>Which brain should I pick?</summary><p><b>Apple Intelligence</b> needs no setup and is private, but it's small. A <b>local model</b> is free and private too, and much better at code: install <a href="https://ollama.com/download">Ollama</a>, then download a model from Settings → Brain (Qwen2.5 Coder 7B on 8 GB Macs, 14B on 16 GB, Qwen3 Coder 30B on 32 GB or more). <b>Claude</b> is by far the best at building apps; you add your own Anthropic API key and pay Anthropic for what you use.</p></details>
           <details><summary>What are Skills?</summary><p>Skills teach Cherry new tricks. Each one has a command you type in the chat, like <code>/pomodoro</code>; anything after it goes to the skill, like <code>/jot call the dentist</code>. On your iPhone, say “slash” and its name. Describe a skill in plain words and Cherry builds the steps for you to check, or build it step by step, add ready-made ones, or run your Apple Shortcuts.</p></details>
+          <details><summary>What is Cherry Code?</summary><p>A separate app, included with Cherry Pro, where Cherry builds small Mac and iPhone apps for you. She makes a real Xcode project, writes the SwiftUI code, builds it after every change, runs the tests and opens the app in the iPhone Simulator or on your Mac. With Apple's built-in model it's best at small changes; with a local model or Claude it builds much more. You need Xcode installed.</p></details>
+          <details><summary>How do I sign in to Pro?</summary><p>After you buy, Lemon Squeezy emails you a license key. In Cherry, go to Settings → Cherry Pro → Sign in, and enter the email you bought with and the key. There's no account or password to remember, and one sign-in unlocks Cherry and Cherry Code on that Mac.</p></details>
           <details><summary>Which Macs does she work on?</summary><p>Apple silicon MacBooks (M1 and newer) on macOS 26 or later, with Apple Intelligence turned on.</p></details>
           <details><summary>Can she do anything on my Mac?</summary><p>Everyday tasks are done directly, so they're fast and reliable. Long, complicated jobs in unfamiliar apps are harder, because she thinks with a small model on your Mac. That's when her helpers step in. She always asks before anything risky, and you can stop her instantly.</p></details>
           <details><summary>Do I need the iPhone app?</summary><p>No. But it's how you talk to Cherry out loud, watch what she's doing from across the room, and stop her from your Lock Screen.</p></details>
