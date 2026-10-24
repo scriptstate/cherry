@@ -5,66 +5,75 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Cherry · The helper that uses your Mac for you</title>
 <meta name="description" content="Tell Cherry what you need. She reads your screen and does it in your apps, with her own cursor, while you watch. Private: she thinks on your Mac. Try Cherry Pro free for 14 days.">
-<meta name="theme-color" content="#fbf6f3" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0f0809" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fde9ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#12060b" media="(prefers-color-scheme: dark)">
 <meta name="author" content="Scriptstate">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Cherry","operatingSystem":"macOS","applicationCategory":"ProductivityApplication","publisher":{"@type":"Organization","name":"Scriptstate"},"offers":[{"@type":"Offer","name":"Cherry Pro monthly","price":"5","priceCurrency":"USD"},{"@type":"Offer","name":"Cherry Pro yearly","price":"20","priceCurrency":"USD"}]}</script>
 <meta property="og:title" content="Cherry · The helper that uses your Mac for you">
 <meta property="og:description" content="She reads your screen, uses your apps with her own cursor, and thinks right on your Mac.">
-<meta property="og:image" content="https://scriptstate.github.io/cherry/assets/icon.png?v=8">
-<link rel="icon" href="assets/icon.png?v=8">
-<link rel="apple-touch-icon" href="assets/icon.png?v=8">
+<meta property="og:image" content="https://scriptstate.github.io/cherry/assets/icon.png?v=9">
+<link rel="icon" href="assets/icon.png?v=9">
+<link rel="apple-touch-icon" href="assets/icon.png?v=9">
 <style>
 /* =========================================================
-   Tokens
+   Tokens. Light is a soft pink desktop, dark a cherry night.
    ========================================================= */
 :root {
-  --bg: #fbf6f3;
-  --surface: #ffffff;
-  --surface-2: #f4ece8;
-  --line: rgba(70, 20, 32, .1);
-  --line-strong: rgba(70, 20, 32, .16);
-  --ink: #1e0b10;
-  --ink-2: rgba(30, 11, 16, .68);
-  --ink-3: rgba(30, 11, 16, .46);
+  --bg: #fde9ee;
+  --ink: #22070f;
+  --ink-2: rgba(34, 7, 15, .7);
+  --ink-3: rgba(34, 7, 15, .48);
   --cherry: #e3123a;
-  --cherry-ink: #c80e33;
-  --cherry-soft: rgba(227, 18, 58, .09);
-  --shadow: 0 1px 2px rgba(60, 10, 25, .05), 0 12px 32px -18px rgba(60, 10, 25, .22);
-  --glass-top: rgba(255, 255, 255, .5);
-  --glass-bottom: rgba(255, 255, 255, .22);
-  --glass-edge: rgba(255, 255, 255, .95);
-  --glass-edge-soft: rgba(255, 255, 255, .45);
-  --glass-depth: rgba(150, 10, 40, .12);
-  --glass-shadow: rgba(110, 0, 30, .22);
-  --radius: 28px;
+  --cherry-ink: #c40d31;
+  --cherry-soft: rgba(227, 18, 58, .1);
+  /* Glass panes */
+  --pane-top: rgba(255, 255, 255, .66);
+  --pane-bottom: rgba(255, 255, 255, .42);
+  --pane-blur: 26px;
+  --edge: rgba(255, 255, 255, 1);
+  --edge-soft: rgba(255, 255, 255, .55);
+  --depth: rgba(170, 10, 50, .12);
+  --shadow: rgba(120, 0, 35, .28);
+  /* Tiles inside panes: frosted look, no live blur */
+  --tile: rgba(255, 255, 255, .6);
+  --tile-line: rgba(120, 20, 45, .09);
+  --tile-hover: rgba(255, 255, 255, .8);
+  /* Wallpaper */
+  --w-base-1: #ffd9e2; --w-base-2: #f8c9ea;
+  --w-1a: #ff8ea2; --w-1b: #e8143a;
+  --w-2a: #f6b6ee; --w-2b: #a94fc2;
+  --w-3a: #ffd2bd; --w-3b: #ff6f86;
+  --w-4a: #ffb0c4; --w-4b: #c51b55;
+  --w-line: rgba(255, 255, 255, .35);
+  --radius: 26px;
   --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
   --ease-out: cubic-bezier(.2, .8, .2, 1);
-  /* The hero's wallpaper */
-  --wall-1: #ff9aaa; --wall-2: #e8143a; --wall-3: #f6c2ec; --wall-4: #b764c9; --wall-5: #ffd3bd;
   color-scheme: light dark;
 }
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0f0809;
-    --surface: #1a1013;
-    --surface-2: #23171a;
-    --line: rgba(255, 255, 255, .08);
-    --line-strong: rgba(255, 255, 255, .14);
-    --ink: #fcf0f2;
-    --ink-2: rgba(252, 240, 242, .7);
-    --ink-3: rgba(252, 240, 242, .46);
+    --bg: #12060b;
+    --ink: #fff3f6;
+    --ink-2: rgba(255, 243, 246, .74);
+    --ink-3: rgba(255, 243, 246, .5);
     --cherry: #ff3b5c;
-    --cherry-ink: #ff6f85;
-    --cherry-soft: rgba(255, 59, 92, .12);
-    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 16px 40px -20px rgba(0, 0, 0, .7);
-    --glass-top: rgba(255, 255, 255, .14);
-    --glass-bottom: rgba(255, 255, 255, .05);
-    --glass-edge: rgba(255, 255, 255, .55);
-    --glass-edge-soft: rgba(255, 255, 255, .14);
-    --glass-depth: rgba(0, 0, 0, .35);
-    --glass-shadow: rgba(0, 0, 0, .6);
-    --wall-1: #b8123a; --wall-2: #5c0018; --wall-3: #6d2470; --wall-4: #2a0b35; --wall-5: #7a2a12;
+    --cherry-ink: #ff7088;
+    --cherry-soft: rgba(255, 59, 92, .14);
+    --pane-top: rgba(255, 255, 255, .13);
+    --pane-bottom: rgba(255, 255, 255, .05);
+    --edge: rgba(255, 255, 255, .6);
+    --edge-soft: rgba(255, 255, 255, .16);
+    --depth: rgba(0, 0, 0, .4);
+    --shadow: rgba(0, 0, 0, .6);
+    --tile: rgba(255, 255, 255, .06);
+    --tile-line: rgba(255, 255, 255, .09);
+    --tile-hover: rgba(255, 255, 255, .1);
+    --w-base-1: #1a0710; --w-base-2: #12060b;
+    --w-1a: #d0123e; --w-1b: #4f0016;
+    --w-2a: #7a2685; --w-2b: #24082f;
+    --w-3a: #8e2d14; --w-3b: #3b0a12;
+    --w-4a: #ff3b5c; --w-4b: #6b0420;
+    --w-line: rgba(255, 255, 255, .22);
   }
 }
 
@@ -81,59 +90,91 @@ body {
 img { max-width: 100%; height: auto; display: block; -webkit-user-drag: none; user-select: none; }
 a { color: inherit; }
 h1, h2, h3 { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif; margin: 0; letter-spacing: -.022em; }
-h2 { font-size: clamp(34px, 5vw, 56px); line-height: 1.05; letter-spacing: -.035em; }
-h3 { font-size: 20px; line-height: 1.25; letter-spacing: -.012em; }
+h2 { font-size: clamp(32px, 4.6vw, 54px); line-height: 1.05; letter-spacing: -.035em; }
+h3 { font-size: 19px; line-height: 1.25; letter-spacing: -.012em; }
 p { margin: 0; }
-::selection { background: rgba(227, 18, 58, .22); }
+::selection { background: rgba(227, 18, 58, .25); }
 kbd, code { white-space: nowrap; font: 600 .82em/1.4 ui-monospace, "SF Mono", Menlo, monospace; background: var(--cherry-soft); color: var(--cherry-ink); padding: 2px 7px; border-radius: 7px; }
 
-.wrap { width: min(1120px, 100% - 40px); margin: 0 auto; }
-section { padding: 88px 0; scroll-margin-top: 70px; }
-@media (max-width: 640px) { section { padding: 80px 0; } .wrap { width: calc(100% - 32px); } }
+/* =========================================================
+   The wallpaper: drawn once, never moves.
+   ========================================================= */
+.wallpaper { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; contain: strict; transform: translateZ(0); background: var(--bg); }
+.wallpaper svg { position: absolute; inset: -4%; width: 108%; height: 108%; }
+
+/* =========================================================
+   Layout
+   ========================================================= */
+.wrap { width: min(1180px, 100% - 32px); margin: 0 auto; }
+section { padding: 14px 0; scroll-margin-top: 80px; }
 .label { font-size: 15px; font-weight: 650; color: var(--cherry-ink); }
 .lead { font-size: clamp(18px, 2vw, 21px); color: var(--ink-2); max-width: 640px; line-height: 1.5; }
-.head { margin-bottom: 44px; }
-.head h2 { margin-top: 12px; }
-.head .lead { margin-top: 18px; }
+.head { margin-bottom: 40px; }
+.head h2 { margin-top: 10px; }
+.head .lead { margin-top: 16px; }
 .head.center { text-align: center; }
 .head.center .lead { margin-left: auto; margin-right: auto; }
 .muted { color: var(--ink-3); }
-
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s var(--ease-out), transform .8s var(--ease-out); }
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s var(--ease-out), transform .8s var(--ease-out); }
 .reveal.in { opacity: 1; transform: none; }
 
-/* Plain cards: solid, crisp, cheap to draw. */
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
-
 /* =========================================================
-   Liquid Glass (only where something sits behind it)
+   Liquid Glass
+   ---------------------------------------------------------
+   A clear pane with real thickness:
+   - a bright lip on the top edge and a softer one at the bottom
+     where light leaves the glass,
+   - a sheen across the top third, like light on a curved surface,
+   - a tinted inner edge (the glass's body),
+   - a rim highlight that turns toward your pointer,
+   - and, in Chromium, edges that bend what's behind (script).
+   Big panes (.sheet) blur more so text stays easy to read.
    ========================================================= */
 @property --spec { syntax: "<angle>"; inherits: false; initial-value: 320deg; }
-.glass, .lg {
+.glass, .sheet, .lg {
   --lift: 0;
   position: relative;
   isolation: isolate;
   background:
     linear-gradient(180deg, rgba(255,255,255,calc(var(--lift) * .12)), rgba(255,255,255,0)),
-    linear-gradient(180deg, var(--glass-top), var(--glass-bottom));
-  -webkit-backdrop-filter: blur(14px) saturate(190%) brightness(1.04);
-  backdrop-filter: blur(14px) saturate(190%) brightness(1.04);
+    linear-gradient(180deg, var(--pane-top), var(--pane-bottom));
+  -webkit-backdrop-filter: blur(14px) saturate(200%) brightness(1.05);
+  backdrop-filter: blur(14px) saturate(200%) brightness(1.05);
   box-shadow:
-    inset 0 1px .5px var(--glass-edge),
-    inset 0 -1px .5px var(--glass-edge-soft),
-    inset 0 12px 22px -16px rgba(255,255,255,.55),
-    inset 0 -14px 24px -18px var(--glass-depth),
-    0 10px 24px -14px var(--glass-shadow);
+    inset 0 1px .5px var(--edge),
+    inset 0 -1px .5px var(--edge-soft),
+    inset 1px 0 .5px rgba(255,255,255,.18),
+    inset -1px 0 .5px rgba(255,255,255,.1),
+    inset 0 -18px 30px -24px var(--depth),
+    0 2px 6px -2px rgba(0,0,0,.08),
+    0 24px 60px -34px var(--shadow);
 }
-.glass::after, .lg::after {
+.sheet {
+  border-radius: 40px; padding: clamp(28px, 5vw, 64px);
+  -webkit-backdrop-filter: blur(var(--pane-blur)) saturate(180%) brightness(1.04);
+  backdrop-filter: blur(var(--pane-blur)) saturate(180%) brightness(1.04);
+}
+.glass { border-radius: var(--radius); }
+.glass::after, .sheet::after, .lg::after {
   content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1.25px; pointer-events: none; z-index: 2;
-  background: conic-gradient(from var(--spec), var(--glass-edge), rgba(255,255,255,0) 16%, rgba(255,255,255,0) 36%,
-    var(--glass-edge-soft) 50%, rgba(255,255,255,0) 64%, rgba(255,255,255,0) 84%, var(--glass-edge));
+  background: conic-gradient(from var(--spec), var(--edge), rgba(255,255,255,0) 15%, rgba(255,255,255,0) 35%,
+    var(--edge-soft) 50%, rgba(255,255,255,0) 65%, rgba(255,255,255,0) 85%, var(--edge));
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor; mask-composite: exclude;
-  opacity: calc(.75 + var(--lift) * .25);
+  opacity: calc(.7 + var(--lift) * .3);
 }
-.glass > * { position: relative; z-index: 3; }
+/* Sheen across the top, like light on curved glass. */
+.glass::before, .sheet::before {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 1;
+  background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.04) 28%, rgba(255,255,255,0) 50%);
+}
+@media (prefers-color-scheme: dark) { .glass::before, .sheet::before { background: linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,0) 35%); } }
+.glass > *, .sheet > * { position: relative; z-index: 3; }
+
+/* Tiles inside panes: frosted fill and a hairline, no live blur. */
+.tile { background: var(--tile); border-radius: var(--radius); box-shadow: inset 0 0 0 1px var(--tile-line), inset 0 1px 0 rgba(255,255,255,.35); transition: background .3s, transform .45s var(--ease-spring); }
+@media (prefers-color-scheme: dark) { .tile { box-shadow: inset 0 0 0 1px var(--tile-line), inset 0 1px 0 rgba(255,255,255,.08); } }
+@media (hover: hover) { .tile.lift:hover { background: var(--tile-hover); transform: translateY(-3px); } }
 
 /* Glass buttons: lens edges in Chromium, jelly when held. */
 .lg {
@@ -148,71 +189,88 @@ section { padding: 88px 0; scroll-margin-top: 70px; }
 .lg::before {
   content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 1;
   background:
-    radial-gradient(120px 90px at var(--mx) var(--my), rgba(255,255,255,calc(.18 + var(--lift) * .2)), rgba(255,255,255,0) 70%),
-    linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0) 46%);
+    radial-gradient(120px 90px at var(--mx) var(--my), rgba(255,255,255,calc(.2 + var(--lift) * .22)), rgba(255,255,255,0) 70%),
+    linear-gradient(180deg, rgba(255,255,255,.3), rgba(255,255,255,0) 48%);
 }
 .lg:focus-visible { outline: 3px solid var(--cherry-ink); outline-offset: 4px; }
 .lg.tinted {
   color: #fff;
   background:
     linear-gradient(180deg, rgba(255,255,255,calc(.26 + var(--lift) * .12)), rgba(255,255,255,0) 55%),
-    linear-gradient(160deg, rgba(255,110,128,.95), rgba(227,18,58,.92) 50%, rgba(150,0,38,.95));
+    linear-gradient(160deg, rgba(255,110,128,.92), rgba(227,18,58,.88) 50%, rgba(150,0,38,.92));
   text-shadow: 0 1px 2px rgba(80, 0, 20, .3);
 }
-/* On a plain page there's nothing to see through: give the clear button some body. */
-.lg.plain { background: var(--surface); box-shadow: inset 0 0 0 1px var(--line-strong), 0 6px 16px -10px rgba(60,10,25,.3); -webkit-backdrop-filter: none; backdrop-filter: none; }
 .lg.small { min-height: 40px; padding: 0 1.1em; font-size: 15px; }
 .lg.icon-only { width: 44px; min-height: 44px; padding: 0; }
 .lg svg { width: 20px; height: 20px; flex: none; }
-.lg[disabled] { opacity: .7; cursor: default; }
+.lg[disabled] { opacity: .72; cursor: default; }
 
 /* =========================================================
    Navigation
    ========================================================= */
 .nav { position: fixed; top: 12px; left: 0; right: 0; z-index: 50; }
-.nav .bar { display: flex; align-items: center; gap: 4px; padding: 6px 6px 6px 14px; border-radius: 999px; width: min(1120px, 100% - 20px); margin: 0 auto; }
+.nav .bar { display: flex; align-items: center; gap: 4px; padding: 6px 6px 6px 14px; border-radius: 999px; width: min(1180px, 100% - 20px); margin: 0 auto; }
 .brand { display: flex; align-items: center; gap: 10px; font-weight: 750; font-size: 17px; text-decoration: none; margin-right: auto; }
 .brand img { width: 30px; height: 30px; border-radius: 8px; }
 .links { display: flex; gap: 2px; }
 .links a { padding: 8px 13px; border-radius: 999px; text-decoration: none; font-size: 15px; font-weight: 550; color: var(--ink-2); transition: color .2s, background .2s; }
-.links a:hover, .links a.here { color: var(--ink); background: rgba(255,255,255,.35); }
+.links a:hover, .links a.here { color: var(--ink); background: rgba(255,255,255,.4); }
 @media (prefers-color-scheme: dark) { .links a:hover, .links a.here { background: rgba(255,255,255,.1); } }
+.progress { position: absolute; left: 24px; right: 24px; bottom: 0; height: 2px; border-radius: 2px; overflow: hidden; pointer-events: none; z-index: 4; }
+.progress i { display: block; height: 100%; background: var(--cherry); transform-origin: left; transform: scaleX(0); }
 .menu-button { display: none; }
-.sheet { display: none; }
-@media (max-width: 860px) {
+.sheet-menu { display: none; }
+@media (max-width: 900px) {
   .links { display: none; }
   .menu-button { display: inline-flex; }
-  .sheet { display: grid; position: absolute; top: 64px; left: 10px; right: 10px; padding: 8px; gap: 2px; border-radius: 24px;
+  .sheet-menu { display: grid; position: absolute; top: 64px; left: 10px; right: 10px; padding: 8px; gap: 2px; border-radius: 24px;
     opacity: 0; transform: translateY(-8px) scale(.98); pointer-events: none; transition: opacity .2s, transform .35s var(--ease-spring); }
-  .sheet a { padding: 14px 16px; border-radius: 16px; text-decoration: none; font-weight: 600; }
-  .nav.open .sheet { opacity: 1; transform: none; pointer-events: auto; }
+  .sheet-menu a { padding: 14px 16px; border-radius: 16px; text-decoration: none; font-weight: 600; }
+  .nav.open .sheet-menu { opacity: 1; transform: none; pointer-events: auto; }
 }
 @media (max-width: 420px) { .nav .bar > .lg.tinted { display: none; } }
 
 /* =========================================================
-   Hero: a little Mac you can try
+   Hero: headline, the Cherry Bar typing
    ========================================================= */
-.hero { padding: 150px 0 60px; text-align: center; }
-.hero h1 { font-size: clamp(44px, 7.2vw, 92px); line-height: .98; letter-spacing: -.045em; max-width: 13ch; margin: 0 auto; }
+.hero { padding: 150px 0 40px; text-align: center; }
+.hero h1 { font-size: clamp(44px, 7.4vw, 96px); line-height: .97; letter-spacing: -.048em; max-width: 13.6ch; margin: 0 auto; }
 .hero h1 em { font-style: normal; color: var(--cherry); }
+@media (prefers-color-scheme: dark) { .hero h1 em { color: #ff4d6c; } }
 .hero .lead { margin: 24px auto 0; }
-.actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 34px; }
-.fineprint { margin-top: 18px; font-size: 14px; color: var(--ink-3); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 32px; }
+.fineprint { margin-top: 16px; font-size: 14px; color: var(--ink-3); }
 
-.stage { position: relative; margin: 64px auto 0; width: min(1120px, 100%); aspect-ratio: 16 / 9.2; border-radius: 30px; overflow: hidden;
-  box-shadow: 0 0 0 1px var(--line), 0 40px 90px -50px rgba(90, 0, 25, .55); text-align: left; contain: layout paint; }
-@media (max-width: 760px) { .stage { aspect-ratio: 3 / 4; border-radius: 24px; } }
-.wallpaper { position: absolute; inset: 0; }
-.wallpaper svg { width: 100%; height: 100%; display: block; }
-.menubar { position: absolute; top: 0; left: 0; right: 0; height: 32px; display: flex; align-items: center; gap: 18px; padding: 0 16px;
-  font-size: 13px; font-weight: 600; color: rgba(30, 5, 12, .85); border-radius: 0; z-index: 4; }
+.cherrybar-area { margin: 64px auto 0; width: min(680px, 100%); text-align: left; min-height: 196px; }
+.cherrybar { display: flex; align-items: center; gap: 14px; height: 68px; padding: 0 12px 0 20px; border-radius: 999px; font-size: 20px; }
+.cherrybar img { width: 26px; }
+.cherrybar .text { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cherrybar .text.placeholder { color: var(--ink-3); }
+.cherrybar .caret { display: inline-block; width: 2px; height: 1.05em; margin-left: 1px; background: var(--cherry); vertical-align: -3px; animation: blink 1s steps(1) infinite; }
+.cherrybar kbd { background: rgba(255,255,255,.3); color: var(--ink-2); padding: 6px 10px; border-radius: 12px; font-size: 14px; }
+@media (prefers-color-scheme: dark) { .cherrybar kbd { background: rgba(255,255,255,.08); } }
+.answer { margin: 12px 18px 0; padding: 16px 20px; border-radius: 22px; display: flex; gap: 14px; align-items: flex-start; font-size: 17px;
+  opacity: 0; transform: translateY(-8px) scale(.98); transition: opacity .3s, transform .5s var(--ease-spring); }
+.answer.show { opacity: 1; transform: none; }
+.answer .who { width: 26px; flex: none; margin-top: 1px; }
+.answer small { display: block; color: var(--ink-3); font-size: 13px; margin-top: 4px; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* =========================================================
+   The little Mac: pick what Cherry does
+   ========================================================= */
+.stage { position: relative; width: 100%; aspect-ratio: 16 / 9.4; border-radius: 22px; overflow: hidden; text-align: left; contain: layout paint;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 30px 70px -40px rgba(60, 0, 20, .6); }
+@media (max-width: 760px) { .stage { aspect-ratio: 3 / 4; } }
+.stage .desk { position: absolute; inset: 0; }
+.stage .desk svg { width: 100%; height: 100%; display: block; }
+.menubar { position: absolute; top: 0; left: 0; right: 0; height: 30px; display: flex; align-items: center; gap: 18px; padding: 0 16px;
+  font-size: 13px; font-weight: 600; color: rgba(30, 5, 12, .85); z-index: 4; border-radius: 0; }
 @media (prefers-color-scheme: dark) { .menubar { color: rgba(255,255,255,.88); } }
-.menubar .apple { font-size: 15px; }
+.menubar::after { display: none; }
 .menubar .right { margin-left: auto; display: flex; gap: 14px; align-items: center; }
 .menubar .right img { width: 16px; }
-.menubar.glass::after { display: none; }
-
-.window { position: absolute; left: 6%; top: 13%; width: 60%; height: 74%; border-radius: 14px; overflow: hidden; background: #1e1d22; color: #f1f0f4;
+.window { position: absolute; left: 5%; top: 12%; width: 61%; height: 76%; border-radius: 14px; overflow: hidden; background: #1e1d22; color: #f1f0f4;
   box-shadow: 0 0 0 .5px rgba(0,0,0,.6), 0 30px 60px -20px rgba(0,0,0,.55); font: 13px/1.45 -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   transition: box-shadow .35s; z-index: 2; }
 .window.acting { box-shadow: 0 0 0 3px var(--cherry), 0 0 34px 4px rgba(227,18,58,.5), 0 30px 60px -20px rgba(0,0,0,.55); }
@@ -225,8 +283,6 @@ section { padding: 88px 0; scroll-margin-top: 70px; }
 .badge { position: absolute; top: 0; left: 50%; transform: translate(-50%, -110%); z-index: 6; background: var(--cherry); color: #fff;
   font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 0 0 10px 10px; white-space: nowrap; transition: transform .35s var(--ease-spring); }
 .window.acting .badge { transform: translate(-50%, 0); }
-
-/* Notes */
 .notes { display: grid; grid-template-columns: 34% 1fr; height: 100%; }
 .notes .list { background: #252429; border-right: 1px solid #333238; padding: 8px; }
 .notes .item { padding: 8px 10px; border-radius: 8px; margin-bottom: 4px; color: #d7d6dc; }
@@ -237,10 +293,7 @@ section { padding: 88px 0; scroll-margin-top: 70px; }
 @keyframes pop { from { opacity: 0; transform: translateY(-8px) scale(.9); } }
 .notes .editor { padding: 16px 18px; white-space: pre-wrap; font-size: 14px; line-height: 1.6; }
 .notes .editor b { font-size: 19px; display: block; margin-bottom: 4px; }
-.caret { display: inline-block; width: 2px; height: 1.1em; background: #ffd23f; vertical-align: text-bottom; animation: blink 1s steps(1) infinite; }
-@keyframes blink { 50% { opacity: 0; } }
-
-/* Safari */
+.window .caret { display: inline-block; width: 2px; height: 1.1em; background: #ffd23f; vertical-align: text-bottom; animation: blink 1s steps(1) infinite; }
 .browser { height: 100%; display: grid; grid-template-rows: auto 1fr; background: #f6f6f7; color: #1d1d1f; }
 .browser .address { margin: 8px auto; width: 70%; height: 28px; border-radius: 8px; background: #fff; border: 1px solid #ddd; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #444; overflow: hidden; white-space: nowrap; }
 .browser .results { padding: 12px 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; align-content: start; }
@@ -254,22 +307,17 @@ section { padding: 88px 0; scroll-margin-top: 70px; }
 .browser .video:nth-child(6) .thumb-img { background: linear-gradient(135deg, #ffc9c9, #d8463f); }
 .browser .video b { display: block; margin-top: 6px; font-size: 12px; }
 .browser .video small { color: #777; font-size: 11px; }
-
-/* Cherry's chat panel on the desktop */
-.chatpanel { position: absolute; right: 4%; bottom: 7%; width: 31%; min-width: 230px; border-radius: 22px; padding: 12px; display: grid; gap: 8px; z-index: 3; }
+.chatpanel { position: absolute; right: 4%; bottom: 6%; width: 31%; min-width: 230px; border-radius: 22px; padding: 12px; display: grid; gap: 8px; z-index: 3; }
 @media (max-width: 760px) { .window { left: 5%; width: 90%; top: 10%; height: 50%; } .chatpanel { left: 5%; right: 5%; width: auto; bottom: 4%; } }
 .chatpanel .msgs { display: grid; gap: 6px; min-height: 40px; align-content: end; }
 .bubble { max-width: 92%; padding: 8px 12px; border-radius: 16px; font-size: 13.5px; line-height: 1.35; animation: pop .4s var(--ease-spring); }
 .bubble.you { justify-self: end; background: var(--cherry); color: #fff; border-bottom-right-radius: 5px; }
-.bubble.her { justify-self: start; background: rgba(255,255,255,.72); color: #2a0c12; border-bottom-left-radius: 5px; }
+.bubble.her { justify-self: start; background: rgba(255,255,255,.75); color: #2a0c12; border-bottom-left-radius: 5px; }
 @media (prefers-color-scheme: dark) { .bubble.her { background: rgba(255,255,255,.14); color: #fff; } }
 .chatpanel .input { display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; border-radius: 18px; background: rgba(255,255,255,.55); font-size: 13px; color: #2a0c12; }
 @media (prefers-color-scheme: dark) { .chatpanel .input { background: rgba(0,0,0,.25); color: #fff; } }
 .chatpanel .input img { width: 16px; }
-.chatpanel .input .placeholder { color: rgba(42,12,18,.45); }
-@media (prefers-color-scheme: dark) { .chatpanel .input .placeholder { color: rgba(255,255,255,.45); } }
-
-/* Her cursor */
+.chatpanel .input .placeholder { opacity: .5; }
 .cursor { position: absolute; left: 0; top: 0; width: 32px; z-index: 8; pointer-events: none;
   transform: translate(var(--cx, 70%), var(--cy, 70%)); transition: transform .9s cubic-bezier(.45, .05, .2, 1); }
 .cursor img { width: 32px; transition: transform .15s; transform-origin: 10% 10%; }
@@ -278,98 +326,130 @@ section { padding: 88px 0; scroll-margin-top: 70px; }
 .cursor.click .ripple { animation: ripple .5s ease-out; }
 @keyframes ripple { from { opacity: .9; transform: scale(.2); } to { opacity: 0; transform: scale(1.6); } }
 .cursor .say { position: absolute; left: 36px; top: 26px; padding: 5px 10px; border-radius: 11px; white-space: nowrap; font-size: 12px; font-weight: 650;
-  color: #fff; background: rgba(28, 26, 32, .82); opacity: 0; transform: scale(.8); transform-origin: left center; transition: opacity .2s, transform .3s var(--ease-spring); }
+  color: #fff; background: rgba(28, 26, 32, .84); opacity: 0; transform: scale(.8); transform-origin: left center; transition: opacity .2s, transform .3s var(--ease-spring); }
 .cursor .say.show { opacity: 1; transform: none; }
 .cursor .say.flip { left: auto; right: 4px; top: 30px; transform-origin: right center; }
-
-/* Pick what she does */
 .picker { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 22px; }
-.picker button { border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink-2); font: 600 15px/1 -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-  padding: 11px 16px; border-radius: 999px; cursor: pointer; transition: color .2s, border-color .2s, background .2s, transform .3s var(--ease-spring); }
+.picker button { border: 0; background: var(--tile); box-shadow: inset 0 0 0 1px var(--tile-line); color: var(--ink-2); font: 600 15px/1 -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  padding: 11px 16px; border-radius: 999px; cursor: pointer; transition: color .2s, background .2s, transform .3s var(--ease-spring); }
 .picker button:hover { color: var(--ink); transform: translateY(-1px); }
-.picker button[aria-pressed="true"] { color: #fff; background: var(--cherry); border-color: transparent; }
+.picker button[aria-pressed="true"] { color: #fff; background: var(--cherry); box-shadow: none; }
 .picker button .bar { display: block; height: 2px; margin-top: 8px; border-radius: 2px; background: rgba(255,255,255,.35); overflow: hidden; }
 .picker button .bar i { display: block; height: 100%; width: 0; background: #fff; }
 .picker button[aria-pressed="false"] .bar { display: none; }
 
 /* =========================================================
-   Features
+   Content inside the panes
    ========================================================= */
-.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.feature { padding: 26px; display: flex; flex-direction: column; gap: 8px; }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.step { padding: 24px; }
+.step .num { font: 700 13px/1 ui-monospace, "SF Mono", Menlo, monospace; color: var(--cherry-ink); }
+.step h3 { margin-top: 10px; }
+.step p { color: var(--ink-2); margin-top: 8px; }
+@media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
+
+.bento { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.feature { padding: 22px; display: flex; flex-direction: column; gap: 8px; }
 .feature.wide { grid-column: span 2; }
 .feature p { color: var(--ink-2); }
-.feature ul { margin: 8px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.feature ul { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
 .feature li { display: flex; gap: 10px; color: var(--ink-2); }
 .feature li::before { content: ""; flex: none; width: 6px; height: 6px; margin-top: .62em; border-radius: 50%; background: var(--cherry); }
-@media (max-width: 960px) { .grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 640px) { .grid { grid-template-columns: 1fr; } .feature.wide { grid-column: auto; } }
-.scene { margin-bottom: 14px; padding: 16px; border-radius: 18px; min-height: 120px; display: grid; align-content: center; gap: 8px; position: relative; overflow: hidden;
-  background: #1f1b1e; color: #f4eef0; font-size: 13.5px; box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
-.scene .btn { justify-self: start; padding: 6px 12px; border-radius: 8px; background: #3a3941; font-weight: 600; font-size: 13px; }
-.scene .pointer { position: absolute; left: 118px; top: 46px; width: 28px; }
-.scene .tip { position: absolute; left: 150px; top: 70px; padding: 5px 10px; border-radius: 10px; font-size: 12px; font-weight: 650; background: rgba(255,255,255,.14); white-space: nowrap; }
-.scene .msg { max-width: 88%; padding: 7px 11px; border-radius: 15px; line-height: 1.35; }
+@media (max-width: 960px) { .bento { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .bento { grid-template-columns: 1fr; } .feature.wide { grid-column: auto; } }
+
+.scene { margin-bottom: 12px; padding: 16px; border-radius: 18px; min-height: 112px; display: grid; align-content: center; gap: 8px; position: relative; overflow: hidden;
+  background: #1f1a1d; color: #f4eef0; font-size: 13.5px; box-shadow: inset 0 1px 0 rgba(255,255,255,.08); }
+@media (prefers-color-scheme: dark) { .scene { background: rgba(0,0,0,.35); } }
+.scene .btn { justify-self: start; padding: 6px 12px; border-radius: 8px; background: #3a3941; font-weight: 600; font-size: 13px; transition: background .2s; }
+.scene .pointer { position: absolute; left: 118px; top: 46px; width: 28px; transition: transform .7s cubic-bezier(.45,.05,.2,1); }
+.scene .tip { position: absolute; left: 150px; top: 70px; padding: 5px 10px; border-radius: 10px; font-size: 12px; font-weight: 650; background: rgba(255,255,255,.14); white-space: nowrap; transition: opacity .3s, transform .35s var(--ease-spring); }
+.scene .msg { max-width: 88%; padding: 7px 11px; border-radius: 15px; line-height: 1.35; transition: opacity .35s, transform .45s var(--ease-spring); }
 .scene .msg.you { justify-self: end; background: var(--cherry); color: #fff; border-bottom-right-radius: 5px; }
 .scene .msg.her { justify-self: start; background: rgba(255,255,255,.12); border-bottom-left-radius: 5px; }
 .scene .row { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 13px; background: rgba(255,255,255,.08); }
 .scene .row small { display: block; color: #a99fa3; font-size: 12px; }
 .scene .row kbd { margin-left: auto; background: rgba(255,255,255,.12); color: #fff; }
 .scene .row img { width: 18px; }
-.scene .split { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; height: 88px; }
-.scene .split div { border-radius: 8px; background: #2c2a30; padding: 8px; font-size: 11px; color: #bbb; }
+.scene .split { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; height: 84px; }
+.scene .split div { border-radius: 8px; background: #2c2a30; padding: 8px; font-size: 11px; color: #bbb; transition: transform .5s var(--ease-spring); }
 .scene .split div b { display: block; color: #fff; font-size: 12px; margin-bottom: 4px; }
 .scene .weather { display: flex; align-items: center; gap: 14px; }
 .scene .weather .deg { font-size: 34px; font-weight: 300; letter-spacing: -.03em; }
-
-/* Safety rules */
-.rules { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 16px; padding: 8px; }
+.scene .keys { display: flex; gap: 8px; align-items: center; justify-content: center; }
+.scene .keys kbd { font-size: 15px; padding: 8px 12px; background: rgba(255,255,255,.12); color: #fff; border-radius: 9px; box-shadow: inset 0 -2px 0 rgba(0,0,0,.35); }
+.scene .ax { display: grid; gap: 5px; font: 12px/1.3 ui-monospace, "SF Mono", Menlo, monospace; color: #cfc6ca; }
+.scene .ax b { color: #ff8f9b; font-weight: 600; }
+.scene .border { position: absolute; inset: 10px; border-radius: 12px; box-shadow: 0 0 0 2px var(--cherry), 0 0 18px 2px rgba(227,18,58,.5); }
+.scene .border span { position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--cherry); color: #fff; font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 0 0 8px 8px; white-space: nowrap; }
+@media (hover: hover) {
+  .feature:not(:hover) .scene .pointer { transform: translate(120px, 30px); }
+  .feature:not(:hover) .scene .tip { opacity: 0; transform: scale(.85); }
+  .feature:hover .scene .btn { background: #ffd23f; color: #222; transition-delay: .55s; }
+  .feature:not(:hover) .scene .split div:first-child { transform: translate(14px, 8px) scale(.94); }
+  .feature:not(:hover) .scene .split div:last-child { transform: translate(-14px, -6px) scale(.94); }
+  .feature:not(:hover) .scene .msg.her { opacity: .35; transform: translateY(4px); }
+}
+.rules { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 14px; padding: 6px; }
 .rules div { padding: 18px 20px; }
-.rules div + div { border-left: 1px solid var(--line); }
+.rules div + div { border-left: 1px solid var(--tile-line); }
 .rules b { display: block; font-size: 16px; }
 .rules span { display: block; color: var(--ink-2); font-size: 14.5px; margin-top: 4px; }
-@media (max-width: 860px) { .rules { grid-template-columns: 1fr 1fr; } .rules div:nth-child(3) { border-left: 0; } .rules div:nth-child(n+3) { border-top: 1px solid var(--line); } }
-@media (max-width: 520px) { .rules { grid-template-columns: 1fr; } .rules div + div { border-left: 0; border-top: 1px solid var(--line); } }
+@media (max-width: 860px) { .rules { grid-template-columns: 1fr 1fr; } .rules div:nth-child(3) { border-left: 0; } .rules div:nth-child(n+3) { border-top: 1px solid var(--tile-line); } }
+@media (max-width: 520px) { .rules { grid-template-columns: 1fr; } .rules div + div { border-left: 0; border-top: 1px solid var(--tile-line); } }
 
-/* =========================================================
-   Helpers
-   ========================================================= */
-.team { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
-.member { padding: 24px 16px; text-align: center; }
-.member .fruit { width: 76px; margin: 0 auto 14px; transition: transform .5s var(--ease-spring); }
+.tabs { display: flex; gap: 4px; flex-wrap: wrap; padding: 4px; border-radius: 18px; background: var(--tile); box-shadow: inset 0 0 0 1px var(--tile-line); }
+.tabs button { border: 0; background: none; font: 600 15px/1 -apple-system, BlinkMacSystemFont, system-ui, sans-serif; color: var(--ink-2); padding: 11px 15px; border-radius: 14px; cursor: pointer; transition: color .2s, background .2s, box-shadow .2s; }
+.tabs button:hover { color: var(--ink); }
+.tabs button[aria-selected="true"] { color: #fff; background: var(--cherry); }
+.examples { list-style: none; margin: 0; padding: 16px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; }
+.examples li { display: flex; gap: 12px; align-items: baseline; padding: 14px 16px; border-radius: 16px; }
+.examples li.rise { animation: rise .45s var(--ease-out) both; }
+.examples li q { font-weight: 600; quotes: "“" "”"; }
+.examples li span { color: var(--ink-3); font-size: 14.5px; margin-left: auto; text-align: right; flex: none; max-width: 45%; }
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } }
+@media (max-width: 760px) { .examples { grid-template-columns: 1fr; } .examples li { flex-direction: column; gap: 2px; } .examples li span { margin-left: 0; text-align: left; max-width: none; } }
+
+.skills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.skill { padding: 16px 18px; display: grid; gap: 5px; align-content: start; }
+.skill code { justify-self: start; font-size: 14px; }
+.skill b { font-size: 16px; }
+.skill span { color: var(--ink-2); font-size: 14.5px; }
+.skill.pro b::after { content: "Pro"; margin-left: 8px; font-size: 11px; font-weight: 750; color: #fff; background: var(--cherry); padding: 2px 7px; border-radius: 999px; vertical-align: 2px; }
+@media (max-width: 960px) { .skills { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .skills { grid-template-columns: 1fr; } }
+.note { margin-top: 18px; color: var(--ink-2); font-size: 15px; text-align: center; }
+
+.team { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.member { padding: 22px 14px; text-align: center; }
+.member .fruit { width: 72px; margin: 0 auto 12px; transition: transform .5s var(--ease-spring); }
 .member:hover .fruit { transform: translateY(-6px) rotate(-5deg); }
 .member .role { display: inline-block; margin-top: 6px; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 4px 9px; border-radius: 999px; color: #fff; }
-.member p { font-size: 15px; color: var(--ink-2); margin-top: 10px; }
+.member p { font-size: 14.5px; color: var(--ink-2); margin-top: 10px; }
 @media (max-width: 980px) { .team { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 600px) { .team { grid-template-columns: 1fr 1fr; } }
-.teamwork { display: grid; grid-template-columns: 1.1fr 1fr; gap: 16px; margin-top: 16px; }
+.teamwork { display: grid; grid-template-columns: 1.1fr 1fr; gap: 12px; margin-top: 12px; }
 .teamwork > * { min-width: 0; }
 @media (max-width: 900px) { .teamwork { grid-template-columns: 1fr; } }
-.transcript { padding: 24px; }
+.transcript { padding: 22px; }
 .transcript .line { display: flex; gap: 12px; align-items: flex-start; margin-top: 14px; opacity: .25; transition: opacity .45s; }
 .transcript .line.in { opacity: 1; }
 .transcript .line img { width: 26px; flex: none; margin-top: 2px; }
 .transcript .line b { display: block; font-size: 13px; }
 .transcript .line span { color: var(--ink-2); font-size: 15px; }
-.modes-card { padding: 24px; }
-.segmented { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 5px; border-radius: 20px; margin-top: 16px; background: var(--surface-2); }
-.segmented button { position: relative; z-index: 2; border: 0; background: none; font: 650 14px/1.2 -apple-system, BlinkMacSystemFont, system-ui, sans-serif; color: var(--ink-2);
-  padding: 12px 6px; border-radius: 15px; cursor: pointer; transition: color .2s; }
-.segmented button[aria-pressed="true"] { color: var(--ink); }
-.segmented .thumb { position: absolute; z-index: 1; top: 0; left: 0; min-height: 0; padding: 0; border-radius: 15px; pointer-events: none; will-change: transform, width;
-  background: var(--surface); box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 4px 12px -6px rgba(0,0,0,.25); -webkit-backdrop-filter: none; backdrop-filter: none; }
-.segmented .thumb::after { display: none; }
+.modes-card { padding: 22px; }
+.segmented { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 5px; border-radius: 20px; margin-top: 16px; background: var(--tile); box-shadow: inset 0 0 0 1px var(--tile-line); }
+.segmented button { position: relative; z-index: 2; border: 0; background: none; font: 650 14px/1.2 -apple-system, BlinkMacSystemFont, system-ui, sans-serif; color: var(--ink-2); padding: 12px 6px; border-radius: 15px; cursor: pointer; transition: color .2s; }
+.segmented button[aria-pressed="true"] { color: #fff; }
+.segmented .thumb { position: absolute; z-index: 1; top: 0; left: 0; min-height: 0; padding: 0; border-radius: 15px; pointer-events: none; will-change: transform, width; }
 .mode-text { margin-top: 16px; min-height: 52px; color: var(--ink-2); }
 .mode-text b { color: var(--ink); }
 
-/* =========================================================
-   iPhone
-   ========================================================= */
-.split { display: grid; grid-template-columns: 1fr 1.05fr; gap: 72px; align-items: center; }
+.split { display: grid; grid-template-columns: 1fr 1.05fr; gap: 64px; align-items: center; }
 .split > * { min-width: 0; }
-@media (max-width: 920px) { .split { grid-template-columns: 1fr; gap: 48px; } }
-.phone { width: min(320px, 80vw); margin: 0 auto; padding: 10px; border-radius: 54px; background: #121012; box-shadow: 0 0 0 1px rgba(255,255,255,.08) inset, 0 40px 80px -40px rgba(60,0,20,.6); }
-.phone .screen { position: relative; border-radius: 44px; overflow: hidden; aspect-ratio: 9 / 19.5; background: linear-gradient(#ff6b7a, #f5a8e8); }
+@media (max-width: 920px) { .split { grid-template-columns: 1fr; gap: 40px; } }
+.phone { width: min(300px, 76vw); margin: 0 auto; padding: 10px; border-radius: 52px; background: #121012; box-shadow: 0 0 0 1px rgba(255,255,255,.08) inset, 0 40px 80px -40px rgba(40,0,15,.7); }
+.phone .screen { position: relative; border-radius: 42px; overflow: hidden; aspect-ratio: 9 / 19.5; background: linear-gradient(#ff6b7a, #f5a8e8); }
 .phone .screen > img { width: 100%; height: 100%; object-fit: cover; }
 .island { position: absolute; top: 11px; left: 50%; transform: translateX(-50%); width: 36%; height: 30px; border-radius: 20px; background: #000; color: #fff; z-index: 4;
   display: flex; align-items: center; justify-content: space-between; padding: 0 9px; overflow: hidden;
@@ -388,182 +468,83 @@ section { padding: 88px 0; scroll-margin-top: 70px; }
 .island.open { width: 92%; height: 76px; border-radius: 34px; top: 9px; }
 .island.open .compact { opacity: 0; }
 .island.open .expanded { opacity: 1; transition-delay: .2s; }
-.phone .caption { position: absolute; bottom: 52px; left: 16px; right: 16px; text-align: center; color: #fff; font-weight: 650; font-size: 15px; padding: 12px;
-  border-radius: 20px; background: rgba(0,0,0,.18); }
-.phone-list { display: grid; gap: 0; margin-top: 30px; }
-.phone-list .item { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 18px 0; border-top: 1px solid var(--line); }
-.phone-list .item:last-child { border-bottom: 1px solid var(--line); }
+.phone .caption { position: absolute; bottom: 50px; left: 16px; right: 16px; text-align: center; color: #fff; font-weight: 650; font-size: 15px; padding: 12px; border-radius: 20px; background: rgba(0,0,0,.18); }
+.phone-list { display: grid; margin-top: 26px; }
+.phone-list .item { display: grid; grid-template-columns: 40px 1fr; gap: 14px; padding: 16px 0; border-top: 1px solid var(--tile-line); }
+.phone-list .item:last-child { border-bottom: 1px solid var(--tile-line); }
 .phone-list .item p { color: var(--ink-2); font-size: 15px; margin-top: 2px; }
 .phone-list .ico { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; color: var(--cherry-ink); background: var(--cherry-soft); }
 .phone-list .ico svg { width: 20px; height: 20px; }
 
-/* =========================================================
-   Privacy, pricing, FAQ, footer
-   ========================================================= */
-.privacy { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: start; }
-@media (max-width: 860px) { .privacy { grid-template-columns: 1fr; gap: 32px; } }
-.facts { display: grid; gap: 0; }
-.facts div { padding: 20px 0; border-top: 1px solid var(--line); }
-.facts div:last-child { border-bottom: 1px solid var(--line); }
+.privacy { display: grid; grid-template-columns: 1.15fr 1fr; gap: 56px; align-items: start; }
+@media (max-width: 860px) { .privacy { grid-template-columns: 1fr; gap: 28px; } }
+.facts div { padding: 18px 0; border-top: 1px solid var(--tile-line); }
+.facts div:last-child { border-bottom: 1px solid var(--tile-line); }
 .facts b { display: block; font-size: 17px; }
 .facts span { display: block; color: var(--ink-2); font-size: 15px; margin-top: 4px; }
+.compare { margin-top: 40px; overflow-x: auto; padding: 6px 18px; }
+.compare table { width: 100%; border-collapse: collapse; min-width: 560px; }
+.compare th, .compare td { text-align: left; padding: 15px 12px; border-bottom: 1px solid var(--tile-line); vertical-align: top; }
+.compare tr:last-child th, .compare tr:last-child td { border-bottom: 0; }
+.compare thead th { font-size: 14px; color: var(--ink-3); font-weight: 650; }
+.compare thead th:nth-child(2) { color: var(--cherry-ink); }
+.compare tbody th { font-weight: 650; width: 30%; }
+.compare td { color: var(--ink-2); }
+.compare td:nth-child(2) { color: var(--ink); font-weight: 550; }
+.compare-note { color: var(--ink-3); font-size: 14px; margin-top: 14px; }
 
-.plans { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: min(860px, 100%); margin: 0 auto; }
-.plan { padding: 30px; display: flex; flex-direction: column; gap: 14px; }
-.plan .price { font-size: 46px; font-weight: 750; letter-spacing: -.035em; line-height: 1; }
+.news article { display: grid; grid-template-columns: 140px 1fr; gap: 24px; padding: 22px 0; border-top: 1px solid var(--tile-line); }
+.news article:last-child { border-bottom: 1px solid var(--tile-line); }
+.news time { color: var(--ink-3); font-size: 15px; font-weight: 600; padding-top: 2px; }
+.news h3 { font-size: 18px; }
+.news ul { margin: 8px 0 0; padding-left: 18px; color: var(--ink-2); display: grid; gap: 4px; }
+@media (max-width: 600px) { .news article { grid-template-columns: 1fr; gap: 6px; } }
+
+.billing-row { text-align: center; }
+.billing { display: inline-flex; padding: 4px; border-radius: 999px; background: var(--tile); box-shadow: inset 0 0 0 1px var(--tile-line); margin: 0 auto 24px; }
+.billing button { border: 0; background: none; font: 600 15px/1 -apple-system, BlinkMacSystemFont, system-ui, sans-serif; color: var(--ink-2); padding: 10px 16px; border-radius: 999px; cursor: pointer; transition: color .2s, background .2s; }
+.billing button[aria-pressed="true"] { color: #fff; background: var(--cherry); }
+.billing button small { font-weight: 700; margin-left: 4px; opacity: .85; }
+.plans { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: min(880px, 100%); margin: 0 auto; }
+.plan { padding: 30px; display: flex; flex-direction: column; gap: 14px; border-radius: 30px; }
+.plan .price { font-size: 48px; font-weight: 750; letter-spacing: -.035em; line-height: 1; }
 .plan .price small { font-size: 17px; font-weight: 600; color: var(--ink-2); letter-spacing: 0; }
+.plan .price span { display: inline-block; transition: opacity .2s, transform .35s var(--ease-spring); }
+.plan .price.swap span { opacity: 0; transform: translateY(6px); }
 .plan .alt { margin-top: -4px; font-size: 15px; color: var(--ink-2); }
 .plan .alt strong { color: var(--ink); }
 .plan ul { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; flex: 1; align-content: start; }
 .plan li { display: flex; gap: 10px; color: var(--ink-2); }
 .plan li::before { content: "✓"; color: var(--cherry); font-weight: 800; }
-.plan.pro { border-color: transparent; box-shadow: 0 0 0 2px var(--cherry), 0 30px 60px -30px rgba(227,18,58,.45); position: relative; }
-.plan.pro .tag { position: absolute; top: -12px; left: 30px; background: var(--cherry); color: #fff; font-size: 12px; font-weight: 750; padding: 4px 10px; border-radius: 999px; }
+.plan.pro { box-shadow: inset 0 1px .5px var(--edge), 0 0 0 2px var(--cherry), 0 30px 70px -30px rgba(227,18,58,.5); }
+.plan .tag { position: absolute; top: -12px; left: 30px; background: var(--cherry); color: #fff; font-size: 12px; font-weight: 750; padding: 4px 10px; border-radius: 999px; z-index: 4; }
 @media (max-width: 720px) { .plans { grid-template-columns: 1fr; } }
 .requirements { text-align: center; color: var(--ink-3); margin-top: 22px; font-size: 15px; }
 
 .faq { width: min(780px, 100%); margin: 0 auto; }
-.faq details { border-top: 1px solid var(--line); padding: 4px 0; }
-.faq details:last-child { border-bottom: 1px solid var(--line); }
+.faq details { border-top: 1px solid var(--tile-line); }
+.faq details:last-child { border-bottom: 1px solid var(--tile-line); }
 .faq summary { cursor: pointer; font-weight: 650; font-size: 18px; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 18px 0; }
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary::after { content: ""; flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--cherry-soft) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e3123a' stroke-width='2.5' stroke-linecap='round'><path d='M12 6v12M6 12h12'/></svg>") center/13px no-repeat; transition: transform .35s var(--ease-spring); }
 .faq details[open] summary::after { transform: rotate(135deg); }
 .faq details p { color: var(--ink-2); padding: 0 0 20px; max-width: 680px; }
 
-footer { padding: 40px 0 60px; }
-footer .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; padding-top: 28px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 15px; }
-footer .row span { display: flex; align-items: center; gap: 10px; }
-footer img { width: 24px; border-radius: 6px; }
-footer nav { display: flex; gap: 18px; }
-footer nav a { text-decoration: none; color: var(--ink-2); }
-footer nav a:hover { color: var(--ink); }
+.cta { text-align: center; }
+.cta h2 { font-size: clamp(36px, 5.4vw, 64px); }
+.cta .actions { margin-top: 26px; }
 
-/* =========================================================
-   Apps strip, how it works, things to say, skills, compare,
-   what's new
-   ========================================================= */
-.apps { margin-top: 56px; text-align: center; }
-.apps p { font-size: 14px; color: var(--ink-3); font-weight: 600; }
-.apps ul { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 26px; }
-.apps li { font-size: 17px; font-weight: 650; color: var(--ink-2); letter-spacing: -.01em; }
-
-.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; counter-reset: step; }
-.step { padding: 26px; position: relative; }
-.step .num { font: 700 13px/1 ui-monospace, "SF Mono", Menlo, monospace; color: var(--cherry-ink); }
-.step h3 { margin-top: 10px; }
-.step p { color: var(--ink-2); margin-top: 8px; }
-.step .scene { margin: 0 0 18px; min-height: 104px; }
-@media (max-width: 860px) { .steps { grid-template-columns: 1fr; } }
-.scene .keys { display: flex; gap: 8px; align-items: center; justify-content: center; }
-.scene .keys kbd { font-size: 15px; padding: 8px 12px; background: rgba(255,255,255,.12); color: #fff; border-radius: 9px; box-shadow: inset 0 -2px 0 rgba(0,0,0,.35); }
-.scene .ax { display: grid; gap: 5px; font: 12px/1.3 ui-monospace, "SF Mono", Menlo, monospace; color: #cfc6ca; }
-.scene .ax b { color: #ff8f9b; font-weight: 600; }
-.scene .border { position: absolute; inset: 10px; border-radius: 12px; box-shadow: 0 0 0 2px var(--cherry), 0 0 18px 2px rgba(227,18,58,.5); }
-.scene .border span { position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--cherry); color: #fff; font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 0 0 8px 8px; white-space: nowrap; }
-
-.things { padding: 10px; }
-.tabs { display: flex; gap: 4px; flex-wrap: wrap; padding: 4px; border-radius: 18px; background: var(--surface-2); }
-.tabs button { border: 0; background: none; font: 600 15px/1 -apple-system, BlinkMacSystemFont, system-ui, sans-serif; color: var(--ink-2); padding: 11px 15px; border-radius: 14px; cursor: pointer; transition: color .2s, background .2s, box-shadow .2s; }
-.tabs button:hover { color: var(--ink); }
-.tabs button[aria-selected="true"] { color: var(--ink); background: var(--surface); box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 4px 12px -6px rgba(0,0,0,.25); }
-.examples { list-style: none; margin: 0; padding: 18px 10px 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; }
-.examples li { display: flex; gap: 12px; align-items: baseline; padding: 12px 14px; border-radius: 14px; transition: background .2s; }
-.examples li.rise { animation: rise .45s var(--ease-out) both; }
-.examples li:hover { background: var(--surface-2); }
-.examples li q { font-weight: 600; quotes: "“" "”"; }
-.examples li span { color: var(--ink-3); font-size: 14.5px; margin-left: auto; text-align: right; flex: none; max-width: 45%; }
-@keyframes rise { from { opacity: 0; transform: translateY(6px); } }
-@media (max-width: 760px) { .examples { grid-template-columns: 1fr; } .examples li { flex-direction: column; gap: 2px; } .examples li span { margin-left: 0; text-align: left; max-width: none; } }
-
-.skills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-.skill { padding: 18px 20px; display: grid; gap: 6px; align-content: start; }
-.skill code { justify-self: start; font-size: 14px; }
-.skill b { font-size: 16px; }
-.skill span { color: var(--ink-2); font-size: 14.5px; }
-.skill.pro b::after { content: "Pro"; margin-left: 8px; font-size: 11px; font-weight: 750; color: #fff; background: var(--cherry); padding: 2px 7px; border-radius: 999px; vertical-align: 2px; }
-@media (max-width: 960px) { .skills { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 520px) { .skills { grid-template-columns: 1fr; } }
-.skills-note { margin-top: 18px; color: var(--ink-2); font-size: 15px; text-align: center; }
-
-.compare { margin-top: 56px; overflow-x: auto; }
-.compare table { width: 100%; border-collapse: collapse; min-width: 560px; }
-.compare th, .compare td { text-align: left; padding: 16px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
-.compare thead th { font-size: 14px; color: var(--ink-3); font-weight: 650; }
-.compare thead th:nth-child(2) { color: var(--cherry-ink); }
-.compare tbody th { font-weight: 650; width: 30%; }
-.compare td { color: var(--ink-2); }
-.compare td:nth-child(2) { color: var(--ink); font-weight: 550; }
-.compare caption { caption-side: bottom; text-align: left; padding-top: 14px; color: var(--ink-3); font-size: 14px; }
-
-.news { display: grid; gap: 0; width: min(820px, 100%); margin: 0 auto; }
-.news article { display: grid; grid-template-columns: 140px 1fr; gap: 24px; padding: 24px 0; border-top: 1px solid var(--line); }
-.news article:last-child { border-bottom: 1px solid var(--line); }
-.news time { color: var(--ink-3); font-size: 15px; font-weight: 600; padding-top: 2px; }
-.news h3 { font-size: 18px; }
-.news ul { margin: 8px 0 0; padding-left: 18px; color: var(--ink-2); display: grid; gap: 4px; }
-@media (max-width: 600px) { .news article { grid-template-columns: 1fr; gap: 6px; } }
-
-footer .cols { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 32px; padding: 40px 0 36px; border-top: 1px solid var(--line); }
+footer { padding: 14px 0 40px; }
+footer .sheet { padding: 36px 40px 26px; }
+footer .cols { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 28px; }
 footer .cols b { display: block; font-size: 14px; margin-bottom: 10px; }
 footer .cols a { display: block; text-decoration: none; color: var(--ink-2); font-size: 15px; padding: 4px 0; }
 footer .cols a:hover { color: var(--ink); }
 footer .cols p { color: var(--ink-2); font-size: 15px; margin-top: 10px; max-width: 300px; }
 footer .brandline { display: flex; align-items: center; gap: 10px; font-weight: 750; }
 footer .brandline img { width: 28px; border-radius: 7px; }
-footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; border-top: 1px solid var(--line); }
+footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-top: 26px; border-top: 1px solid var(--tile-line); }
 @media (max-width: 760px) { footer .cols { grid-template-columns: 1fr 1fr; } footer .cols > div:first-child { grid-column: 1 / -1; } }
-
-/* =========================================================
-   Polish: dark privacy band, hover life, scroll progress,
-   billing switch
-   ========================================================= */
-.card { transition: transform .45s var(--ease-spring), box-shadow .45s var(--ease-out); }
-@media (hover: hover) {
-  .feature.card:hover, .step.card:hover, .skill.card:hover, .member.card:hover, .plan.card:hover { transform: translateY(-3px); box-shadow: 0 1px 2px rgba(60,10,25,.05), 0 22px 44px -22px rgba(60,10,25,.32); }
-}
-/* The scenes come alive when you point at them. */
-.scene .pointer { transition: transform .7s cubic-bezier(.45,.05,.2,1); }
-.scene .tip { transition: opacity .3s, transform .35s var(--ease-spring); }
-.scene .btn { transition: background .2s, transform .2s; }
-@media (hover: hover) {
-  .feature:not(:hover) .scene .pointer { transform: translate(120px, 30px); }
-  .feature:not(:hover) .scene .tip { opacity: 0; transform: scale(.85); }
-  .feature:hover .scene .btn { background: #ffd23f; color: #222; transition-delay: .55s; }
-  .scene .split div { transition: transform .5s var(--ease-spring); }
-  .feature:not(:hover) .scene .split div:first-child { transform: translate(14px, 8px) scale(.94); }
-  .feature:not(:hover) .scene .split div:last-child { transform: translate(-14px, -6px) scale(.94); }
-  .scene .msg { transition: opacity .35s, transform .45s var(--ease-spring); }
-  .feature:not(:hover) .scene .msg.her { opacity: .35; transform: translateY(4px); }
-}
-
-/* A dark band for privacy: a change of pace halfway down. */
-#privacy { background: #160a0e; color: #fbeff1; --ink: #fbeff1; --ink-2: rgba(251,239,241,.72); --ink-3: rgba(251,239,241,.48); --line: rgba(255,255,255,.1);
-  --cherry-ink: #ff6f85; border-radius: 36px; margin: 0 12px; position: relative; overflow: hidden; }
-#privacy::before { content: ""; position: absolute; inset: -40% -10% auto auto; width: 70%; aspect-ratio: 1; border-radius: 50%;
-  background: radial-gradient(closest-side, rgba(227,18,58,.28), rgba(227,18,58,0)); pointer-events: none; }
-#privacy > * { position: relative; }
-@media (prefers-color-scheme: dark) { #privacy { background: #1d1014; box-shadow: inset 0 0 0 1px rgba(255,255,255,.06); } }
-@media (max-width: 640px) { #privacy { margin: 0 6px; border-radius: 26px; } }
-#privacy .compare thead th:nth-child(2) { color: #ff6f85; }
-
-/* Over the dark band, the menu bar turns dark too. */
-.nav.on-dark { --ink: #fbeff1; --ink-2: rgba(251,239,241,.75); --glass-top: rgba(40,20,26,.62); --glass-bottom: rgba(30,14,19,.5); --glass-edge: rgba(255,255,255,.35); --glass-edge-soft: rgba(255,255,255,.1); color: var(--ink); }
-.nav.on-dark .links a:hover, .nav.on-dark .links a.here { background: rgba(255,255,255,.1); }
-.nav .bar, .nav .brand { transition: color .3s; }
-
-/* How far down the page you are. */
-.progress { position: absolute; left: 22px; right: 22px; bottom: 0; height: 2px; border-radius: 2px; overflow: hidden; pointer-events: none; z-index: 4; }
-.progress i { display: block; height: 100%; background: var(--cherry); transform-origin: left; transform: scaleX(0); }
-
-/* Monthly or yearly */
-.billing { display: inline-flex; padding: 4px; border-radius: 999px; background: var(--surface-2); margin: 0 auto 26px; }
-.billing button { border: 0; background: none; font: 600 15px/1 -apple-system, BlinkMacSystemFont, system-ui, sans-serif; color: var(--ink-2); padding: 10px 16px; border-radius: 999px; cursor: pointer; transition: color .2s, background .2s, box-shadow .2s; }
-.billing button[aria-pressed="true"] { color: var(--ink); background: var(--surface); box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 4px 12px -6px rgba(0,0,0,.25); }
-.billing button small { color: var(--cherry-ink); font-weight: 700; margin-left: 4px; }
-.billing-row { text-align: center; }
-.plan .price span { display: inline-block; transition: opacity .2s, transform .35s var(--ease-spring); }
-.plan .price.swap span { opacity: 0; transform: translateY(6px); }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition-duration: .001s !important; }
@@ -573,15 +554,38 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; border-
 </style>
 </head>
 <body>
-<!-- Lens filters for the glass buttons are added here by script. -->
+<div class="wallpaper" aria-hidden="true">
+  <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <linearGradient id="wb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--w-base-1)"/><stop offset="1" style="stop-color:var(--w-base-2)"/></linearGradient>
+      <linearGradient id="w1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--w-1a)"/><stop offset="1" style="stop-color:var(--w-1b)"/></linearGradient>
+      <linearGradient id="w2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--w-2a)"/><stop offset="1" style="stop-color:var(--w-2b)"/></linearGradient>
+      <linearGradient id="w3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" style="stop-color:var(--w-3a)"/><stop offset="1" style="stop-color:var(--w-3b)"/></linearGradient>
+      <radialGradient id="w4" cx=".35" cy=".3" r=".8"><stop offset="0" style="stop-color:var(--w-4a)"/><stop offset="1" style="stop-color:var(--w-4b)"/></radialGradient>
+      <filter id="soft" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="6"/></filter>
+    </defs>
+    <rect width="1600" height="1000" fill="url(#wb)"/>
+    <g filter="url(#soft)">
+      <path fill="url(#w2)" d="M-80 80C260 -40 520 260 880 190S1380 -60 1680 60V470C1380 330 1110 520 800 560S200 380 -80 520Z"/>
+      <path fill="url(#w1)" d="M-120 470C220 320 560 620 940 540S1400 300 1700 400V720C1420 650 1140 860 790 880S160 680 -120 790Z"/>
+      <path fill="url(#w3)" d="M-80 790C280 700 620 900 1000 850S1420 700 1680 760V1080H-80Z"/>
+      <circle cx="1290" cy="230" r="150" fill="url(#w4)" opacity=".9"/>
+      <circle cx="120" cy="930" r="90" fill="url(#w4)" opacity=".7"/>
+    </g>
+    <!-- Thin light lines: edges for the glass to catch. -->
+    <path fill="none" style="stroke:var(--w-line)" stroke-width="2" d="M-80 470C220 320 560 620 940 540S1400 300 1700 400"/>
+    <path fill="none" style="stroke:var(--w-line)" stroke-width="1.5" d="M-80 790C280 700 620 900 1000 850S1420 700 1680 760"/>
+  </svg>
+</div>
+<!-- Lens filters for the glass are added here by script. -->
 <svg id="lens-defs" width="0" height="0" style="position:absolute" aria-hidden="true"></svg>
 
 <header class="nav" id="nav">
-  <nav class="bar glass" aria-label="Main">
+  <nav class="bar glass bend" aria-label="Main">
     <span class="progress" aria-hidden="true"><i id="progress"></i></span>
-    <a class="brand" href="#top"><img src="assets/icon.png?v=8" alt="">Cherry</a>
+    <a class="brand" href="#top"><img src="assets/icon.png?v=9" alt="">Cherry</a>
     <div class="links">
-      <a href="#how">How it works</a>
+      <a href="#watch">See her work</a>
       <a href="#features">Features</a>
       <a href="#skills">Skills</a>
       <a href="#iphone">iPhone</a>
@@ -593,8 +597,8 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; border-
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 8h14M5 16h14"/></svg>
     </button>
   </nav>
-  <div class="sheet glass" id="sheet">
-    <a href="#how">How it works</a><a href="#features">Features</a><a href="#skills">Skills</a><a href="#helpers">Helpers</a><a href="#iphone">iPhone</a><a href="#privacy">Privacy</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+  <div class="sheet-menu glass" id="sheet">
+    <a href="#watch">See her work</a><a href="#how">How it works</a><a href="#features">Features</a><a href="#things">Things to say</a><a href="#skills">Skills</a><a href="#helpers">Helpers</a><a href="#iphone">iPhone</a><a href="#privacy">Privacy</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
   </div>
 </header>
 
@@ -606,50 +610,58 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; border-
       <p class="lead">Tell Cherry what you need. She reads your screen and does it in your apps, with her own cursor, while you watch. She thinks right on your Mac, so your screen and your words stay yours.</p>
       <div class="actions">
         <button type="button" role="link" class="lg tinted" data-href="#pricing"><span>Try it free for 14 days</span></button>
-        <button type="button" role="link" class="lg plain" data-href="#features"><span>See what she can do</span></button>
+        <button type="button" role="link" class="lg" data-href="#watch"><span>Watch her work</span></button>
       </div>
       <p class="fineprint">For Apple silicon MacBooks · macOS 26 or later · Free iPhone app</p>
 
-      <div class="stage" id="stage" aria-label="Animation: Cherry doing a task on a Mac">
-        <div class="wallpaper" aria-hidden="true">
-          <svg viewBox="0 0 1600 920" preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <linearGradient id="w1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" style="stop-color:var(--wall-3)"/><stop offset="1" style="stop-color:var(--wall-4)"/></linearGradient>
-              <linearGradient id="w2" x1="1" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--wall-1)"/><stop offset="1" style="stop-color:var(--wall-2)"/></linearGradient>
-              <linearGradient id="w3" x1="0" y1="1" x2="1" y2="0"><stop offset="0" style="stop-color:var(--wall-5)"/><stop offset="1" style="stop-color:var(--wall-1)"/></linearGradient>
-            </defs>
-            <rect width="1600" height="920" style="fill:var(--wall-3)"/>
-            <path fill="url(#w1)" d="M0 120C300 20 560 280 900 210S1400 0 1600 90V520C1340 380 1080 560 780 600S220 420 0 560Z"/>
-            <path fill="url(#w2)" d="M0 500C320 340 620 640 980 560S1400 330 1600 430V760C1360 690 1100 900 760 900S180 720 0 820Z"/>
-            <path fill="url(#w3)" opacity=".9" d="M0 800C300 720 600 900 980 860S1400 720 1600 780V920H0Z"/>
-          </svg>
+      <div class="cherrybar-area" id="cherrybar-area" aria-label="Examples of asking Cherry">
+        <div class="cherrybar glass bend">
+          <img src="assets/cherry.png?v=9" alt="">
+          <span class="text placeholder" id="cb-text">Ask Cherry…</span>
+          <kbd>⌥ Space</kbd>
         </div>
-        <div class="menubar glass" aria-hidden="true">
-          <span class="apple"></span><span id="app-name">Notes</span><span class="muted-menu">File</span><span>Edit</span><span>View</span>
-          <span class="right"><img src="assets/cherry.png?v=8" alt=""><span id="clock">9:41</span></span>
-        </div>
-
-        <div class="window" id="window">
-          <div class="badge">Cherry is using your computer</div>
-          <div class="tbar">
-            <span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
-            <span class="title" id="win-title">Notes</span>
-            <span class="tool" id="win-tool">＋ New Note</span>
-          </div>
-          <div class="content" id="win-content"></div>
-        </div>
-
-        <div class="chatpanel glass" id="chatpanel">
-          <div class="msgs" id="msgs"><div class="bubble her">Hi! What can I do for you?</div></div>
-          <div class="input"><img src="assets/cherry.png?v=8" alt=""><span id="typing" class="placeholder">Ask Cherry…</span></div>
-        </div>
-
-        <div class="cursor" id="cursor"><span class="ripple"></span><img src="assets/cherry.png?v=8" alt=""><span class="say" id="say"></span></div>
+        <div class="answer glass" id="cb-answer"><img class="who" src="assets/cherry.png?v=9" alt=""><div><span id="cb-reply"></span><small id="cb-how"></small></div></div>
       </div>
-      <div class="picker" id="picker" role="group" aria-label="Pick what Cherry does"></div>
-      <div class="apps">
-        <p>Works with the apps you already use</p>
-        <ul><li>Notes</li><li>Safari</li><li>Chrome</li><li>Mail</li><li>Calendar</li><li>Reminders</li><li>Music</li><li>Spotify</li><li>Finder</li><li>TextEdit</li><li>Shortcuts</li><li>System Settings</li></ul>
+    </div>
+  </section>
+
+  <!-- ================= Watch her work ================= -->
+  <section id="watch">
+    <div class="wrap">
+      <div class="sheet reveal">
+        <div class="head center">
+          <p class="label">See her work</p>
+          <h2>Pick something. <span class="muted">Watch her do it.</span></h2>
+        </div>
+        <div class="stage" id="stage" aria-label="Animation: Cherry doing a task on a Mac">
+          <div class="desk" aria-hidden="true">
+            <svg viewBox="0 0 1600 940" preserveAspectRatio="xMidYMid slice">
+              <rect width="1600" height="940" fill="url(#wb)"/>
+              <path fill="url(#w2)" d="M0 120C300 20 560 280 900 210S1400 0 1600 90V520C1340 380 1080 560 780 600S220 420 0 560Z"/>
+              <path fill="url(#w1)" d="M0 500C320 340 620 640 980 560S1400 330 1600 430V760C1360 690 1100 900 760 900S180 720 0 820Z"/>
+              <path fill="url(#w3)" d="M0 800C300 720 600 900 980 860S1400 720 1600 780V940H0Z"/>
+            </svg>
+          </div>
+          <div class="menubar glass" aria-hidden="true">
+            <span></span><span id="app-name">Notes</span><span>File</span><span>Edit</span><span>View</span>
+            <span class="right"><img src="assets/cherry.png?v=9" alt=""><span id="clock">9:41</span></span>
+          </div>
+          <div class="window" id="window">
+            <div class="badge">Cherry is using your computer</div>
+            <div class="tbar">
+              <span class="dot" style="background:#ff5f57"></span><span class="dot" style="background:#febc2e"></span><span class="dot" style="background:#28c840"></span>
+              <span class="title" id="win-title">Notes</span>
+              <span class="tool" id="win-tool">＋ New Note</span>
+            </div>
+            <div class="content" id="win-content"></div>
+          </div>
+          <div class="chatpanel glass" id="chatpanel">
+            <div class="msgs" id="msgs"><div class="bubble her">Hi! What can I do for you?</div></div>
+            <div class="input"><img src="assets/cherry.png?v=9" alt=""><span id="typing" class="placeholder">Ask Cherry…</span></div>
+          </div>
+          <div class="cursor" id="cursor"><span class="ripple"></span><img src="assets/cherry.png?v=9" alt=""><span class="say" id="say"></span></div>
+        </div>
+        <div class="picker" id="picker" role="group" aria-label="Pick what Cherry does"></div>
       </div>
     </div>
   </section>
@@ -657,28 +669,30 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; border-
   <!-- ================= How it works ================= -->
   <section id="how">
     <div class="wrap">
-      <div class="head reveal">
-        <p class="label">How it works</p>
-        <h2>Ask. She looks. <span class="muted">She does it.</span></h2>
-      </div>
-      <div class="steps">
-        <div class="step card reveal">
-          <div class="scene" aria-hidden="true"><div class="keys"><kbd>⌥</kbd><kbd>Space</kbd></div></div>
-          <p class="num">01</p>
-          <h3>You ask</h3>
-          <p>Type in Cherry's window, press <kbd>⌥ Space</kbd> over any app, or hold your iPhone and talk.</p>
+      <div class="sheet reveal">
+        <div class="head">
+          <p class="label">How it works</p>
+          <h2>Ask. She looks. <span class="muted">She does it.</span></h2>
         </div>
-        <div class="step card reveal">
-          <div class="scene" aria-hidden="true"><div class="ax"><span><b>window</b> “Notes”</span><span>&nbsp;&nbsp;<b>button</b> “New Note”</span><span>&nbsp;&nbsp;<b>text area</b> “Shopping List”</span></div></div>
-          <p class="num">02</p>
-          <h3>She looks</h3>
-          <p>She reads the buttons and text on your screen the way VoiceOver does, and thinks about it on your Mac.</p>
-        </div>
-        <div class="step card reveal">
-          <div class="scene" aria-hidden="true"><div class="border"><span>Cherry is using your computer</span></div><img src="assets/cherry.png?v=8" alt="" style="width:28px;justify-self:center"></div>
-          <p class="num">03</p>
-          <h3>She does it</h3>
-          <p>Her cursor clicks and types while a red border shows she's working. Anything risky waits for your OK, and <kbd>esc</kbd> stops her.</p>
+        <div class="steps">
+          <div class="step tile lift">
+            <div class="scene" aria-hidden="true"><div class="keys"><kbd>⌥</kbd><kbd>Space</kbd></div></div>
+            <p class="num">01</p>
+            <h3>You ask</h3>
+            <p>Type in Cherry's window, press <kbd>⌥ Space</kbd> over any app, or hold your iPhone and talk.</p>
+          </div>
+          <div class="step tile lift">
+            <div class="scene" aria-hidden="true"><div class="ax"><span><b>window</b> “Notes”</span><span>&nbsp;&nbsp;<b>button</b> “New Note”</span><span>&nbsp;&nbsp;<b>text area</b> “Shopping List”</span></div></div>
+            <p class="num">02</p>
+            <h3>She looks</h3>
+            <p>She reads the buttons and text on your screen the way VoiceOver does, and thinks about it on your Mac.</p>
+          </div>
+          <div class="step tile lift">
+            <div class="scene" aria-hidden="true"><div class="border"><span>Cherry is using your computer</span></div><img src="assets/cherry.png?v=9" alt="" style="width:28px;justify-self:center"></div>
+            <p class="num">03</p>
+            <h3>She does it</h3>
+            <p>Her cursor clicks and types while a red border shows she's working. Anything risky waits for your OK, and <kbd>esc</kbd> stops her.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -687,88 +701,70 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; border-
   <!-- ================= Features ================= -->
   <section id="features">
     <div class="wrap">
-      <div class="head reveal">
-        <p class="label">What she does</p>
-        <h2>Say it. <span class="muted">Watch it happen.</span></h2>
-        <p class="lead">Type or say what you need. For everyday things she goes straight there. For everything else she reads the screen and clicks her way through, one careful step at a time.</p>
-      </div>
-      <div class="grid">
-        <article class="feature wide card reveal">
-          <div class="scene" aria-hidden="true">
-            <span class="btn">＋ New Note</span>
-            <img class="pointer" src="assets/cherry.png?v=8" alt="">
-            <span class="tip">Making a new note</span>
-          </div>
-          <h3>Her own cursor</h3>
-          <p>Cherry's cursor glides to each button, clicks and types while you watch. Your mouse stays yours. A red border shows she's working, and holding <kbd>esc</kbd> stops her instantly.</p>
-        </article>
-        <article class="feature card reveal">
-          <div class="scene" aria-hidden="true">
-            <span class="msg you">What does this error mean?</span>
-            <span class="msg her">Your disk is almost full. Want me to tidy Downloads?</span>
-          </div>
-          <h3>Ask about your screen</h3>
-          <p>She reads what's in front of you and explains it, without touching anything.</p>
-        </article>
-        <article class="feature card reveal">
-          <div class="scene" aria-hidden="true">
-            <div class="weather"><span style="font-size:34px">☁️</span><div><span class="deg">14°</span><br><small style="color:#a99fa3">Copenhagen · rain later</small></div></div>
-          </div>
-          <h3>Real answers, not guesses</h3>
-          <p>Weather, currencies, units, the time anywhere, word meanings and facts from Wikipedia: looked up, then answered.</p>
-        </article>
-        <article class="feature card reveal">
-          <div class="scene" aria-hidden="true">
-            <div class="split"><div><b>Safari</b>left half</div><div><b>Notes</b>right half</div></div>
-          </div>
-          <h3>Windows where you want them</h3>
-          <p>“Put Safari and Notes side by side.” Halves, corners, full screen, in one sentence.</p>
-        </article>
-        <article class="feature card reveal">
-          <div class="scene" aria-hidden="true">
-            <div class="row"><img src="assets/cherry.png?v=8" alt="">Ask Cherry…<kbd>⌥ Space</kbd></div>
-          </div>
-          <h3>The Cherry Bar</h3>
-          <p>Ask from any app, without switching windows.</p>
-        </article>
-        <article class="feature wide card reveal">
-          <h3>The everyday stuff, done right away</h3>
-          <ul>
-            <li>Notes, reminders, calendar events and email drafts (you press Send)</li>
-            <li>Search YouTube, Amazon, Wikipedia or 20 more sites, or open any page</li>
-            <li>Volume, brightness, dark mode, Wi-Fi, music, timers and screenshots</li>
-            <li>Tidy your Downloads with a plan you approve first, and undo</li>
-            <li>“Add that to my note” or “email that to Sam”: she knows what “that” is</li>
-          </ul>
-        </article>
-        <article class="feature card reveal">
-          <div class="scene" aria-hidden="true">
-            <div class="row"><span style="color:#ff8f9b;font-weight:700">/pomodoro</span><small style="margin-left:auto">mute · 25 min timer</small></div>
-          </div>
-          <h3>Skills you make yourself</h3>
-          <p>Describe a routine once, then start it with <code>/its-name</code>. Your Apple Shortcuts work too.</p>
-        </article>
-        <article class="feature card reveal">
-          <div class="scene" aria-hidden="true">
-            <div class="row"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff8f9b" stroke-width="2" stroke-linecap="round"><path d="M12 3a6 6 0 0 0-3.5 10.9V17h7v-3.1A6 6 0 0 0 12 3zM10 21h4"/></svg><div>Dentist is on Tuesdays<small>Remembered · only on this Mac</small></div></div>
-          </div>
-          <h3>Remembers what you tell her</h3>
-          <p>Say “remember that…” and it stays on your Mac until you delete it.</p>
-        </article>
-        <article class="feature card reveal">
-          <div class="scene" aria-hidden="true">
-            <span class="msg you">Research the history of YouTube</span>
-            <span class="msg her">On it. Follow along in the panel →</span>
-          </div>
-          <h3>Research</h3>
-          <p>A short report with key points and sources, in a panel at the side while you keep working.</p>
-        </article>
-      </div>
-      <div class="rules card reveal" aria-label="Safety rules">
-        <div><b>Asks first</b><span>before deleting, sending, paying or changing settings</span></div>
-        <div><b>No secrets</b><span>never types passwords or card numbers</span></div>
-        <div><b>Can't be talked into things</b><span>text on screen can't give her orders</span></div>
-        <div><b>Always stoppable</b><span>hold esc, click Stop, or tap Stop on your iPhone</span></div>
+      <div class="sheet reveal">
+        <div class="head">
+          <p class="label">What she does</p>
+          <h2>Say it. <span class="muted">Watch it happen.</span></h2>
+          <p class="lead">For everyday things she goes straight there. For everything else she reads the screen and clicks her way through, one careful step at a time.</p>
+        </div>
+        <div class="bento">
+          <article class="feature wide tile lift">
+            <div class="scene" aria-hidden="true"><span class="btn">＋ New Note</span><img class="pointer" src="assets/cherry.png?v=9" alt=""><span class="tip">Making a new note</span></div>
+            <h3>Her own cursor</h3>
+            <p>Cherry's cursor glides to each button, clicks and types while you watch. Your mouse stays yours. A red border shows she's working, and holding <kbd>esc</kbd> stops her.</p>
+          </article>
+          <article class="feature tile lift">
+            <div class="scene" aria-hidden="true"><span class="msg you">What does this error mean?</span><span class="msg her">Your disk is almost full. Want me to tidy Downloads?</span></div>
+            <h3>Ask about your screen</h3>
+            <p>She reads what's in front of you and explains it, without touching anything.</p>
+          </article>
+          <article class="feature tile lift">
+            <div class="scene" aria-hidden="true"><div class="weather"><span style="font-size:34px">☁️</span><div><span class="deg">14°</span><br><small style="color:#a99fa3">Copenhagen · rain later</small></div></div></div>
+            <h3>Real answers, not guesses</h3>
+            <p>Weather, currencies, units, the time anywhere, word meanings and facts from Wikipedia: looked up, then answered.</p>
+          </article>
+          <article class="feature tile lift">
+            <div class="scene" aria-hidden="true"><div class="split"><div><b>Safari</b>left half</div><div><b>Notes</b>right half</div></div></div>
+            <h3>Windows where you want them</h3>
+            <p>“Put Safari and Notes side by side.” Halves, corners, full screen, in one sentence.</p>
+          </article>
+          <article class="feature tile lift">
+            <div class="scene" aria-hidden="true"><span class="msg you">Research the history of YouTube</span><span class="msg her">On it. Follow along in the panel →</span></div>
+            <h3>Research</h3>
+            <p>A short report with key points and sources, in a panel at the side while you keep working.</p>
+          </article>
+          <article class="feature wide tile lift">
+            <h3>The everyday stuff, done right away</h3>
+            <ul>
+              <li>Notes, reminders, calendar events and email drafts (you press Send)</li>
+              <li>Search YouTube, Amazon, Wikipedia or 20 more sites, or open any page</li>
+              <li>Volume, brightness, dark mode, Wi-Fi, music, timers and screenshots</li>
+              <li>Tidy your Downloads with a plan you approve first, and undo</li>
+              <li>“Add that to my note” or “email that to Sam”: she knows what “that” is</li>
+            </ul>
+          </article>
+          <article class="feature tile lift">
+            <div class="scene" aria-hidden="true"><div class="row"><img src="assets/cherry.png?v=9" alt="">Ask Cherry…<kbd>⌥ Space</kbd></div></div>
+            <h3>The Cherry Bar</h3>
+            <p>Ask from any app, without switching windows.</p>
+          </article>
+          <article class="feature tile lift">
+            <div class="scene" aria-hidden="true"><div class="row"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ff8f9b" stroke-width="2" stroke-linecap="round"><path d="M12 3a6 6 0 0 0-3.5 10.9V17h7v-3.1A6 6 0 0 0 12 3zM10 21h4"/></svg><div>Dentist is on Tuesdays<small>Remembered · only on this Mac</small></div></div></div>
+            <h3>Remembers what you tell her</h3>
+            <p>Say “remember that…” and it stays on your Mac until you delete it.</p>
+          </article>
+          <article class="feature wide tile lift">
+            <div class="scene" aria-hidden="true"><div class="row"><span style="color:#ff8f9b;font-weight:700">/pomodoro</span><small style="margin-left:auto">mute · 25 min timer</small></div></div>
+            <h3>Skills you make yourself</h3>
+            <p>Describe a routine once, then start it with <code>/its-name</code>. Your Apple Shortcuts work as skills too.</p>
+          </article>
+        </div>
+        <div class="rules tile" aria-label="Safety rules">
+          <div><b>Asks first</b><span>before deleting, sending, paying or changing settings</span></div>
+          <div><b>No secrets</b><span>never types passwords or card numbers</span></div>
+          <div><b>Can't be talked into things</b><span>text on screen can't give her orders</span></div>
+          <div><b>Always stoppable</b><span>hold esc, click Stop, or tap Stop on your iPhone</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -776,12 +772,12 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; border-
   <!-- ================= Things you can say ================= -->
   <section id="things">
     <div class="wrap">
-      <div class="head center reveal">
-        <p class="label">Things you can say</p>
-        <h2>Talk to her like a person.</h2>
-        <p class="lead">A few of the things Cherry understands right away. Typos are fine; she fixes them first.</p>
-      </div>
-      <div class="things card reveal">
+      <div class="sheet reveal">
+        <div class="head center">
+          <p class="label">Things you can say</p>
+          <h2>Talk to her like a person.</h2>
+          <p class="lead">A few of the things Cherry understands right away. Typos are fine; she fixes them first.</p>
+        </div>
         <div class="tabs" id="say-tabs" role="tablist" aria-label="Kinds of requests"></div>
         <ul class="examples" id="say-list" aria-live="polite"></ul>
       </div>
@@ -791,56 +787,56 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; border-
   <!-- ================= Skills ================= -->
   <section id="skills">
     <div class="wrap">
-      <div class="head reveal">
-        <p class="label">Skills</p>
-        <h2>Teach her your routines.<br><span class="muted">Start them with a slash.</span></h2>
-        <p class="lead">Twelve ready-made skills to switch on. Or describe your own in plain words, and Cherry turns it into steps you can check.</p>
+      <div class="sheet reveal">
+        <div class="head">
+          <p class="label">Skills</p>
+          <h2>Teach her your routines.<br><span class="muted">Start them with a slash.</span></h2>
+          <p class="lead">Twelve ready-made skills to switch on. Or describe your own in plain words, and Cherry turns it into steps you can check.</p>
+        </div>
+        <div class="skills">
+          <div class="skill tile lift"><code>/good-morning</code><b>Good morning</b><span>The time, today's calendar and your reminders.</span></div>
+          <div class="skill tile lift"><code>/pomodoro</code><b>Pomodoro</b><span>25 minutes of focus, then a break.</span></div>
+          <div class="skill tile lift"><code>/focus</code><b>Focus time</b><span>Sound off and a 50-minute timer.</span></div>
+          <div class="skill tile lift"><code>/end-of-day</code><b>End of day</b><span>What's left to do and what's on tomorrow.</span></div>
+          <div class="skill tile lift"><code>/jot …</code><b>Jot down</b><span>Puts what you write in a new note.</span></div>
+          <div class="skill tile lift pro"><code>/brief …</code><b>Brief me</b><span>Researches a topic for you.</span></div>
+          <div class="skill tile lift"><code>/translate …</code><b>Translate</b><span>Into English.</span></div>
+          <div class="skill tile lift"><code>/screen</code><b>Screen summary</b><span>A short summary of what's on your screen.</span></div>
+          <div class="skill tile lift"><code>/tidy</code><b>Tidy desktop</b><span>Sorts your Desktop into folders, with undo.</span></div>
+          <div class="skill tile lift"><code>/music-break</code><b>Music break</b><span>Music on for a 10-minute break.</span></div>
+          <div class="skill tile lift"><code>/meeting-prep</code><b>Meeting prep</b><span>Today's meetings and a fresh notes page.</span></div>
+          <div class="skill tile lift"><code>/snap</code><b>Snap</b><span>A clean screenshot on your Desktop.</span></div>
+        </div>
+        <p class="note">Three skills of your own are free, unlimited with Pro. Your Apple Shortcuts work as skills too.</p>
       </div>
-      <div class="skills">
-        <div class="skill card reveal"><code>/good-morning</code><b>Good morning</b><span>The time, today's calendar and your reminders.</span></div>
-        <div class="skill card reveal"><code>/pomodoro</code><b>Pomodoro</b><span>25 minutes of focus, then a break.</span></div>
-        <div class="skill card reveal"><code>/focus</code><b>Focus time</b><span>Sound off and a 50-minute timer.</span></div>
-        <div class="skill card reveal"><code>/end-of-day</code><b>End of day</b><span>What's left to do and what's on tomorrow.</span></div>
-        <div class="skill card reveal"><code>/jot …</code><b>Jot down</b><span>Puts what you write in a new note.</span></div>
-        <div class="skill card pro reveal"><code>/brief …</code><b>Brief me</b><span>Researches a topic for you.</span></div>
-        <div class="skill card reveal"><code>/translate …</code><b>Translate</b><span>Into English.</span></div>
-        <div class="skill card reveal"><code>/screen</code><b>Screen summary</b><span>A short summary of what's on your screen.</span></div>
-        <div class="skill card reveal"><code>/tidy</code><b>Tidy desktop</b><span>Sorts your Desktop into folders, with undo.</span></div>
-        <div class="skill card reveal"><code>/music-break</code><b>Music break</b><span>Music on for a 10-minute break.</span></div>
-        <div class="skill card reveal"><code>/meeting-prep</code><b>Meeting prep</b><span>Today's meetings and a fresh notes page.</span></div>
-        <div class="skill card reveal"><code>/snap</code><b>Snap</b><span>A clean screenshot on your Desktop.</span></div>
-      </div>
-      <p class="skills-note reveal">Three skills of your own are free, unlimited with Pro. Your Apple Shortcuts work as skills too.</p>
     </div>
   </section>
 
   <!-- ================= Helpers ================= -->
   <section id="helpers">
     <div class="wrap">
-      <div class="head center reveal">
-        <p class="label">Helpers</p>
-        <h2>Tricky task? <span class="muted">She calls in friends.</span></h2>
-        <p class="lead">Each helper has a job and a cursor of their own, and they talk to each other while they work.</p>
-      </div>
-      <div class="team">
-        <div class="member card reveal"><img class="fruit" loading="lazy" decoding="async" width="76" height="73" src="assets/blueberry.png?v=8" alt=""><h3>Blueberry</h3><span class="role" style="background:#4555db">Planner</span><p>Splits the task into small jobs and hands them out.</p></div>
-        <div class="member card reveal"><img class="fruit" loading="lazy" decoding="async" width="76" height="73" src="assets/lemon.png?v=8" alt=""><h3>Lemon</h3><span class="role" style="background:#a87a00">Scout</span><p>Finds things on the screen and points right at them.</p></div>
-        <div class="member card reveal"><img class="fruit" loading="lazy" decoding="async" width="76" height="73" src="assets/apple.png?v=8" alt=""><h3>Apple</h3><span class="role" style="background:#2e8f1f">Checker</span><p>Checks every step worked, and that nothing risky happens.</p></div>
-        <div class="member card reveal"><img class="fruit" loading="lazy" decoding="async" width="76" height="73" src="assets/orange.png?v=8" alt=""><h3>Orange</h3><span class="role" style="background:#d4520f">Fixer</span><p>Comes up with another way when something doesn't work.</p></div>
-        <div class="member card reveal"><img class="fruit" loading="lazy" decoding="async" width="76" height="72" src="assets/pineapple.png?v=8" alt=""><h3>Pineapple</h3><span class="role" style="background:#a86400">Writer</span><p>Writes the text: notes, emails and documents.</p></div>
-      </div>
-      <div class="teamwork">
-        <div class="transcript card reveal" id="transcript" aria-label="Example of the helpers talking">
-          <p class="label">The team at work</p>
+      <div class="sheet reveal">
+        <div class="head center">
+          <p class="label">Helpers</p>
+          <h2>Tricky task? <span class="muted">She calls in friends.</span></h2>
+          <p class="lead">Each helper has a job and a cursor of their own, and they talk to each other while they work.</p>
         </div>
-        <div class="modes-card card reveal">
-          <p class="label">Pick how Cherry works</p>
-          <h3 style="margin-top:6px">Six modes, one tap</h3>
-          <div class="segmented" id="modes" role="group" aria-label="Modes">
-            <div class="thumb lg" aria-hidden="true"></div>
+        <div class="team">
+          <div class="member tile lift"><img class="fruit" loading="lazy" decoding="async" width="72" height="69" src="assets/blueberry.png?v=9" alt=""><h3>Blueberry</h3><span class="role" style="background:#4555db">Planner</span><p>Splits the task into small jobs and hands them out.</p></div>
+          <div class="member tile lift"><img class="fruit" loading="lazy" decoding="async" width="72" height="69" src="assets/lemon.png?v=9" alt=""><h3>Lemon</h3><span class="role" style="background:#a87a00">Scout</span><p>Finds things on the screen and points right at them.</p></div>
+          <div class="member tile lift"><img class="fruit" loading="lazy" decoding="async" width="72" height="69" src="assets/apple.png?v=9" alt=""><h3>Apple</h3><span class="role" style="background:#2e8f1f">Checker</span><p>Checks every step worked, and that nothing risky happens.</p></div>
+          <div class="member tile lift"><img class="fruit" loading="lazy" decoding="async" width="72" height="69" src="assets/orange.png?v=9" alt=""><h3>Orange</h3><span class="role" style="background:#d4520f">Fixer</span><p>Comes up with another way when something doesn't work.</p></div>
+          <div class="member tile lift"><img class="fruit" loading="lazy" decoding="async" width="72" height="68" src="assets/pineapple.png?v=9" alt=""><h3>Pineapple</h3><span class="role" style="background:#a86400">Writer</span><p>Writes the text: notes, emails and documents.</p></div>
+        </div>
+        <div class="teamwork">
+          <div class="transcript tile" id="transcript" aria-label="Example of the helpers talking"><p class="label">The team at work</p></div>
+          <div class="modes-card tile">
+            <p class="label">Pick how Cherry works</p>
+            <h3 style="margin-top:6px">Six modes, one tap</h3>
+            <div class="segmented" id="modes" role="group" aria-label="Modes"><div class="thumb lg tinted" aria-hidden="true"></div></div>
+            <p class="mode-text" id="mode-text"></p>
+            <p style="color:var(--ink-2);font-size:15px">Helpers act with virtual cursors that never move your real mouse.</p>
           </div>
-          <p class="mode-text" id="mode-text"></p>
-          <p style="color:var(--ink-2);font-size:15px">Helpers act with virtual cursors that never move your real mouse.</p>
         </div>
       </div>
     </div>
@@ -848,26 +844,30 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; border-
 
   <!-- ================= iPhone ================= -->
   <section id="iphone">
-    <div class="wrap split">
-      <div class="phone reveal">
-        <div class="screen">
-          <img loading="lazy" decoding="async" width="899" height="1950" src="assets/face.jpg?v=8" alt="Cherry's face on the iPhone app">
-          <div class="island" id="island">
-            <div class="compact"><img src="assets/cherry.png?v=8" alt=""><span class="timer" id="timer">0:12</span></div>
-            <div class="expanded"><img src="assets/cherry.png?v=8" alt=""><div><b>Cherry is working</b><small>Typing your list in Notes</small></div><span class="stop" aria-label="Stop"></span></div>
+    <div class="wrap">
+      <div class="sheet reveal">
+        <div class="split">
+          <div class="phone">
+            <div class="screen">
+              <img loading="lazy" decoding="async" width="899" height="1950" src="assets/face.jpg?v=9" alt="Cherry's face on the iPhone app">
+              <div class="island" id="island">
+                <div class="compact"><img src="assets/cherry.png?v=9" alt=""><span class="timer" id="timer">0:12</span></div>
+                <div class="expanded"><img src="assets/cherry.png?v=9" alt=""><div><b>Cherry is working</b><small>Typing your list in Notes</small></div><span class="stop" aria-label="Stop"></span></div>
+              </div>
+              <div class="caption">Touch and hold anywhere to talk to me</div>
+            </div>
           </div>
-          <div class="caption">Touch and hold anywhere to talk to me</div>
-        </div>
-      </div>
-      <div class="reveal">
-        <p class="label">iPhone companion</p>
-        <h2 style="margin-top:12px">Talk to her <span class="muted">from across the room.</span></h2>
-        <p class="lead" style="margin-top:18px">Cherry's face fills your phone. Hold anywhere, say what you need, and she does it on your Mac. Her eyes even follow her cursor.</p>
-        <div class="phone-list">
-          <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div><div><h3>Just talk</h3><p>Your words become text on the iPhone itself, and she answers out loud.</p></div></div>
-          <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="9" width="16" height="6" rx="3"/></svg></div><div><h3>Dynamic Island and Lock Screen</h3><p>See what she's doing and stop her with one tap, even with your phone locked.</p></div></div>
-          <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 7h10M7 7l3-3M7 7l3 3M17 17H7m10 0-3-3m3 3-3 3"/></svg></div><div><h3>Phone and Mac, together</h3><p>Send your clipboard or scanned text to the Mac, or say “send this to my phone”.</p></div></div>
-          <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div><div><h3>Where's my phone?</h3><p>Ask your Mac, and your iPhone rings until you find it.</p></div></div>
+          <div>
+            <p class="label">iPhone companion</p>
+            <h2 style="margin-top:10px">Talk to her <span class="muted">from across the room.</span></h2>
+            <p class="lead" style="margin-top:16px">Cherry's face fills your phone. Hold anywhere, say what you need, and she does it on your Mac. Her eyes even follow her cursor.</p>
+            <div class="phone-list">
+              <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div><div><h3>Just talk</h3><p>Your words become text on the iPhone itself, and she answers out loud.</p></div></div>
+              <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="9" width="16" height="6" rx="3"/></svg></div><div><h3>Dynamic Island and Lock Screen</h3><p>See what she's doing and stop her with one tap, even with your phone locked.</p></div></div>
+              <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 7h10M7 7l3-3M7 7l3 3M17 17H7m10 0-3-3m3 3-3 3"/></svg></div><div><h3>Phone and Mac, together</h3><p>Send your clipboard or scanned text to the Mac, or say “send this to my phone”.</p></div></div>
+              <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></div><div><h3>Where's my phone?</h3><p>Ask your Mac, and your iPhone rings until you find it.</p></div></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -875,63 +875,54 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; border-
 
   <!-- ================= Privacy ================= -->
   <section id="privacy">
-    <div class="wrap privacy">
-      <div class="reveal">
-        <p class="label">Privacy</p>
-        <h2 style="margin-top:12px">Nothing leaves your Mac. <span class="muted">There's nowhere for it to go.</span></h2>
-        <p class="lead" style="margin-top:18px">Cherry thinks with Apple's on-device model. Your screen, your words and your files never go to a server, because Cherry doesn't have one.</p>
-      </div>
-      <div class="facts reveal">
-        <div><b>On device</b><span>No cloud AI, no API keys, no accounts. Thinking works offline.</span></div>
-        <div><b>Encrypted phone link</b><span>Your iPhone and Mac pair with a code and talk end-to-end encrypted over your own Wi-Fi.</span></div>
-        <div><b>No tracking</b><span>No ads, no analytics. Only what you ask for goes online, like a website, the weather or a lookup, plus a check of your subscription.</span></div>
-      </div>
-    </div>
-    <div class="wrap compare reveal">
-      <table>
-        <thead><tr><th></th><th>Cherry</th><th>A typical cloud AI assistant</th></tr></thead>
-        <tbody>
-          <tr><th>Where it thinks</th><td>On your Mac</td><td>On the company's servers</td></tr>
-          <tr><th>Your screen and words</th><td>Stay on your Mac</td><td>Are uploaded to answer you</td></tr>
-          <tr><th>Uses your apps</th><td>Yes, with her own cursor, while you watch</td><td>Usually not, or only in a browser</td></tr>
-          <tr><th>Without internet</th><td>Thinking and Mac tasks still work</td><td>Doesn't work</td></tr>
-          <tr><th>Long, hard questions</th><td>Good, not great: it's a small model</td><td>Better: much bigger models</td></tr>
-          <tr><th>Price</th><td>Free, or $5 a month for Pro</td><td>Often $20 a month</td></tr>
-        </tbody>
-        <caption>Cherry is built to do things on your Mac privately. For deep research and long essays, a big cloud model is still smarter.</caption>
-      </table>
-    </div>
-  </section>
-
-  <!-- ================= What's new ================= -->
-  <section id="new">
     <div class="wrap">
-      <div class="head center reveal"><p class="label">What's new</p><h2>Getting better every week.</h2></div>
-      <div class="news reveal">
-        <article><time datetime="2026-10-23">October 23</time><div><h3>Faster answers</h3><ul><li>Answers appear as she writes them, first words in about two seconds</li><li>She reads ahead while you're still typing</li></ul></div></article>
-        <article><time datetime="2026-10-16">October 16</time><div><h3>Live answers and Mac controls</h3><ul><li>Weather, currencies, units, word meanings and the time anywhere</li><li>Windows to halves, corners or side by side; lock, Wi-Fi and brightness</li><li>Search YouTube, Amazon, Wikipedia and 20 more sites directly</li><li>Facts from Wikipedia before answering a question</li></ul></div></article>
-        <article><time datetime="2026-10-15">October 15</time><div><h3>Skills</h3><ul><li>Twelve ready-made skills and your own, started with <code>/its-name</code></li><li>Describe a skill in plain words and she builds the steps</li><li>Apple Shortcuts as skills</li></ul></div></article>
-        <article><time datetime="2026-10-14">October 14</time><div><h3>Research</h3><ul><li>A short report with key points and sources, in a panel at the side</li></ul></div></article>
+      <div class="sheet reveal">
+        <div class="privacy">
+          <div>
+            <p class="label">Privacy</p>
+            <h2 style="margin-top:10px">Nothing leaves your Mac. <span class="muted">There's nowhere for it to go.</span></h2>
+            <p class="lead" style="margin-top:16px">Cherry thinks with Apple's on-device model. Your screen, your words and your files never go to a server, because Cherry doesn't have one.</p>
+          </div>
+          <div class="facts">
+            <div><b>On device</b><span>No cloud AI, no API keys, no accounts. Thinking works offline.</span></div>
+            <div><b>Encrypted phone link</b><span>Your iPhone and Mac pair with a code and talk end-to-end encrypted over your own Wi-Fi.</span></div>
+            <div><b>No tracking</b><span>No ads, no analytics. Only what you ask for goes online, like a website, the weather or a lookup, plus a check of your subscription.</span></div>
+          </div>
+        </div>
+        <div class="compare tile">
+          <table>
+            <thead><tr><th></th><th>Cherry</th><th>A typical cloud AI assistant</th></tr></thead>
+            <tbody>
+              <tr><th>Where it thinks</th><td>On your Mac</td><td>On the company's servers</td></tr>
+              <tr><th>Your screen and words</th><td>Stay on your Mac</td><td>Are uploaded to answer you</td></tr>
+              <tr><th>Uses your apps</th><td>Yes, with her own cursor, while you watch</td><td>Usually not, or only in a browser</td></tr>
+              <tr><th>Without internet</th><td>Thinking and Mac tasks still work</td><td>Doesn't work</td></tr>
+              <tr><th>Long, hard questions</th><td>Good, not great: it's a small model</td><td>Better: much bigger models</td></tr>
+              <tr><th>Price</th><td>Free, or $5 a month for Pro</td><td>Often $20 a month</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="compare-note">Cherry is built to do things on your Mac privately. For deep research and long essays, a big cloud model is still smarter.</p>
       </div>
     </div>
   </section>
 
-  <!-- ================= Pricing ================= -->
+  <!-- ================= Pricing: glass cards right on the wallpaper ================= -->
   <section id="pricing">
-    <div class="wrap">
+    <div class="wrap" style="padding:70px 0 40px">
       <div class="head center reveal">
         <p class="label">Pricing</p>
         <h2>Free to start. <span class="muted">$5 when you want more.</span></h2>
-        <p class="lead">Try every Pro feature free for 14 days. Then it's $5 a month or $20 a year. Cancel any time.</p>
+        <p class="lead">Try every Pro feature free for 14 days. Cancel any time.</p>
       </div>
       <div class="billing-row reveal"><div class="billing" role="group" aria-label="Billing">
         <button type="button" aria-pressed="true" data-bill="month">Monthly</button>
         <button type="button" aria-pressed="false" data-bill="year">Yearly <small>save 67%</small></button>
       </div></div>
       <div class="plans">
-        <div class="plan card reveal">
+        <div class="plan glass reveal">
           <h3>Free</h3>
-          <p class="price">$0</p>
+          <p class="price"><span>$0</span></p>
           <ul>
             <li>Chat, and questions about your screen</li>
             <li>Her own cursor and everyday skills</li>
@@ -942,7 +933,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; border-
             <li>Every safety feature, always</li>
           </ul>
         </div>
-        <div class="plan pro card reveal">
+        <div class="plan pro glass reveal">
           <span class="tag">14 days free</span>
           <h3>Cherry Pro</h3>
           <p class="price" id="pro-price"><span>$5</span><small id="pro-per"> /month</small></p>
@@ -963,17 +954,45 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; border-
     </div>
   </section>
 
-  <!-- ================= FAQ ================= -->
+  <!-- ================= What's new + FAQ ================= -->
+  <section id="new">
+    <div class="wrap">
+      <div class="sheet reveal">
+        <div class="head center"><p class="label">What's new</p><h2>Getting better every week.</h2></div>
+        <div class="news">
+          <article><time datetime="2026-10-23">October 23</time><div><h3>Faster answers</h3><ul><li>Answers appear as she writes them, first words in about two seconds</li><li>She reads ahead while you're still typing</li></ul></div></article>
+          <article><time datetime="2026-10-16">October 16</time><div><h3>Live answers and Mac controls</h3><ul><li>Weather, currencies, units, word meanings and the time anywhere</li><li>Windows to halves, corners or side by side; lock, Wi-Fi and brightness</li><li>Search YouTube, Amazon, Wikipedia and 20 more sites directly</li><li>Facts from Wikipedia before answering a question</li></ul></div></article>
+          <article><time datetime="2026-10-15">October 15</time><div><h3>Skills</h3><ul><li>Twelve ready-made skills and your own, started with <code>/its-name</code></li><li>Describe a skill in plain words and she builds the steps</li><li>Apple Shortcuts as skills</li></ul></div></article>
+          <article><time datetime="2026-10-14">October 14</time><div><h3>Research</h3><ul><li>A short report with key points and sources, in a panel at the side</li></ul></div></article>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="faq">
     <div class="wrap">
-      <div class="head center reveal"><p class="label">Questions</p><h2>Good to know.</h2></div>
-      <div class="faq reveal">
-        <details><summary>How much does Cherry cost?</summary><p>Cherry has a free plan. Cherry Pro adds Research, all five helpers, unlimited skills and more for $5 a month or $20 a year, with a 14-day free trial. Cancel any time; safety features are always free.</p></details>
-        <details><summary>Does anything get sent to the internet?</summary><p>Cherry's thinking happens on your Mac with Apple's on-device model, and your iPhone talks to your Mac directly over your own network, encrypted. Only things you ask for go online: opening a website, the weather, a Wikipedia lookup or research. Plus a quick check of your subscription.</p></details>
-        <details><summary>What are Skills?</summary><p>Skills teach Cherry new tricks. Each one has a command you type in the chat, like <code>/pomodoro</code>; anything after it goes to the skill, like <code>/jot call the dentist</code>. On your iPhone, say “slash” and its name. Describe a skill in plain words and Cherry builds the steps for you to check, or build it step by step, add ready-made ones, or run your Apple Shortcuts.</p></details>
-        <details><summary>Which Macs does she work on?</summary><p>Apple silicon MacBooks (M1 and newer) on macOS 26 or later, with Apple Intelligence turned on.</p></details>
-        <details><summary>Can she do anything on my Mac?</summary><p>Everyday tasks are done directly, so they're fast and reliable. Long, complicated jobs in unfamiliar apps are harder, because she thinks with a small model on your Mac. That's when her helpers step in. She always asks before anything risky, and you can stop her instantly.</p></details>
-        <details><summary>Do I need the iPhone app?</summary><p>No. But it's how you talk to Cherry out loud, watch what she's doing from across the room, and stop her from your Lock Screen.</p></details>
+      <div class="sheet reveal">
+        <div class="head center"><p class="label">Questions</p><h2>Good to know.</h2></div>
+        <div class="faq">
+          <details><summary>How much does Cherry cost?</summary><p>Cherry has a free plan. Cherry Pro adds Research, all five helpers, unlimited skills and more for $5 a month or $20 a year, with a 14-day free trial. Cancel any time; safety features are always free.</p></details>
+          <details><summary>Does anything get sent to the internet?</summary><p>Cherry's thinking happens on your Mac with Apple's on-device model, and your iPhone talks to your Mac directly over your own network, encrypted. Only things you ask for go online: opening a website, the weather, a Wikipedia lookup or research. Plus a quick check of your subscription.</p></details>
+          <details><summary>What are Skills?</summary><p>Skills teach Cherry new tricks. Each one has a command you type in the chat, like <code>/pomodoro</code>; anything after it goes to the skill, like <code>/jot call the dentist</code>. On your iPhone, say “slash” and its name. Describe a skill in plain words and Cherry builds the steps for you to check, or build it step by step, add ready-made ones, or run your Apple Shortcuts.</p></details>
+          <details><summary>Which Macs does she work on?</summary><p>Apple silicon MacBooks (M1 and newer) on macOS 26 or later, with Apple Intelligence turned on.</p></details>
+          <details><summary>Can she do anything on my Mac?</summary><p>Everyday tasks are done directly, so they're fast and reliable. Long, complicated jobs in unfamiliar apps are harder, because she thinks with a small model on your Mac. That's when her helpers step in. She always asks before anything risky, and you can stop her instantly.</p></details>
+          <details><summary>Do I need the iPhone app?</summary><p>No. But it's how you talk to Cherry out loud, watch what she's doing from across the room, and stop her from your Lock Screen.</p></details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= Last call ================= -->
+  <section class="cta">
+    <div class="wrap" style="padding:80px 0 60px">
+      <h2 class="reveal">Let her take it from here.</h2>
+      <p class="lead reveal" style="margin:16px auto 0">Fourteen days of everything, free. Then $5 a month, or keep the free plan.</p>
+      <div class="actions reveal">
+        <button type="button" role="link" class="lg tinted" data-href="#pricing"><span>Try it free for 14 days</span></button>
+        <button type="button" role="link" class="lg" data-href="#faq"><span>Questions?</span></button>
       </div>
     </div>
   </section>
@@ -981,16 +1000,15 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; border-
 
 <footer>
   <div class="wrap">
-    <div class="cols">
-      <div>
-        <span class="brandline"><img src="assets/icon.png?v=8" alt="">Cherry</span>
-        <p>A private helper that uses your Mac for you. Made by Scriptstate.</p>
+    <div class="sheet">
+      <div class="cols">
+        <div><span class="brandline"><img src="assets/icon.png?v=9" alt="">Cherry</span><p>A private helper that uses your Mac for you. Made by Scriptstate.</p></div>
+        <div><b>Cherry</b><a href="#watch">See her work</a><a href="#how">How it works</a><a href="#features">Features</a><a href="#things">Things to say</a><a href="#skills">Skills</a></div>
+        <div><b>More</b><a href="#helpers">Helpers</a><a href="#iphone">iPhone app</a><a href="#privacy">Privacy</a><a href="#new">What's new</a></div>
+        <div><b>Buying</b><a href="#pricing">Pricing</a><a href="#faq">Questions</a></div>
       </div>
-      <div><b>Cherry</b><a href="#how">How it works</a><a href="#features">Features</a><a href="#things">Things to say</a><a href="#skills">Skills</a><a href="#helpers">Helpers</a></div>
-      <div><b>More</b><a href="#iphone">iPhone app</a><a href="#privacy">Privacy</a><a href="#new">What's new</a></div>
-      <div><b>Buying</b><a href="#pricing">Pricing</a><a href="#faq">Questions</a></div>
+      <p class="legal">© 2026 Scriptstate. Mac, iPhone, Apple Intelligence and other Apple names are trademarks of Apple Inc. Cherry isn't made by Apple.</p>
     </div>
-    <p class="legal">© 2026 Scriptstate. Mac, iPhone, Apple Intelligence and other Apple names are trademarks of Apple Inc. Cherry isn't made by Apple.</p>
   </div>
 </footer>
 
@@ -1197,6 +1215,15 @@ function liquidGlass(element) {
 }
 
 document.querySelectorAll(".lg:not(.thumb)").forEach(liquidGlass);
+
+// The menu bar and the Cherry Bar bend what's behind their edges too (Chromium).
+if (canBend && !reduceMotion) {
+  document.querySelectorAll(".glass.bend").forEach(pane => {
+    const lens = makeLens(pane);
+    lens.setStrength(.6);
+    pane.style.backdropFilter = `blur(12px) saturate(200%) brightness(1.05) url(#${lens.id})`;
+  });
+}
 // Glass buttons that go somewhere: a tap opens it (⌘/Ctrl-click opens a new tab).
 document.querySelectorAll(".lg[data-href]").forEach(button => {
   button.addEventListener("click", event => {
@@ -1221,7 +1248,7 @@ menuButton.addEventListener("click", () => {
   const open = nav.classList.toggle("open");
   menuButton.setAttribute("aria-expanded", open);
 });
-nav.querySelectorAll(".sheet a").forEach(a => a.addEventListener("click", () => { nav.classList.remove("open"); menuButton.setAttribute("aria-expanded", false); }));
+nav.querySelectorAll(".sheet-menu a").forEach(a => a.addEventListener("click", () => { nav.classList.remove("open"); menuButton.setAttribute("aria-expanded", false); }));
 
 /* =========================================================
    Fade in on scroll
@@ -1237,7 +1264,7 @@ document.querySelectorAll(".reveal").forEach((el, i) => { el.style.transitionDel
    things there are: the menu bar, buttons, the demo panel).
    ========================================================= */
 (function light() {
-  const panes = [...document.querySelectorAll(".glass, .lg")];
+  const panes = [...document.querySelectorAll(".glass, .sheet, .lg")];
   let x = innerWidth * .3, y = -200, queued = false;
   const update = () => {
     queued = false;
@@ -1440,12 +1467,9 @@ document.querySelectorAll("main section[id]").forEach(section => reading.observe
 /* Scroll progress in the menu bar, and the billing switch. */
 (function progress() {
   const bar = document.getElementById("progress");
-  const nav = document.getElementById("nav"), band = document.getElementById("privacy");
   let queued = false;
   const update = () => {
     queued = false;
-    const r = band.getBoundingClientRect();
-    nav.classList.toggle("on-dark", r.top < 40 && r.bottom > 40);
     const max = document.documentElement.scrollHeight - innerHeight;
     bar.style.transform = `scaleX(${max > 0 ? Math.min(1, scrollY / max).toFixed(4) : 0})`;
   };
@@ -1466,6 +1490,46 @@ document.querySelectorAll("main section[id]").forEach(section => reading.observe
     alt.innerHTML = yearly ? "That's <strong>$1.67 a month</strong>, billed once a year" : "or <strong>$20 a year</strong> (save 67%)";
     price.classList.remove("swap");
   }));
+})();
+/* =========================================================
+   The Cherry Bar in the hero: real requests, typed, answered.
+   ========================================================= */
+(async function cherryBar() {
+  const area = document.getElementById("cherrybar-area"), text = document.getElementById("cb-text");
+  const answer = document.getElementById("cb-answer"), reply = document.getElementById("cb-reply"), how = document.getElementById("cb-how");
+  const examples = [
+    ["Will it rain tomorrow?", "🌦️ Tomorrow: drizzly, 9° to 13°. Rain is likely, so bring an umbrella.", "Looked up the forecast"],
+    ["Put Safari and Notes side by side", "Done: Safari is on the left, Notes on the right.", "Moved two windows"],
+    ["What's 100 dollars in euros?", "$100 is about €89 at today's rate.", "Looked up today's rate"],
+    ["Search YouTube for lofi beats", "Here are the YouTube results for “lofi beats”.", "Opened the results page"],
+    ["Remind me to call mom at 5pm", "Added a reminder: Call mom, today at 5:00 PM.", "Reminders"],
+    ["Who founded YouTube?", "Chad Hurley, Steve Chen and Jawed Karim, in 2005.", "Checked on Wikipedia"],
+  ];
+  let visible = true;
+  new IntersectionObserver(entries => { visible = entries.some(e => e.isIntersecting); }).observe(area);
+  if (reduceMotion) {
+    text.textContent = examples[0][0]; text.classList.remove("placeholder");
+    reply.textContent = examples[0][1]; how.textContent = examples[0][2]; answer.classList.add("show");
+    return;
+  }
+  const caret = document.createElement("span"); caret.className = "caret";
+  for (let i = 0; ; i = (i + 1) % examples.length) {
+    while (!visible || document.hidden) await sleep(400);
+    const [ask, said, note] = examples[i];
+    text.classList.remove("placeholder"); text.textContent = ""; text.appendChild(caret);
+    await sleep(500);
+    for (const ch of ask) { caret.before(ch); await sleep(42 + Math.random() * 40); }
+    await sleep(450);
+    caret.remove();
+    reply.textContent = ""; how.textContent = note; answer.classList.add("show");
+    await sleep(250);
+    for (const ch of said) { reply.textContent += ch; await sleep(16); }
+    await sleep(2800);
+    answer.classList.remove("show");
+    await sleep(350);
+    text.textContent = "Ask Cherry…"; text.classList.add("placeholder");
+    await sleep(500);
+  }
 })();
 /* =========================================================
    Things you can say: tabs
@@ -1526,7 +1590,7 @@ document.querySelectorAll("main section[id]").forEach(section => reading.observe
   const els = lines.map(([img, name, text]) => {
     const line = document.createElement("div");
     line.className = "line";
-    line.innerHTML = `<img src="assets/${img}.png?v=8" alt=""><div><b>${name}</b><span>${text}</span></div>`;
+    line.innerHTML = `<img src="assets/${img}.png?v=9" alt=""><div><b>${name}</b><span>${text}</span></div>`;
     box.appendChild(line);
     return line;
   });
