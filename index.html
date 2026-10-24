@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#fde9ee" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#12060b" media="(prefers-color-scheme: dark)">
 <meta name="author" content="Scriptstate">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Cherry","operatingSystem":"macOS","applicationCategory":"ProductivityApplication","publisher":{"@type":"Organization","name":"Scriptstate"},"offers":[{"@type":"Offer","name":"Cherry Pro monthly","price":"5","priceCurrency":"USD"},{"@type":"Offer","name":"Cherry Pro yearly","price":"20","priceCurrency":"USD"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Cherry","operatingSystem":"macOS","applicationCategory":"ProductivityApplication","publisher":{"@type":"Organization","name":"Scriptstate"},"offers":[{"@type":"Offer","name":"Cherry Pro monthly","price":"5","priceCurrency":"USD"},{"@type":"Offer","name":"Cherry Pro yearly","price":"39","priceCurrency":"USD"}]}</script>
 <meta property="og:title" content="Cherry · The helper that uses your Mac for you">
 <meta property="og:description" content="She reads your screen, uses your apps with her own cursor, and thinks right on your Mac.">
 <meta property="og:image" content="https://scriptstate.github.io/cherry/assets/icon.png?v=9">
@@ -917,7 +917,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
       </div>
       <div class="billing-row reveal"><div class="billing" role="group" aria-label="Billing">
         <button type="button" aria-pressed="true" data-bill="month">Monthly</button>
-        <button type="button" aria-pressed="false" data-bill="year">Yearly <small>save 67%</small></button>
+        <button type="button" aria-pressed="false" data-bill="year">Yearly <small>save 35%</small></button>
       </div></div>
       <div class="plans">
         <div class="plan glass reveal">
@@ -937,7 +937,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
           <span class="tag">14 days free</span>
           <h3>Cherry Pro</h3>
           <p class="price" id="pro-price"><span>$5</span><small id="pro-per"> /month</small></p>
-          <p class="alt" id="pro-alt">or <strong>$20 a year</strong> (save 67%)</p>
+          <p class="alt" id="pro-alt">or <strong>$39 a year</strong> (save 35%)</p>
           <ul>
             <li>Everything in Free</li>
             <li>Research with key points and sources</li>
@@ -974,7 +974,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
       <div class="sheet reveal">
         <div class="head center"><p class="label">Questions</p><h2>Good to know.</h2></div>
         <div class="faq">
-          <details><summary>How much does Cherry cost?</summary><p>Cherry has a free plan. Cherry Pro adds Research, all five helpers, unlimited skills and more for $5 a month or $20 a year, with a 14-day free trial. Cancel any time; safety features are always free.</p></details>
+          <details><summary>How much does Cherry cost?</summary><p>Cherry has a free plan. Cherry Pro adds Research, all five helpers, unlimited skills and more for $5 a month or $39 a year, with a 14-day free trial. Cancel any time; safety features are always free.</p></details>
           <details><summary>Does anything get sent to the internet?</summary><p>Cherry's thinking happens on your Mac with Apple's on-device model, and your iPhone talks to your Mac directly over your own network, encrypted. Only things you ask for go online: opening a website, the weather, a Wikipedia lookup or research. Plus a quick check of your subscription.</p></details>
           <details><summary>What are Skills?</summary><p>Skills teach Cherry new tricks. Each one has a command you type in the chat, like <code>/pomodoro</code>; anything after it goes to the skill, like <code>/jot call the dentist</code>. On your iPhone, say “slash” and its name. Describe a skill in plain words and Cherry builds the steps for you to check, or build it step by step, add ready-made ones, or run your Apple Shortcuts.</p></details>
           <details><summary>Which Macs does she work on?</summary><p>Apple silicon MacBooks (M1 and newer) on macOS 26 or later, with Apple Intelligence turned on.</p></details>
@@ -1485,9 +1485,9 @@ document.querySelectorAll("main section[id]").forEach(section => reading.observe
     const yearly = button.dataset.bill === "year";
     price.classList.add("swap");
     await sleep(reduceMotion ? 0 : 160);
-    price.querySelector("span").textContent = yearly ? "$20" : "$5";
+    price.querySelector("span").textContent = yearly ? "$39" : "$5";
     per.textContent = yearly ? " /year" : " /month";
-    alt.innerHTML = yearly ? "That's <strong>$1.67 a month</strong>, billed once a year" : "or <strong>$20 a year</strong> (save 67%)";
+    alt.innerHTML = yearly ? "That's <strong>$3.25 a month</strong>, billed once a year" : "or <strong>$39 a year</strong> (save 35%)";
     price.classList.remove("swap");
   }));
 })();
