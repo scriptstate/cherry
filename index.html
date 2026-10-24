@@ -610,7 +610,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
       <a href="#privacy">Privacy</a>
       <a href="#pricing">Pricing</a>
     </div>
-    <button type="button" role="link" class="lg small tinted" data-href="#pricing"><span>Get Cherry</span></button>
+    <button type="button" role="link" class="lg small tinted" data-href="https://github.com/scriptstate/cherry/releases/latest/download/Cherry.dmg" aria-label="Download Cherry for Mac"><span>Download</span></button>
     <button class="lg small icon-only menu-button" type="button" aria-label="Menu" aria-expanded="false" aria-controls="sheet">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 8h14M5 16h14"/></svg>
     </button>
@@ -627,10 +627,10 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
       <h1>The helper that <em>uses your Mac</em> for you.</h1>
       <p class="lead">Tell Cherry what you need. She reads your screen and does it in your apps, with her own cursor, while you watch. By default she thinks right on your Mac, so your screen and your words stay yours.</p>
       <div class="actions">
-        <button type="button" role="link" class="lg tinted" data-href="#pricing"><span>Try it free for 14 days</span></button>
-        <button type="button" role="link" class="lg" data-href="#watch"><span>Watch her work</span></button>
+        <button type="button" role="link" class="lg tinted" data-href="https://github.com/scriptstate/cherry/releases/latest/download/Cherry.dmg"><span>Download for Mac</span></button>
+        <button type="button" role="link" class="lg" data-href="#intro"><span>Watch the video</span></button>
       </div>
-      <p class="fineprint">For Apple silicon MacBooks · macOS 26 or later · Free iPhone app</p>
+      <p class="fineprint">Free · Pro free for 14 days · Apple silicon Macs, macOS 26 or later · <a href="#install">How to open it</a></p>
 
       <div class="cherrybar-area" id="cherrybar-area" aria-label="Examples of asking Cherry">
         <div class="cherrybar glass bend">
@@ -1003,6 +1003,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
             <li>Talk from your iPhone</li>
             <li>Every safety feature, always</li>
           </ul>
+          <button type="button" role="link" class="lg" data-href="https://github.com/scriptstate/cherry/releases/latest/download/Cherry.dmg"><span>Download free</span></button>
         </div>
         <div class="plan pro glass reveal">
           <span class="tag">14 days free</span>
@@ -1020,7 +1021,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
             <li>File tidying with undo</li>
             <li>Dynamic Island, Scan Text, send to phone, find my phone</li>
           </ul>
-          <button type="button" class="lg tinted" disabled><span>Coming soon</span></button>
+          <button type="button" role="link" class="lg tinted" data-href="https://github.com/scriptstate/cherry/releases/latest/download/Cherry.dmg"><span>Download and try Pro free</span></button>
         </div>
       </div>
       <p class="signin-note reveal">Already bought it? Open Cherry → Settings → Cherry Pro → <strong>Sign in</strong> with your email and license key. One sign-in unlocks Cherry and Cherry Code.</p>
@@ -1048,6 +1049,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
       <div class="sheet reveal">
         <div class="head center"><p class="label">Questions</p><h2>Good to know.</h2></div>
         <div class="faq">
+          <details id="install"><summary>How do I install Cherry?</summary><p>Download Cherry.dmg, open it, and drag Cherry (and Cherry Code, if you like) into Applications. The first time you open Cherry, macOS warns that it can't check it, because Cherry isn't signed with an Apple developer certificate yet. Click Done, open System Settings → Privacy &amp; Security, scroll down and click <strong>Open Anyway</strong> next to Cherry. You only do this once; after that she opens normally and walks you through the permissions she needs.</p></details>
           <details><summary>How much does Cherry cost?</summary><p>Cherry has a free plan. Cherry Pro adds Research, all five helpers, unlimited skills and more for $5 a month or $39 a year, with a 14-day free trial. Cancel any time; safety features are always free.</p></details>
           <details><summary>Does anything get sent to the internet?</summary><p>Not by default. Cherry thinks on your Mac with Apple's on-device model or a local model you download through Ollama, and your iPhone talks to your Mac directly over your own network, encrypted. Only things you ask for go online: opening a website, the weather, a Wikipedia lookup or research. Plus a quick check of your subscription. If you turn on Claude in Settings → Brain, what you ask (and in Cherry Code, the code it needs) goes to Anthropic with your own API key.</p></details>
           <details><summary>Which brain should I pick?</summary><p><b>Apple Intelligence</b> needs no setup and is private, but it's small. A <b>local model</b> is free and private too, and much better at code: install <a href="https://ollama.com/download">Ollama</a>, then download a model from Settings → Brain (Qwen2.5 Coder 7B on 8 GB Macs, 14B on 16 GB, Qwen3 Coder 30B on 32 GB or more). <b>Claude</b> is by far the best at building apps; you add your own Anthropic API key and pay Anthropic for what you use.</p></details>
@@ -1068,7 +1070,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
       <h2 class="reveal">Let her take it from here.</h2>
       <p class="lead reveal" style="margin:16px auto 0">Fourteen days of everything, free. Then $5 a month, or keep the free plan.</p>
       <div class="actions reveal">
-        <button type="button" role="link" class="lg tinted" data-href="#pricing"><span>Try it free for 14 days</span></button>
+        <button type="button" role="link" class="lg tinted" data-href="https://github.com/scriptstate/cherry/releases/latest/download/Cherry.dmg"><span>Download for Mac</span></button>
         <button type="button" role="link" class="lg" data-href="#faq"><span>Questions?</span></button>
       </div>
     </div>
@@ -1302,6 +1304,8 @@ if (canBend && !reduceMotion) {
   });
 }
 // Glass buttons that go somewhere: a tap opens it (⌘/Ctrl-click opens a new tab).
+// "How to open it" opens its answer.
+document.querySelectorAll('a[href="#install"]').forEach(link => link.addEventListener("click", () => { document.getElementById("install").open = true; }));
 document.querySelectorAll(".lg[data-href]").forEach(button => {
   button.addEventListener("click", event => {
     const href = button.dataset.href;
