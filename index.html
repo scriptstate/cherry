@@ -643,6 +643,21 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
     </div>
   </section>
 
+  <!-- ================= Intro video ================= -->
+  <section id="intro">
+    <div class="wrap">
+      <div class="sheet reveal">
+        <div class="head center">
+          <p class="label">Cherry in 30 seconds</p>
+          <h2>See what she can do. <span class="muted">Sound on.</span></h2>
+        </div>
+        <video src="assets/cherry-intro.mp4" poster="assets/cherry-intro-poster.jpg" controls playsinline preload="none"
+               style="display:block;width:100%;aspect-ratio:16/9;border-radius:22px;background:#12030a;box-shadow:0 24px 60px rgba(0,0,0,.35)"
+               aria-label="A 30-second introduction to Cherry and Cherry Code"></video>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= Watch her work ================= -->
   <section id="watch">
     <div class="wrap">
@@ -847,6 +862,9 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
               <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></div><div><h3>Pick the brain</h3><p>Apple's model for quick changes, a free local model through Ollama that stays private, or Claude with your own API key, which writes, builds, tests and looks at the app until it works.</p></div></div>
               <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg></div><div><h3>Agent, Plan, Ask or Team</h3><p>Let her just do it, see her plan first, ask questions about your code, or let the helpers split the work. An effort slider sets how hard she checks.</p></div></div>
               <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg></div><div><h3>Undo and Xcode</h3><p>Every change can be undone. Open the project in Xcode, run it there, or click an error to jump to its line.</p></div></div>
+              <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div><div><h3>Websites, live on localhost</h3><p>Ask for a website and she writes the HTML, CSS and JavaScript, serves it on localhost and shows it right in the app. Dev servers like Vite work too.</p></div></div>
+              <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 17 6-5-6-5"/><path d="M12 19h8"/></svg></div><div><h3>A terminal, on your terms</h3><p>She can install packages and run commands. Manual asks before everything, Auto asks only for risky things like deleting, and Full Access never asks.</p></div></div>
+              <div class="item"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg></div><div><h3>Any folder of code</h3><p>Open a project you already have, in any language, and ask her to explain it, fix it or add to it, like Claude Code or Cursor.</p></div></div>
             </div>
           </div>
           <div class="code-steps tile" aria-label="Example of Cherry Code at work">
@@ -1034,7 +1052,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
           <details><summary>Does anything get sent to the internet?</summary><p>Not by default. Cherry thinks on your Mac with Apple's on-device model or a local model you download through Ollama, and your iPhone talks to your Mac directly over your own network, encrypted. Only things you ask for go online: opening a website, the weather, a Wikipedia lookup or research. Plus a quick check of your subscription. If you turn on Claude in Settings → Brain, what you ask (and in Cherry Code, the code it needs) goes to Anthropic with your own API key.</p></details>
           <details><summary>Which brain should I pick?</summary><p><b>Apple Intelligence</b> needs no setup and is private, but it's small. A <b>local model</b> is free and private too, and much better at code: install <a href="https://ollama.com/download">Ollama</a>, then download a model from Settings → Brain (Qwen2.5 Coder 7B on 8 GB Macs, 14B on 16 GB, Qwen3 Coder 30B on 32 GB or more). <b>Claude</b> is by far the best at building apps; you add your own Anthropic API key and pay Anthropic for what you use.</p></details>
           <details><summary>What are Skills?</summary><p>Skills teach Cherry new tricks. Each one has a command you type in the chat, like <code>/pomodoro</code>; anything after it goes to the skill, like <code>/jot call the dentist</code>. On your iPhone, say “slash” and its name. Describe a skill in plain words and Cherry builds the steps for you to check, or build it step by step, add ready-made ones, or run your Apple Shortcuts.</p></details>
-          <details><summary>What is Cherry Code?</summary><p>A separate app, included with Cherry Pro, where Cherry builds small Mac and iPhone apps for you. She makes a real Xcode project, writes the SwiftUI code, builds it after every change, runs the tests and opens the app in the iPhone Simulator or on your Mac. With Apple's built-in model it's best at small changes; with a local model or Claude it builds much more. You need Xcode installed.</p></details>
+          <details><summary>What is Cherry Code?</summary><p>A separate app, included with Cherry Pro, where Cherry builds Mac and iPhone apps and websites for you, or works on code you already have. For apps she makes a real Xcode project, writes the SwiftUI code, builds it after every change, runs the tests and opens the app in the iPhone Simulator or on your Mac. Websites run on localhost right in the app. She can use the terminal too, asking first as much as you like (Manual, Auto or Full Access). With Apple's built-in model she's best at small app changes; websites, the terminal and bigger work need a local model or Claude. You need Xcode for apps.</p></details>
           <details><summary>How do I sign in to Pro?</summary><p>After you buy, Lemon Squeezy emails you a license key. In Cherry, go to Settings → Cherry Pro → Sign in, and enter the email you bought with and the key. There's no account or password to remember, and one sign-in unlocks Cherry and Cherry Code on that Mac.</p></details>
           <details><summary>Which Macs does she work on?</summary><p>Apple silicon MacBooks (M1 and newer) on macOS 26 or later, with Apple Intelligence turned on.</p></details>
           <details><summary>Can she do anything on my Mac?</summary><p>Everyday tasks are done directly, so they're fast and reliable. Long, complicated jobs in unfamiliar apps are harder, because she thinks with a small model on your Mac. That's when her helpers step in. She always asks before anything risky, and you can stop her instantly.</p></details>
