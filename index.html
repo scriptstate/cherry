@@ -568,6 +568,12 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
   .reveal { opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
 }
+    .shorts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .shorts figure { margin: 0; text-align: center; }
+    .shorts video { width: 100%; aspect-ratio: 9/16; border-radius: 22px; background: #12030a; display: block; 
+      box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+    .shorts figcaption { margin-top: 12px; font-weight: 600; font-size: 15px; opacity: .8; }
+    @media (max-width: 720px) { .shorts { grid-template-columns: 1fr; max-width: 340px; margin: 0 auto; } }
 </style>
 </head>
 <body>
@@ -654,6 +660,23 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
         <video src="assets/cherry-intro.mp4" poster="assets/cherry-intro-poster.jpg" controls playsinline preload="none"
                style="display:block;width:100%;aspect-ratio:16/9;border-radius:22px;background:#12030a;box-shadow:0 24px 60px rgba(0,0,0,.35)"
                aria-label="A 30-second introduction to Cherry and Cherry Code"></video>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 15-second tours ================= -->
+  <section id="shorts">
+    <div class="wrap">
+      <div class="sheet reveal">
+        <div class="head center">
+          <p class="label">15-second tours</p>
+          <h2>One feature at a time. <span class="muted">In 15 seconds.</span></h2>
+        </div>
+        <div class="shorts">
+          <figure><video src="assets/short-reminders.mp4" poster="assets/short-reminders.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Cherry sets a reminder that rings on the iPhone"></video><figcaption>Reminders that ring on your iPhone</figcaption></figure>
+          <figure><video src="assets/short-morning.mp4" poster="assets/short-morning.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Saying good morning shows the weather, calendar, reminders and news"></video><figcaption>“Good morning” plans your day</figcaption></figure>
+          <figure><video src="assets/short-build-app.mp4" poster="assets/short-build-app.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Cherry Code builds an iPhone app from one sentence"></video><figcaption>An iPhone app from one sentence</figcaption></figure>
+        </div>
       </div>
     </div>
   </section>
@@ -1035,6 +1058,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
       <div class="sheet reveal">
         <div class="head center"><p class="label">What's new</p><h2>Getting better every week.</h2></div>
         <div class="news">
+          <article><time datetime="2026-10-25">October 25</time><div><h3>Your day, your inbox, your clipboard</h3><ul><li>Say “good morning” for the weather, your calendar, reminders and headlines in one card</li><li>“Check my email” sums up your unread mail; replies open in Mail for you to send</li><li>“What did I copy earlier?” brings back recent copies (kept in memory only)</li><li>Press <kbd>⌃⌥ Space</kbd> and she explains what's on your screen</li><li>Repeating reminders, snooze, and reminders on your iPhone</li><li>Cherry Code: six website styles, one-click publishing to GitHub Pages, app icons, and running on your real iPhone</li><li>Updates: Cherry tells you when a new version is out</li></ul></div></article>
           <article><time datetime="2026-10-23">October 23</time><div><h3>Faster answers</h3><ul><li>Answers appear as she writes them, first words in about two seconds</li><li>She reads ahead while you're still typing</li></ul></div></article>
           <article><time datetime="2026-10-16">October 16</time><div><h3>Live answers and Mac controls</h3><ul><li>Weather, currencies, units, word meanings and the time anywhere</li><li>Windows to halves, corners or side by side; lock, Wi-Fi and brightness</li><li>Search YouTube, Amazon, Wikipedia and 20 more sites directly</li><li>Facts from Wikipedia before answering a question</li></ul></div></article>
           <article><time datetime="2026-10-15">October 15</time><div><h3>Skills</h3><ul><li>Twelve ready-made skills and your own, started with <code>/its-name</code></li><li>Describe a skill in plain words and she builds the steps</li><li>Apple Shortcuts as skills</li></ul></div></article>
