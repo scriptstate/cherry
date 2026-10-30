@@ -505,7 +505,7 @@ section { padding: 14px 0; scroll-margin-top: 80px; }
 .billing button { border: 0; background: none; font: 600 15px/1 -apple-system, BlinkMacSystemFont, system-ui, sans-serif; color: var(--ink-2); padding: 10px 16px; border-radius: 999px; cursor: pointer; transition: color .2s, background .2s; }
 .billing button[aria-pressed="true"] { color: #fff; background: var(--cherry); }
 .billing button small { font-weight: 700; margin-left: 4px; opacity: .85; }
-.plans { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: min(880px, 100%); margin: 0 auto; }
+.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; width: min(1180px, 100%); margin: 0 auto; }
 .plan { padding: 30px; display: flex; flex-direction: column; gap: 14px; border-radius: 30px; }
 .plan .price { font-size: 48px; font-weight: 750; letter-spacing: -.035em; line-height: 1; }
 .plan .price small { font-size: 17px; font-weight: 600; color: var(--ink-2); letter-spacing: 0; }
@@ -518,7 +518,10 @@ section { padding: 14px 0; scroll-margin-top: 80px; }
 .plan li::before { content: "✓"; color: var(--cherry); font-weight: 800; }
 .plan.pro { box-shadow: inset 0 1px .5px var(--edge), 0 0 0 2px var(--cherry), 0 30px 70px -30px rgba(227,18,58,.5); }
 .plan .tag { position: absolute; top: -12px; left: 30px; background: var(--cherry); color: #fff; font-size: 12px; font-weight: 750; padding: 4px 10px; border-radius: 999px; z-index: 4; }
+@media (max-width: 1000px) { .plans { grid-template-columns: 1fr 1fr; } .plan.max { grid-column: 1 / -1; } }
 @media (max-width: 720px) { .plans { grid-template-columns: 1fr; } }
+.plan.max { position: relative; box-shadow: inset 0 1px .5px var(--edge), 0 0 0 2px #8b3dc8, 0 30px 70px -30px rgba(139,61,200,.5); }
+.plan.max .tag { background: #8b3dc8; }
 .requirements { text-align: center; color: var(--ink-3); margin-top: 22px; font-size: 15px; }
 
 .faq { width: min(780px, 100%); margin: 0 auto; }
@@ -1011,7 +1014,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
       </div>
       <div class="billing-row reveal"><div class="billing" role="group" aria-label="Billing">
         <button type="button" aria-pressed="true" data-bill="month">Monthly</button>
-        <button type="button" aria-pressed="false" data-bill="year">Yearly <small>save 35%</small></button>
+        <button type="button" aria-pressed="false" data-bill="year">Yearly <small>save up to 35%</small></button>
       </div></div>
       <div class="plans">
         <div class="plan glass reveal">
@@ -1035,7 +1038,7 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
           <p class="alt" id="pro-alt">or <strong>$39 a year</strong> (save 35%)</p>
           <ul>
             <li>Everything in Free</li>
-            <li>Cherry Code: she builds small Mac and iPhone apps</li>
+            <li>Cherry Code: she builds Mac and iPhone apps and websites (500K tokens a month)</li>
             <li>Research with key points and sources</li>
             <li>Tailored advice: she asks what you need, then recommends</li>
             <li>Unlimited skills of your own</li>
@@ -1046,8 +1049,24 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
           </ul>
           <button type="button" role="link" class="lg tinted" data-href="https://github.com/scriptstate/cherry/releases/latest/download/Cherry.dmg"><span>Download and try Pro free</span></button>
         </div>
+        <div class="plan max glass reveal">
+          <span class="tag">New</span>
+          <h3>Cherry Max</h3>
+          <p class="price" id="max-price"><span>$15</span><small id="max-per"> /month</small></p>
+          <p class="alt" id="max-alt">or <strong>$129 a year</strong> (save 28%)</p>
+          <ul>
+            <li>Everything in Pro</li>
+            <li>Cherry Playground: make pictures with Apple's Image Playground</li>
+            <li>Short videos from an idea: she writes the scenes, reads them out, adds captions and music</li>
+            <li>Tall, wide or square, ready for TikTok, Reels, Shorts and YouTube</li>
+            <li>Cherry Code with 5M tokens a month</li>
+            <li>All on your Mac</li>
+          </ul>
+          <button type="button" role="link" class="lg" data-href="https://github.com/scriptstate/cherry/releases/latest/download/Cherry.dmg"><span>Download Cherry</span></button>
+        </div>
       </div>
-      <p class="signin-note reveal">Already bought it? Open Cherry → Settings → Cherry Pro → <strong>Sign in</strong> with your email and license key. One sign-in unlocks Cherry and Cherry Code.</p>
+      <p class="signin-note reveal">Tokens are how much thinking Cherry Code does with Apple's model or a model on your Mac. They come back on the 1st of every month. Claude with your own key isn't counted.</p>
+      <p class="signin-note reveal">Already bought it? Open Cherry → Settings → Cherry Pro → <strong>Sign in</strong> with your email and license key. One sign-in unlocks Cherry, Cherry Code and, with Max, Cherry Playground.</p>
       <p class="requirements">For Apple silicon MacBooks (M1 and newer) on macOS 26 or later, with Apple Intelligence on.</p>
     </div>
   </section>
@@ -1080,6 +1099,8 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
           <details><summary>Which brain should I pick?</summary><p><b>Apple Intelligence</b> needs no setup and is private, but it's small. A <b>local model</b> is free and private too, and much better at code: install <a href="https://ollama.com/download">Ollama</a>, then download a model from Settings → Brain (Qwen2.5 Coder 7B on 8 GB Macs, 14B on 16 GB, Qwen3 Coder 30B on 32 GB or more). <b>Claude</b> is by far the best at building apps; you add your own Anthropic API key and pay Anthropic for what you use.</p></details>
           <details><summary>What are Skills?</summary><p>Skills teach Cherry new tricks. Each one has a command you type in the chat, like <code>/pomodoro</code>; anything after it goes to the skill, like <code>/jot call the dentist</code>. On your iPhone, say “slash” and its name. Describe a skill in plain words and Cherry builds the steps for you to check, or build it step by step, add ready-made ones, or run your Apple Shortcuts.</p></details>
           <details><summary>What is Cherry Code?</summary><p>A separate app, included with Cherry Pro, where Cherry builds Mac and iPhone apps and websites for you, or works on code you already have. For apps she makes a real Xcode project, writes the SwiftUI code, builds it after every change, runs the tests and opens the app in the iPhone Simulator or on your Mac. Websites run on localhost right in the app. She can use the terminal too, asking first as much as you like (Manual, Auto or Full Access). With Apple's built-in model she's best at small app changes; websites, the terminal and bigger work need a local model or Claude. You need Xcode for apps.</p></details>
+          <details><summary>What is Cherry Playground?</summary><p>A separate app that comes with Cherry Max. Describe a picture and Cherry writes a fuller description, then Apple's Image Playground makes it. For videos, say what it's about: Cherry writes the scenes, you make a picture for each (or use your own photos), and she puts it together with her voice reading it out, captions, gentle movement and music made on the spot. Everything happens on your Mac. Pictures go to Pictures → Cherry Playground and videos to Movies → Cherry Playground. Image Playground needs Apple Intelligence.</p></details>
+          <details><summary>What are Cherry Code tokens?</summary><p>Tokens measure how much Cherry Code reads and writes when it thinks with Apple's model or a model on your Mac. Pro and the trial include 500K a month and Max includes 5M. They come back on the 1st of every month. When they run out, building, running and testing still work, and so does Claude with your own key, which is never counted.</p></details>
           <details><summary>How do I sign in to Pro?</summary><p>After you buy, Lemon Squeezy emails you a license key. In Cherry, go to Settings → Cherry Pro → Sign in, and enter the email you bought with and the key. There's no account or password to remember, and one sign-in unlocks Cherry and Cherry Code on that Mac.</p></details>
           <details><summary>Which Macs does she work on?</summary><p>Apple silicon MacBooks (M1 and newer) on macOS 26 or later, with Apple Intelligence turned on.</p></details>
           <details><summary>Can she do anything on my Mac?</summary><p>Everyday tasks are done directly, so they're fast and reliable. Long, complicated jobs in unfamiliar apps are harder, because she thinks with a small model on your Mac. That's when her helpers step in. She always asks before anything risky, and you can stop her instantly.</p></details>
@@ -1586,11 +1607,17 @@ document.querySelectorAll("main section[id]").forEach(section => reading.observe
 (function billing() {
   const buttons = [...document.querySelectorAll(".billing button")];
   const price = document.getElementById("pro-price"), per = document.getElementById("pro-per"), alt = document.getElementById("pro-alt");
+  const maxPrice = document.getElementById("max-price"), maxPer = document.getElementById("max-per"), maxAlt = document.getElementById("max-alt");
   buttons.forEach(button => button.addEventListener("click", async () => {
     buttons.forEach(b => b.setAttribute("aria-pressed", b === button));
     const yearly = button.dataset.bill === "year";
     price.classList.add("swap");
+    maxPrice.classList.add("swap");
     await sleep(reduceMotion ? 0 : 160);
+    maxPrice.querySelector("span").textContent = yearly ? "$129" : "$15";
+    maxPer.textContent = yearly ? " /year" : " /month";
+    maxAlt.innerHTML = yearly ? "That's <strong>$10.75 a month</strong>, billed once a year" : "or <strong>$129 a year</strong> (save 28%)";
+    maxPrice.classList.remove("swap");
     price.querySelector("span").textContent = yearly ? "$39" : "$5";
     per.textContent = yearly ? " /year" : " /month";
     alt.innerHTML = yearly ? "That's <strong>$3.25 a month</strong>, billed once a year" : "or <strong>$39 a year</strong> (save 35%)";
