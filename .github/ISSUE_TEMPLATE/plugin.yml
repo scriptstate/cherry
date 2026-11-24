@@ -1,0 +1,30 @@
+name: Submit a Cherry Code plugin
+description: Send a plugin to the Cherry Code plugin store. Scriptstate reviews every plugin before it's listed.
+title: "Plugin: "
+labels: ["plugin"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for making a plugin! Cherry Code fills this in when you press **Publish** on a plugin project.
+        Plugins are text only (instructions, "/" commands and connections). Anything that runs a program is checked carefully.
+  - type: textarea
+    id: plugin
+    attributes:
+      label: Plugin
+      description: The plugin's JSON, as Cherry Code made it.
+      render: json
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything we should know?
+      description: What it's for, how you tested it, what the connections need.
+  - type: checkboxes
+    id: agree
+    attributes:
+      label: Before you send it
+      options:
+        - label: I made this plugin (or have the right to share it), and it doesn't do anything harmful.
+          required: true

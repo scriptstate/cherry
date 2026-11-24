@@ -1,0 +1,13 @@
+{
+  "plugins": [
+    {
+      "author": "Scriptstate",
+      "description": "Make Roblox games with Cherry: she builds in Roblox Studio through its own tools. Needs Roblox Studio open and a local model or the cloud brain.",
+      "id": "roblox-helper",
+      "name": "Roblox Helper",
+      "symbol": "gamecontroller.fill",
+      "url": "roblox-helper.json",
+      "version": "1.0"
+    }
+  ]
+}

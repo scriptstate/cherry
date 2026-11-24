@@ -1,0 +1,32 @@
+{
+  "author": "Scriptstate",
+  "commands": [
+    {
+      "description": "Build an obstacle course",
+      "name": "obby",
+      "prompt": "In Roblox Studio, build an obstacle course (obby) with checkpoints, a start and a finish: {input}"
+    },
+    {
+      "description": "Add a character that talks",
+      "name": "npc",
+      "prompt": "In Roblox Studio, add a friendly NPC that says something when a player comes close: {input}"
+    },
+    {
+      "description": "Play-test and fix errors",
+      "name": "playtest",
+      "prompt": "In Roblox Studio, start a play test, read the console for errors, fix what's wrong, and stop the test. {input}"
+    }
+  ],
+  "description": "Make Roblox games with Cherry: she builds in Roblox Studio through its own tools. Needs Roblox Studio open and a local model or the cloud brain.",
+  "id": "roblox-helper",
+  "instructions": "When the person wants a Roblox game or a change to one, work in Roblox Studio through its connected tools (they start with mcp__Roblox_Studio__).\n- Look first: get_studio_state and search_game_tree, so you know what's in the place.\n- Put server scripts in ServerScriptService, client scripts in StarterPlayerScripts, and shared modules in ReplicatedStorage. Use Luau with type annotations where they help.\n- Build parts and models with execute_luau, anchored unless they should move. Name things clearly.\n- After a change, start a play test with start_stop_play, check get_console_output for errors, fix them, and stop the test.\n- Keep games friendly for all ages. Explain what you made in plain words, for someone who isn't a programmer.",
+  "mcpServers": {
+    "Roblox Studio": {
+      "args": [],
+      "command": "/Applications/RobloxStudio.app/Contents/MacOS/StudioMCP"
+    }
+  },
+  "name": "Roblox Helper",
+  "symbol": "gamecontroller.fill",
+  "version": "1.0"
+}
