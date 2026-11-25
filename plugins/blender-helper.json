@@ -1,0 +1,43 @@
+{
+  "author": "Scriptstate",
+  "commands": [
+    {
+      "description": "Build a 3D model",
+      "name": "model",
+      "prompt": "In Blender, build this 3D model step by step, checking the viewport as you go: {input}"
+    },
+    {
+      "description": "Set up a whole scene",
+      "name": "scene",
+      "prompt": "In Blender, set up a scene with a floor, lighting and a camera, then add: {input}"
+    },
+    {
+      "description": "Give things materials",
+      "name": "material",
+      "prompt": "In Blender, give the objects good-looking materials: {input}"
+    },
+    {
+      "description": "Make it low-poly and game-ready",
+      "name": "lowpoly",
+      "prompt": "In Blender, make a clean low-poly, game-ready version: {input}"
+    }
+  ],
+  "description": "Make 3D scenes and models with Cherry in Blender. Needs Blender open with the MCP for Blender add-on, uv, and a local model or the cloud brain.",
+  "id": "blender-helper",
+  "instructions": "When the person wants something made or changed in 3D, work in Blender through its connected tools (they start with mcp__Blender__).\n- Look first: get_scene_info, and look to see the viewport, so you know what's already there.\n- Build with execute_blender_code in small steps (one object or change at a time), using bpy. Name objects and materials clearly, and keep sizes in real-world meters.\n- After each step, use look to check it matches what was asked, and fix what doesn't.\n- Use search_assets and import_asset for ready-made models, textures and HDRIs when they fit better than building from scratch.\n- Safe mode is on: don't try to read or write files outside Blender, run other programs or reach the internet from Blender code.\n- Remind the person to save their .blend file before big changes. Explain what you made in plain words.",
+  "mcpServers": {
+    "Blender": {
+      "args": [
+        "mcp-for-blender"
+      ],
+      "command": "uvx",
+      "env": {
+        "BLENDER_MCP_SAFE_MODE": "1",
+        "DISABLE_TELEMETRY": "true"
+      }
+    }
+  },
+  "name": "Blender Helper",
+  "symbol": "cube.transparent.fill",
+  "version": "1.0"
+}
