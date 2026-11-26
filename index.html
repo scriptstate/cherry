@@ -505,7 +505,7 @@ section { padding: 14px 0; scroll-margin-top: 80px; }
 .billing button { border: 0; background: none; font: 600 15px/1 -apple-system, BlinkMacSystemFont, system-ui, sans-serif; color: var(--ink-2); padding: 10px 16px; border-radius: 999px; cursor: pointer; transition: color .2s, background .2s; }
 .billing button[aria-pressed="true"] { color: #fff; background: var(--cherry); }
 .billing button small { font-weight: 700; margin-left: 4px; opacity: .85; }
-.plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; width: min(1180px, 100%); margin: 0 auto; }
+.plans { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; width: min(1280px, 100%); margin: 0 auto; }
 .plan { padding: 30px; display: flex; flex-direction: column; gap: 14px; border-radius: 30px; }
 .plan .price { font-size: 48px; font-weight: 750; letter-spacing: -.035em; line-height: 1; }
 .plan .price small { font-size: 17px; font-weight: 600; color: var(--ink-2); letter-spacing: 0; }
@@ -518,10 +518,12 @@ section { padding: 14px 0; scroll-margin-top: 80px; }
 .plan li::before { content: "✓"; color: var(--cherry); font-weight: 800; }
 .plan.pro { box-shadow: inset 0 1px .5px var(--edge), 0 0 0 2px var(--cherry), 0 30px 70px -30px rgba(227,18,58,.5); }
 .plan .tag { position: absolute; top: -12px; left: 30px; background: var(--cherry); color: #fff; font-size: 12px; font-weight: 750; padding: 4px 10px; border-radius: 999px; z-index: 4; }
-@media (max-width: 1000px) { .plans { grid-template-columns: 1fr 1fr; } .plan.max { grid-column: 1 / -1; } }
+@media (max-width: 1100px) { .plans { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 720px) { .plans { grid-template-columns: 1fr; } }
 .plan.max { position: relative; box-shadow: inset 0 1px .5px var(--edge), 0 0 0 2px #8b3dc8, 0 30px 70px -30px rgba(139,61,200,.5); }
 .plan.max .tag { background: #8b3dc8; }
+.plan.premium { position: relative; box-shadow: inset 0 1px .5px var(--edge), 0 0 0 2px #c9922e, 0 30px 70px -30px rgba(201,146,46,.55); }
+.plan.premium .tag { background: linear-gradient(135deg, #e0b04a, #b8741f); }
 .requirements { text-align: center; color: var(--ink-3); margin-top: 22px; font-size: 15px; }
 
 .faq { width: min(780px, 100%); margin: 0 auto; }
@@ -1067,6 +1069,22 @@ footer .legal { color: var(--ink-3); font-size: 14px; padding-top: 20px; margin-
             <li>Auto captions for your own videos, cut outs, thumbnails and memes, voiceovers, music, GIFs</li>
             <li>Just ask Cherry: “make a video about black holes”</li>
             <li>Cherry Code with 5M tokens a month</li>
+            <li>All on your Mac</li>
+          </ul>
+          <button type="button" role="link" class="lg" data-href="https://github.com/scriptstate/cherry/releases/latest/download/Cherry.dmg"><span>Download Cherry</span></button>
+        </div>
+        <div class="plan premium glass reveal">
+          <span class="tag">Coming soon</span>
+          <h3>Cherry Premium</h3>
+          <p class="price" id="premium-price"><span>$29</span><small id="premium-per"> /month</small></p>
+          <p class="alt" id="premium-alt">or <strong>$249 a year</strong> (save 28%)</p>
+          <ul>
+            <li>Everything in Max</li>
+            <li>3&times; Max's Cherry Code: 15M tokens a month, or 3M every 5 hours and 15M a week with Cherry Code 2.0</li>
+            <li>Your family: share your key with up to 4 people at home, on up to 10 Macs</li>
+            <li>Premium Preview: new experiments reach you before anyone else</li>
+            <li>Parallel Cherries: try a request up to five ways at once</li>
+            <li>Priority support</li>
             <li>All on your Mac</li>
           </ul>
           <button type="button" role="link" class="lg" data-href="https://github.com/scriptstate/cherry/releases/latest/download/Cherry.dmg"><span>Download Cherry</span></button>
@@ -1617,12 +1635,18 @@ document.querySelectorAll("main section[id]").forEach(section => reading.observe
   const buttons = [...document.querySelectorAll(".billing button")];
   const price = document.getElementById("pro-price"), per = document.getElementById("pro-per"), alt = document.getElementById("pro-alt");
   const maxPrice = document.getElementById("max-price"), maxPer = document.getElementById("max-per"), maxAlt = document.getElementById("max-alt");
+  const premiumPrice = document.getElementById("premium-price"), premiumPer = document.getElementById("premium-per"), premiumAlt = document.getElementById("premium-alt");
   buttons.forEach(button => button.addEventListener("click", async () => {
     buttons.forEach(b => b.setAttribute("aria-pressed", b === button));
     const yearly = button.dataset.bill === "year";
     price.classList.add("swap");
     maxPrice.classList.add("swap");
+    premiumPrice.classList.add("swap");
     await sleep(reduceMotion ? 0 : 160);
+    premiumPrice.querySelector("span").textContent = yearly ? "$249" : "$29";
+    premiumPer.textContent = yearly ? " /year" : " /month";
+    premiumAlt.innerHTML = yearly ? "That's <strong>$20.75 a month</strong>, billed once a year" : "or <strong>$249 a year</strong> (save 28%)";
+    premiumPrice.classList.remove("swap");
     maxPrice.querySelector("span").textContent = yearly ? "$129" : "$15";
     maxPer.textContent = yearly ? " /year" : " /month";
     maxAlt.innerHTML = yearly ? "That's <strong>$10.75 a month</strong>, billed once a year" : "or <strong>$129 a year</strong> (save 28%)";
